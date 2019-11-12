@@ -1,6 +1,6 @@
 package petriNet;
 public class MathOperator {
-
+//chupalapija
     public MathOperator(){
         super();
     }
