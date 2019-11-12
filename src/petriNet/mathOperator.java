@@ -1,3 +1,4 @@
+package petriNet;
 public class mathOperator {
 
     public mathOperator(){
