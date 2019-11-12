@@ -56,4 +56,15 @@ public class MathOperator {
 
         return result;
     }
+
+    public int[] vectmatProd(int matrix_size, int vector_size, int [][] matrix, int[] vector){
+
+        int [] result = new int[vector_size];
+
+        for(int i = 0; i < vector_size; i++)
+            for(int j = 0; j < matrix_size; j++)
+                result[i] += matrix[i][j] * vector[j];
+
+        return result;
+    }
 }
