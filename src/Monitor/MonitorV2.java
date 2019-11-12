@@ -42,7 +42,8 @@ public class MonitorV2 {
                 //Obtener sensibilizadas
                 //Ver si hay alguna en la cola esperando por una transcicon
                 //que fue sensibilizada luego del disparo
-                //si hay alguna adentro que pueda disparar la despierto y me voy
+                //si hay alguna adentro que pueda disparar le preg a la politica cual
+                //lo despierto y me voy
                 //sino libero el semaforo de entrada y me voy
 
             }
@@ -53,8 +54,9 @@ public class MonitorV2 {
                 //Entonces disparo
                 //Ver si hay alguna en la cola esperando por una transcicon
                 //que fue sensibilizada luego del disparo
-                //si puedo despertar alguno de adentro lo hago y me voy
-                //sino libero el lock
+                //si puedo despertar alguno de adentro le preg cual a la politica
+                //des pierto al hilo y me voy
+                //sino libero el Semaforo de entrdaa al monitor
 
 
             }
@@ -66,6 +68,11 @@ public class MonitorV2 {
         }
     }
 
+    /*
+     * Opera para saber sobre que colas se pueden despertar hilos,
+     * es decir, que haya alguien esperando para disparar X transcicion y dicha
+     * transcicion este sensibilizada
+     */
     private int[] getReadyVect(int [] sensibilizadas){
         MathOperator mo = new MathOperator();
         return mo.andVector(sensibilizadas.length, getWaitingVect(), sensibilizadas);

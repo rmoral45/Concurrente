@@ -1,5 +1,4 @@
 package Politica;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Politica {
