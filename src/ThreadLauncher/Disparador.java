@@ -1,3 +1,5 @@
+package ThreadLauncher;
+import Monitor.MonitorV2;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,12 +19,7 @@ public class Disparador implements Runnable {
     @Override
     public void run() {
         while (true) {
-
-            try {
-                this.monitor.disparar(this.disparoDeseado);
-            } catch (InterruptedException e) {
-                System.out.print("Agarre la excepcion en mi propio metodo");
-            }
+            this.monitor.disparar(this.disparoDeseado);
         }
 
     }

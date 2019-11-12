@@ -1,3 +1,10 @@
+package Monitor;
+import Colas.ColaCondicion;
+import Politica.PoliticMode;
+import Politica.Politica;
+import petriNet.MathOperator;
+import petriNet.PetriNet;
+
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;
@@ -9,6 +16,7 @@ public class MonitorV2 {
     private final ArrayList<ColaCondicion> colasCondicion = new ArrayList<ColaCondicion>();
     private final Semaphore ingressSemaphore = new Semaphore(1,true);
     private Politica policy;
+    private PetriNet petriNet;
     private final int[] fake_sens= {1,1,0,0,0,1};
 
     public MonitorV2(int nthreads, PoliticMode polMode){
@@ -30,12 +38,25 @@ public class MonitorV2 {
         try{
             ingressSemaphore.acquire();
             conditionQueueLock.lock();
-            if (petriNet.disparar(numTranscicion) == true){
+            if (petriNet.dispararTransicion(numTranscicion)){
+                //Obtener sensibilizadas
+                //Ver si hay alguna en la cola esperando por una transcicon
+                //que fue sensibilizada luego del disparo
+                //si hay alguna adentro que pueda disparar la despierto y me voy
+                //sino libero el semaforo de entrada y me voy
 
             }
             else{
                 ingressSemaphore.release();
-                colasCondicion.get()
+                colasCondicion.get(numTranscicion).encolar();
+                //Si me despertaron se que puedo disparar
+                //Entonces disparo
+                //Ver si hay alguna en la cola esperando por una transcicon
+                //que fue sensibilizada luego del disparo
+                //si puedo despertar alguno de adentro lo hago y me voy
+                //sino libero el lock
+
+
             }
 
 
@@ -43,6 +64,24 @@ public class MonitorV2 {
         catch(InterruptedException e){
             System.exit(1);
         }
+    }
+
+    private int[] getReadyVect(int [] sensibilizadas){
+        MathOperator mo = new MathOperator();
+        return mo.andVector(sensibilizadas.length, getWaitingVect(), sensibilizadas);
+    }
+
+    /*
+     *@brief : Recorre las cosas de condicion para ver si hay hilos esperando
+     */
+    private int[] getWaitingVect(){
+
+        int[] wv = new int[colasCondicion.size()];
+        for (int i = 0; i < colasCondicion.size(); i++){
+            if (colasCondicion.get(i).getQueueLen() > 0)
+                wv[i] = 1;
+        }
+        return wv;
     }
     /*
         Para probar boludeses con las colas etc
