@@ -1,7 +1,7 @@
 package petriNet;
-public class mathOperator {
+public class MathOperator {
 
-    public mathOperator(){
+    public MathOperator(){
         super();
     }
 

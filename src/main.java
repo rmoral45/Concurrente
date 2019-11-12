@@ -1,6 +1,3 @@
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import petriNet.*;
 
 public class main {
@@ -8,7 +5,15 @@ public class main {
     public static void main(String[] args){
 
 
-        petriNet rdp = new petriNet("/home/ramiro/repos/Concurrente/src/petriNet/petriNet_parameters.json");
+        PetriNet rdp = new PetriNet("/home/ramiro/repos/Concurrente/src/petriNet/petriNet_parameters.json");
+
+
+        int nplaces = rdp.
+
+        for(int i = 0; i < nplaces; i++)
+            for(int j = 0; j < ntransitions; j++) {
+                System.out.print(petriNet_matrix[i][j]);
+            }
 
 
         return;

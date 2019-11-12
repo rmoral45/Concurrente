@@ -1,14 +1,14 @@
 package petriNet;
 
-public class petriNet {
+public class PetriNet {
 
     private int[][] incidenceMatrix;
     private int[] mark_vector;
 
-    public petriNet(String fileName){
+    public PetriNet(String fileName){
 
-        mathOperator operator = new mathOperator();
-        petriParser parser = new petriParser(fileName);
+        MathOperator operator = new MathOperator();
+        PetriParser parser = new PetriParser(fileName);
         this.incidenceMatrix = parser.getPetriNet_matrix();
         this.mark_vector = parser.getInitial_marking();
         //falta agregar arcos lectores y arcos inhibidores
