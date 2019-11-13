@@ -1,6 +1,17 @@
 package petriNet;
+
+import java.util.ArrayList;
+
 public class MathOperator {
-//chupalapija
+
+    /*
+     *
+     * FIXME Hya metodos donde si las prioridades son 0 o muy grandes no funciuona
+     *  Arrgelar o documentar bien para no hacer cagadas
+     *
+     *
+     */
+
     public MathOperator(){
         super();
     }
@@ -87,8 +98,8 @@ public class MathOperator {
 
         int size = vector.length;
         int min_index = 0;
-        int min_value = 1000000;
-
+        int min_value = vector[0];// Se supone el primero como mas alto
+                                  // de esta forma no se rompe con ningun tipo de prioridad
         for(int i = 0; i < size; i++){
             if(vector[i] < min_value){
                 min_value = vector[i];
@@ -111,14 +122,35 @@ public class MathOperator {
         return max_value;
     }
 
+    /*
+        Si hay dos o mas elementos iguales al amyor valor retorna una lista con sus posiciones
+    */
+    public static int [] getMaxIndexVect(int[] vector){
+
+        ArrayList<Integer> maxIndexes = new ArrayList<Integer>();
+        int size = vector.length;
+        int max_value = vector[0];
+        for (int value : vector) {
+            if (value > max_value)
+                max_value = value;
+        }
+        for (int i = 0; i < size; i++){
+            if (vector[i] == max_value)
+                maxIndexes.add(i);
+        }
+        int [] retval = new int[maxIndexes.size()];
+        for (int i=0; i< maxIndexes.size(); i++)
+            retval[i] = maxIndexes.get(i);
+        return retval;
+    }
+
     public static int getMinValue(int[] vector){
 
         int size = vector.length;
-        int min_value = 1000000;
-
-        for(int i = 0; i < size; i++){
-            if(vector[i] < min_value){
-                min_value = vector[i];
+        int min_value = vector[0]; //lo mismo que ne getMinIndex
+        for (int value : vector) {
+            if (value < min_value) {
+                min_value = value;
             }
         }
         return min_value;

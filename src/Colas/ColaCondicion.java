@@ -28,6 +28,7 @@ public class ColaCondicion {
         return queueLen;
     }
 
+
     public long getOldestTimestamp(){
         return threadsTimestamp.get(0);
     }
@@ -36,6 +37,7 @@ public class ColaCondicion {
         safeGuard = true;
         threadsTimestamp.add(System.currentTimeMillis());
         queueLen++;
+        //System.out.print("Encolando\n");
          try{
              while (safeGuard)
                  condition.await();
@@ -50,7 +52,7 @@ public class ColaCondicion {
 
 
     public void desencolar(){
-        System.out.print("Desencolando cola :" + numCondicion + "\n");
+        //System.out.print("Desencolando cola :" + numCondicion + "\n");
         threadsTimestamp.remove(0);
         safeGuard = false;
         queueLen--;

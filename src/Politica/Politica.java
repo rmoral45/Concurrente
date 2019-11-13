@@ -1,5 +1,8 @@
 package Politica;
+import java.security.InvalidAlgorithmParameterException;
+import java.util.Arrays;
 import java.util.Random;
+import petriNet.MathOperator;
 
 public class Politica {
 
@@ -24,9 +27,14 @@ public class Politica {
             case RANDOM:
                 return getRandomNext(sensibilizadas);
             case ROND_ROBIN:
-                getRoundRobinNext(sensibilizadas);
-                System.out.print("\nProximo hilo a despertar  " + next + "\n");
-                return next;
+                    try {
+                        getRoundRobinNext(sensibilizadas);
+                        System.out.print("\nProximo hilo a despertar  " + next + "\n");
+                        return next;
+                    }catch (InvalidAlgorithmParameterException e){
+                        System.exit(1);
+                    }
+
 
         }
         return 0; //FIXME ver como cumplir todos los casos
@@ -40,11 +48,14 @@ public class Politica {
         return nextAwake;
     }
 
-    private void getRoundRobinNext(int [] sensibilizadas){
-        /*
-            FIXME si sensibilizadas en todos 0's se rompe en el while
-        */
+    public void getRoundRobinNext(int [] sensibilizadas) throws InvalidAlgorithmParameterException {
+
+
+        if (Arrays.equals(new int[sensibilizadas.length],sensibilizadas))
+            throw new InvalidAlgorithmParameterException("Vecotr de sensibilizadas en 0");
+
         next++;
+        //FIXME se deberia utilizar sensibilizadas.length ?
         if (next == numCondQueue)
             next = 0;
         while (sensibilizadas[next] == 0) {
@@ -52,5 +63,21 @@ public class Politica {
             if (next == numCondQueue)
                 next = 0;
         }
+    }
+
+    private int getHighestPriorityNext(int [] sensibilizadas){
+        return MathOperator.getMaxIndex(
+                    MathOperator.andVector( sensibilizadas.length,
+                                            priorities,
+                                            sensibilizadas)
+                                );
+
+    }
+
+    /*
+        Desempata en caso de dos con iguales prioridades sensibilizdas
+     */
+    private int resolveTieByRandom(){
+        return 1;
     }
 }

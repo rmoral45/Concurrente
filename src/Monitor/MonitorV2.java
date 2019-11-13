@@ -12,6 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class MonitorV2 {
 
+    //FIXME Utilizar ReentrantLock En lugar de Lock para tener acceso a todos los metodos
     private final Lock conditionQueueLock = new ReentrantLock(); // lock para generar colas
     private final ArrayList<ColaCondicion> colasCondicion = new ArrayList<ColaCondicion>();
     private final Semaphore ingressSemaphore = new Semaphore(1,true);
