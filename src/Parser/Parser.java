@@ -1,12 +1,12 @@
-package petriNet;
-
+package Parser;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonArray;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-public class PetriParser {
+
+public class Parser {
 
     private int nplaces;
     private int ntransitions;
@@ -16,7 +16,7 @@ public class PetriParser {
     private int [] lector_arcs;
 
 
-    public PetriParser(String fileName) {
+    public Parser(String fileName) {
 
         try (FileReader reader = new FileReader(fileName))
         {
