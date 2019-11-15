@@ -4,18 +4,17 @@ import java.util.ArrayList;
 
 public class MathOperator {
 
-    /*
-     *
-     * FIXME Hya metodos donde si las prioridades son 0 o muy grandes no funciuona
-     *  Arrgelar o documentar bien para no hacer cagadas
-     *
-     *
-     */
-
     public MathOperator(){
         super();
     }
 
+
+    /**
+     * addVector - devuelve la suma de dos vectores
+     * @param vector1 primer operando de la suma
+     * @param vector2 segundo operando de la suma
+     * @return devuelve el vector que resulta de la suma
+     */
     public static int[] addVector(int[] vector1, int[] vector2){
     //public int[] addVector(int[] vector1, int[] vector2){
         int size = vector1.length;
@@ -27,8 +26,15 @@ public class MathOperator {
         return result;
     }
 
+    /**
+     * innerPordVector - realiza el producto punto entre dos vectores
+     * @param vector1 primer operando del producto punto
+     * @param vector2 segundo operando del producto punto
+     * @return devuelve el vector que resulta del producto punto
+     */
     public static int[] innerProdVector(int[] vector1, int[] vector2){
     //public int[] innerProdVector(int[] vector1, int[] vector2){
+        
 
         int size = vector1.length;
         int[] result = new int[size];
@@ -39,8 +45,21 @@ public class MathOperator {
         return result;
     }
 
+    /**
+     * andVector - realiza la and elemento a elemento entre dos vectores
+     * @param vector1 primer operando de la operacion and
+     * @param vector2 segundo operando de la operacion and
+     * @return retorna el resultado de la and entre ambos vectores
+     */
     public static int[] andVector(int[] vector1, int[] vector2){
     //public int[] andVector(int[] vector1, int[] vector2){
+
+        if(vector1.length != vector2.length){
+            System.out.print("Vectores de distinto tamaño!!\n");
+            System.out.printf("Vector1.length: %d ---- Vector2.length: %d\n", vector1.length, vector2.length);
+            break;
+        }
+
         int size = vector1.length;
         int[] result = new int[size];
 
@@ -50,6 +69,12 @@ public class MathOperator {
         return result;
     }
 
+    /**
+     * matrixAdd - realiza la suma entre dos matrices
+     * @param vector1 primer operando de la suma
+     * @param vector2 segundo operando de la suma
+     * @return retormna una matriz que resulta de la suma entre ambos parametros
+     */
     public static int[][] matrixAdd(int[][] vector1, int[][] vector2){
     //public int[][] matrixAdd(int[][] vector1, int[][] vector2){
 
@@ -64,6 +89,12 @@ public class MathOperator {
         return result;
     }
 
+    /**
+     * matrixProd - realiza el producto entre dos matrices
+     * @param vector1 primer operando del producto
+     * @param vector2 segundo operando del producto
+     * @return retorna una matriz entre el producto de vector1 y vector2
+     */
     public static int[][] matrixProd(int[][] vector1, int[][] vector2){
     //public int[][] matrixProd(int[][] vector1, int[][] vector2){
 
@@ -79,9 +110,15 @@ public class MathOperator {
         return result;
     }
 
+    /**
+     * vectmatProd - realiza el producto entre una matriz y un vector
+     * @param matrix
+     * @param vector
+     * @return retorna un vector resultado del producto entre la matriz y el vector pasados como parametro
+     */
     public static int[] vectmatProd(int [][] matrix, int[] vector){
     //public int[] vectmatProd(int [][] matrix, int[] vector){
-        int matrix_size = matrix[0].length;
+        int matrix_size = matrix.length;
         int vector_size = vector.length;
         int [] result = new int[matrix_size];
 
@@ -92,11 +129,17 @@ public class MathOperator {
         return result;
     }
 
+    /**
+     * getMaxIndex - encuentra el indice del mayor elemento del vector.
+     * Supone como mayor al primer elemento del vector
+     * @param vector vector de enteros al que se le realizara la busqueda
+     * @return indice del mayor elemento. Si se le pasa como parametro [0,10,6,23], devolvera 3
+     */
     public static int getMaxIndex(int[] vector){
     //public int getMaxIndex(int[] vector){
         int size = vector.length;
         int max_index = 0;
-        int max_value = 0;
+        int max_value = vector[0];
 
         for(int i = 0; i < size; i++){
             if(vector[i] > max_value){
@@ -107,6 +150,12 @@ public class MathOperator {
         return max_index;
     }
 
+    /**
+     * getMixIndex - encuentra el indice del menor elemento del vector.
+     * Supone como menor al primer elemento del vector
+     * @param vector vector de enteros al que se le realizara la busqueda
+     * @return indice del menorelemento. Si se le pasa como parametro [0,10,6,23], devolvera 0
+     */
     public static int getMinIndex(int[] vector){
     //public int getMinIndex(int[] vector){
         int size = vector.length;
@@ -122,10 +171,16 @@ public class MathOperator {
         return min_index;
     }
 
+    /**
+     * getMaxValue - encuentra el mayor elemento del vector.
+     * Supone como mayor al primer elemento del vector
+     * @param vector vector de enteros al que se le realizara la busqueda
+     * @return El mayor elemento. Si se le pasa como parametro [0,10,6,23], devolvera 3
+     */
     public static int getMaxValue(int[] vector){
     //public int getMaxValue(int[] vector){
         int size = vector.length;
-        int max_value = 0;
+        int max_value = vector[0];
 
         for(int i = 0; i < size; i++){
             if(vector[i] > max_value){
@@ -135,9 +190,12 @@ public class MathOperator {
         return max_value;
     }
 
-    /*
-        Si hay dos o mas elementos iguales al amyor valor retorna una lista con sus posiciones
-    */
+    /**
+     * Busca los indices en donde se encuentran los mayores elementos. Puede haber mas de un maxi,mo
+     * @param vector
+     * @return retorna un vector con las posiciones de los maximos. Por ejemplo si le pasamos
+     *         [0,10,5,2,6,1,10] retorna [1,6]
+     */
     public static int [] getMaxIndexVect(int[] vector){
     //public int [] getMaxIndexVect(int[] vector){
         ArrayList<Integer> maxIndexes = new ArrayList<Integer>();
@@ -157,6 +215,12 @@ public class MathOperator {
         return retval;
     }
 
+    /**
+     * getMaxValue - encuentra el menor elemento del vector.
+     * Supone como menor al primer elemento del vector
+     * @param vector vector de enteros al que se le realizara la busqueda
+     * @return El menor elemento. Si se le pasa como parametro [1,10,6,23], devolvera 1
+     */
     public static int getMinValue(int[] vector){
     //public int getMinValue(int[] vector){
         int size = vector.length;
@@ -167,5 +231,29 @@ public class MathOperator {
             }
         }
         return min_value;
+    }
+
+    /**
+     * Metodo para saber si existen numeros negativos en un vector
+     * Corta la ejecucion al encontrar el primer numero negativo
+     * @param vector vector de enteros sobre el que se realiza la busqueda
+     * @return true: si existe al menos un numero negativo
+     *         false: en caso contrario
+     */
+    public static boolean HasNegative(int[] vector){
+
+        int size = vector.length;
+        boolean isNegative = false;
+
+        for(int i = 0; i < size; i++) {
+            if (vector[i] < 0) {
+                isNegative = true;
+                break;
+            } else
+                isNegative = false;
+
+        }
+        
+        return isNegative;
     }
 }
