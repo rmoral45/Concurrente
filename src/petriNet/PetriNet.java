@@ -1,7 +1,5 @@
 package petriNet;
 
-import java.util.Arrays;
-
 public class PetriNet {
 
     private int nplaces;
@@ -44,8 +42,7 @@ public class PetriNet {
         int [] actual_marking = this.mark_vector;
         int [] new_marking = new int[nplaces];
 
-        new_marking = MathOperator.vectmatProd(this.nplaces, this.ntransitions, this.incidenceMatrix, vector_de_disparo);
-
+        new_marking = MathOperator.vectmatProd(this.incidenceMatrix, vector_de_disparo);
         for(int i = 0; i < nplaces; i++)
             new_marking[i] = new_marking[i] + actual_marking[i];
 
