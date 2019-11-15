@@ -20,9 +20,9 @@ public class MonitorV2 {
     private PetriNet petriNet;
     private final int[] fake_sens= {1,1,0,0,0,1};
 
-    public MonitorV2(int nthreads, PoliticMode polMode){
+    public MonitorV2(int nthreads,PoliticMode polMode){
 
-        policy = new Politica(nthreads, polMode);
+        policy = new Politica( new int [] {1,1,1,1,1}, polMode);
         for (int i=0; i<nthreads; i++) {
             ColaCondicion cc = new ColaCondicion(conditionQueueLock.newCondition(),i);
             colasCondicion.add(cc);
@@ -74,10 +74,10 @@ public class MonitorV2 {
      * es decir, que haya alguien esperando para disparar X transcicion y dicha
      * transcicion este sensibilizada
      */
-    private int[] getReadyVect(int [] sensibilizadas){
+    /*private int[] getReadyVect(int [] sensibilizadas){
         MathOperator mo = new MathOperator();
         return mo.andVector(sensibilizadas.length, getWaitingVect(), sensibilizadas);
-    }
+    }*/
 
     /*
      *@brief : Recorre las cosas de condicion para ver si hay hilos esperando
