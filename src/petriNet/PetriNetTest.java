@@ -1,5 +1,6 @@
 package petriNet;
 
+<<<<<<< HEAD
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -38,4 +39,4 @@ public class PetriNetTest {
     void dispararTransicionTest(){
         Assertions.assertTrue(rdp.dispararTransicion(0));
     }
-}
+

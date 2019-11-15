@@ -34,7 +34,7 @@ public class MathOperator {
      */
     public static int[] innerProdVector(int[] vector1, int[] vector2){
     //public int[] innerProdVector(int[] vector1, int[] vector2){
-        
+
 
         int size = vector1.length;
         int[] result = new int[size];

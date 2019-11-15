@@ -12,72 +12,104 @@ public class Politica {
     private int [] priorities;
     private PoliticMode mode;
 
-    public Politica(int nqueue, PoliticMode polMode){
-        numCondQueue = nqueue;
+    public Politica(int [] pri, PoliticMode polMode){
+        //numCondQueue = nqueue; //Fixme eliminar mas adelante
         mode = polMode;
         next = -1;
-        priorities = new int[nqueue];
+        priorities =  pri;
+        /*priorities = new int[nqueue];
         for (int i=0; i< nqueue; i++)
-            priorities[i] = 0;
+            priorities[i] = 0;*/
     }
 
     public int getNextAwake(int [] sensibilizadas){
 
+        int nextAwake = 0;
         switch(mode){
+            
             case RANDOM:
-                return getRandomNext(sensibilizadas);
+                nextAwake = getRandomNext(sensibilizadas);
+                break;
             case ROND_ROBIN:
                     try {
                         getRoundRobinNext(sensibilizadas);
-                        System.out.print("\nProximo hilo a despertar  " + next + "\n");
                         return next;
                     }catch (InvalidAlgorithmParameterException e){
                         System.exit(1);
                     }
+                    nextAwake = next;
+                    break;
+                    
+            case HIGH_PRIO:
+                nextAwake = getHighestPriorityNext(sensibilizadas);
+                break;
 
-
+            /*default:
+                nextAwake = getRandomNext(sensibilizadas);
+                return  nextAwake;*/
         }
-        return 0; //FIXME ver como cumplir todos los casos
+        return nextAwake;
     }
 
+    /**
+     * Elige alguna de las sensibilizadas de forma aleatoria
+     *
+     * @param  sensibilizadas Vector de 1's y
+     *
+     * @return  Numero de cola a la cual realizarle signal()
+     */
     private int getRandomNext(int [] sensibilizadas){
         int nextAwake;
         do{
-            nextAwake = gen.nextInt(numCondQueue);
+            //nextAwake = gen.nextInt(numCondQueue);
+            nextAwake = gen.nextInt(sensibilizadas.length);
         }while(sensibilizadas[nextAwake] == 0);
         return nextAwake;
     }
 
-    public void getRoundRobinNext(int [] sensibilizadas) throws InvalidAlgorithmParameterException {
-
+    /**
+     *
+     * @param sensibilizadas Vector con 1's y 0's indicando si la transcicion esta sensibilizada
+     * @throws InvalidAlgorithmParameterException si el vector contiene todos 0's
+     */
+    private void getRoundRobinNext(int [] sensibilizadas) throws InvalidAlgorithmParameterException {
 
         if (Arrays.equals(new int[sensibilizadas.length],sensibilizadas))
             throw new InvalidAlgorithmParameterException("Vecotr de sensibilizadas en 0");
 
         next++;
         //FIXME se deberia utilizar sensibilizadas.length ?
-        if (next == numCondQueue)
+        if (next == sensibilizadas.length)
             next = 0;
         while (sensibilizadas[next] == 0) {
             next++;
-            if (next == numCondQueue)
+            if (next == sensibilizadas.length)
                 next = 0;
         }
     }
 
+    /**
+     * Obtener Nro de condicion(cola) que se debe despertar
+     *
+     * @param sensibilizadas Vector de 1's y 0's indicando que transc esta sensibilizada
+     *
+     * @return Numero de cola a la cual realizarle signal()
+     */
     private int getHighestPriorityNext(int [] sensibilizadas){
-        return MathOperator.getMaxIndex(
-                    MathOperator.andVector( sensibilizadas.length,
-                                            priorities,
-                                            sensibilizadas)
-                                );
+
+        int [] availables = MathOperator.getMaxIndexVect( MathOperator.innerProdVector(sensibilizadas, priorities));
+               if (availables.length == 1)
+                   return availables[0];
+               else{ //Desempatar
+                   return resolveTieByRandom(availables);
+               }
 
     }
 
     /*
         Desempata en caso de dos con iguales prioridades sensibilizdas
      */
-    private int resolveTieByRandom(){
-        return 1;
+    private int resolveTieByRandom(int [] vect){
+        return gen.nextInt(vect.length);
     }
 }
