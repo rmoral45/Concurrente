@@ -16,8 +16,9 @@ public class MathOperator {
         super();
     }
 
-    public static int[] addVector(int size, int[] vector1, int[] vector2){
-
+    public static int[] addVector(int[] vector1, int[] vector2){
+    //public int[] addVector(int[] vector1, int[] vector2){
+        int size = vector1.length;
         int[] result = new int[size];
 
         for(int i = 0; i < size; i++)
@@ -26,8 +27,10 @@ public class MathOperator {
         return result;
     }
 
-    public static int[] innerProdVector(int size, int[] vector1, int[] vector2){
+    public static int[] innerProdVector(int[] vector1, int[] vector2){
+    //public int[] innerProdVector(int[] vector1, int[] vector2){
 
+        int size = vector1.length;
         int[] result = new int[size];
 
         for(int i = 0; i < size; i++)
@@ -36,8 +39,9 @@ public class MathOperator {
         return result;
     }
 
-    public static int[] andVector(int size, int[] vector1, int[] vector2){
-
+    public static int[] andVector(int[] vector1, int[] vector2){
+    //public int[] andVector(int[] vector1, int[] vector2){
+        int size = vector1.length;
         int[] result = new int[size];
 
         for(int i = 0; i < size; i++)
@@ -46,8 +50,11 @@ public class MathOperator {
         return result;
     }
 
-    public static int[][] matrixAdd(int size, int[][] vector1, int[][] vector2){
+    public static int[][] matrixAdd(int[][] vector1, int[][] vector2){
+    //public int[][] matrixAdd(int[][] vector1, int[][] vector2){
 
+
+        int size = vector1[0].length;
         int[][] result = new int[size][size];
 
         for(int i = 0; i < size; i++)
@@ -57,7 +64,11 @@ public class MathOperator {
         return result;
     }
 
-    public static int[][] matrixProd(int size, int[][] vector1, int[][] vector2){
+    public static int[][] matrixProd(int[][] vector1, int[][] vector2){
+    //public int[][] matrixProd(int[][] vector1, int[][] vector2){
+
+        int size = vector1[0].length;
+
 
         int[][] result = new int[size][size];
 
@@ -68,8 +79,10 @@ public class MathOperator {
         return result;
     }
 
-    public static int[] vectmatProd(int matrix_size, int vector_size, int [][] matrix, int[] vector){
-
+    public static int[] vectmatProd(int [][] matrix, int[] vector){
+    //public int[] vectmatProd(int [][] matrix, int[] vector){
+        int matrix_size = matrix[0].length;
+        int vector_size = vector.length;
         int [] result = new int[matrix_size];
 
         for(int i = 0; i < matrix_size; i++)
@@ -80,7 +93,7 @@ public class MathOperator {
     }
 
     public static int getMaxIndex(int[] vector){
-
+    //public int getMaxIndex(int[] vector){
         int size = vector.length;
         int max_index = 0;
         int max_value = 0;
@@ -95,7 +108,7 @@ public class MathOperator {
     }
 
     public static int getMinIndex(int[] vector){
-
+    //public int getMinIndex(int[] vector){
         int size = vector.length;
         int min_index = 0;
         int min_value = vector[0];// Se supone el primero como mas alto
@@ -110,7 +123,7 @@ public class MathOperator {
     }
 
     public static int getMaxValue(int[] vector){
-
+    //public int getMaxValue(int[] vector){
         int size = vector.length;
         int max_value = 0;
 
@@ -126,7 +139,7 @@ public class MathOperator {
         Si hay dos o mas elementos iguales al amyor valor retorna una lista con sus posiciones
     */
     public static int [] getMaxIndexVect(int[] vector){
-
+    //public int [] getMaxIndexVect(int[] vector){
         ArrayList<Integer> maxIndexes = new ArrayList<Integer>();
         int size = vector.length;
         int max_value = vector[0];
@@ -145,7 +158,7 @@ public class MathOperator {
     }
 
     public static int getMinValue(int[] vector){
-
+    //public int getMinValue(int[] vector){
         int size = vector.length;
         int min_value = vector[0]; //lo mismo que ne getMinIndex
         for (int value : vector) {
@@ -155,5 +168,4 @@ public class MathOperator {
         }
         return min_value;
     }
-
 }
