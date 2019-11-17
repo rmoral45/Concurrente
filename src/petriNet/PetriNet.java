@@ -86,18 +86,22 @@ public class PetriNet {
      * @return int[]: vector con 1 en cuyas posiciones la transicion se encuentra sensibilizada, por ejemplo
      *                si se tienen 6 transiciones y solo la 2 y la 5 estan sensibilizadas retorna [0,0,1,0,0,1]
      */
-    public int[] obtenerSensibilizadas(){
+
+    //[FIX] agregue para que solo pregunte por las transciciones que tienen hilos esperando
+    
+    public int[] obtenerSensibilizadas(int [] waiting){
 
         int [] sensibilizadas = new int[this.ntransitions];
         int [] tmp_vector;
 
         for(int i = 0; i < this.ntransitions; i++) {
-
-            tmp_vector = probarDisparo(i);
-            if (MathOperator.HasNegative(tmp_vector))
-                sensibilizadas[i] = 0;
-            else
-                sensibilizadas[i] = 1;
+            if (waiting[i] == 1){
+                tmp_vector = probarDisparo(i);
+                if (MathOperator.HasNegative(tmp_vector))
+                    sensibilizadas[i] = 0;
+                else
+                    sensibilizadas[i] = 1;
+        }
         }
          return  sensibilizadas;
     }
