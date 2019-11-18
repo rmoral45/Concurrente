@@ -22,6 +22,12 @@ public class Politica {
             priorities[i] = 0;*/
     }
 
+    /**
+     * Retorna el numero de cola que se debe despertar
+     *
+     * @param sensibilizadas
+     * @return
+     */
     public int getNextAwake(int [] sensibilizadas){
 
         int nextAwake = 0;
@@ -59,23 +65,21 @@ public class Politica {
      * @return  Numero de cola a la cual realizarle signal()
      */
     private int getRandomNext(int [] sensibilizadas){
+
         int nextAwake;
-        do{
-            //nextAwake = gen.nextInt(numCondQueue);
+        do {
             nextAwake = gen.nextInt(sensibilizadas.length);
-        }while(sensibilizadas[nextAwake] == 0);
+        } while (sensibilizadas[nextAwake] == 0);
+
         return nextAwake;
+
     }
 
     /**
      *
      * @param sensibilizadas Vector con 1's y 0's indicando si la transcicion esta sensibilizada
-     * @throws InvalidAlgorithmParameterException si el vector contiene todos 0's
      */
-    private void getRoundRobinNext(int [] sensibilizadas) throws InvalidAlgorithmParameterException {
-
-        if (Arrays.equals(new int[sensibilizadas.length],sensibilizadas))
-            throw new InvalidAlgorithmParameterException("Vecotr de sensibilizadas en 0");
+    private int getRoundRobinNext(int [] sensibilizadas) throws InvalidAlgorithmParameterException {
 
         next++;
         //FIXME se deberia utilizar sensibilizadas.length ?
@@ -86,6 +90,7 @@ public class Politica {
             if (next == sensibilizadas.length)
                 next = 0;
         }
+        return next;
     }
 
     /**
@@ -98,11 +103,11 @@ public class Politica {
     private int getHighestPriorityNext(int [] sensibilizadas){
 
         int [] availables = MathOperator.getMaxIndexVect( MathOperator.innerProdVector(sensibilizadas, priorities));
-               if (availables.length == 1)
-                   return availables[0];
-               else{ //Desempatar
-                   return resolveTieByRandom(availables);
-               }
+        if (availables.length == 1)
+            return availables[0];
+        else{ //Desempatar
+            return resolveTieByRandom(availables);
+        }
 
     }
 

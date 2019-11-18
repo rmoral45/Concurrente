@@ -11,14 +11,6 @@ import java.security.InvalidAlgorithmParameterException;
 
 class PoliticaTest {
 
-/*    @Test
-    void invalidParamTest(){
-        int nq = 7;
-        Politica pol = new Politica(7, PoliticMode.ROND_ROBIN);
-        assertThrows(InvalidAlgorithmParameterException.class,() ->{
-            pol.getRoundRobinNext(new int[7]);});
-    }
-*/
     /*
      * Testea el caso donde hay elementos maximos iguales,usa solo le objeto Math Operator
      */
@@ -44,10 +36,15 @@ class PoliticaTest {
     }*/
     @Test
     void getNextWithRandomtTest(){
+
         Politica pol1 = new Politica(new int [] {0,1,2,3,4,5}, PoliticMode.RANDOM);
+
         assertEquals(0,pol1.getNextAwake(new int[] {1,0}));
+
         assertEquals(1,pol1.getNextAwake(new int[] {0,1}));
+
         assertEquals(0,pol1.getNextAwake(new int[] {1}));
+
         assertEquals(3,pol1.getNextAwake(new int[] {0,0,0,1}));
     }
 
@@ -55,13 +52,21 @@ class PoliticaTest {
     void getNextWithHighPrioTest(){
         int nq2 = 7;
         Politica pol2 = new Politica(new int [] {2, 1, 1, 3, 5}, PoliticMode.HIGH_PRIO);
+
         assertEquals(4,pol2.getNextAwake(new int[] {1,1,1,1,1}));
+
         assertEquals(3,pol2.getNextAwake(new int[] {1,1,1,1,0}));
+
         assertEquals(1,pol2.getNextAwake(new int[] {0,1,0,0,0}));
+
         assertEquals(4,pol2.getNextAwake(new int[] {0,0,0,1,1}));
+
         assertEquals(0,pol2.getNextAwake(new int[] {1,0,1,0,0}));
+
         assertEquals(3,pol2.getNextAwake(new int[] {1,0,0,1,0}));
+
         assertEquals(1,pol2.getNextAwake(new int[] {0,1,0,0,0}));
+
         assertEquals(2,pol2.getNextAwake(new int[] {0,0,1,0,0}));
     }
 

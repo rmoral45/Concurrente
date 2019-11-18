@@ -10,32 +10,33 @@ public class PetriNetTest {
 
 
     @Test
-    void getNumberPlacesTest(){
+    void getNumberPlacesTest() {
         Assertions.assertEquals(5, rdp.getNplaces());
     }
 
     @Test
-    void getNumberTransitionsTest(){
+    void getNumberTransitionsTest() {
         Assertions.assertEquals(4, rdp.getNtransitions());
     }
 
     @Test
-    void getMarkingVectorTest(){
-        Assertions.assertArrayEquals(new int[] {1,0,1,1,0}, rdp.getMark_vector());
+    void getMarkingVectorTest() {
+        Assertions.assertArrayEquals(new int[]{1, 0, 1, 1, 0}, rdp.getMark_vector());
     }
 
     @Test
-    void getIncidenceMatrixTest(){
-        Assertions.assertArrayEquals(new int[][]{{-1,1,0,0},{1,-1,0,0},{-1,1,-1,1},{0,0,-1,1},{0,0,1,-1}}, rdp.getIncidenceMatrix());
+    void getIncidenceMatrixTest() {
+        Assertions.assertArrayEquals(new int[][]{{-1, 1, 0, 0}, {1, -1, 0, 0}, {-1, 1, -1, 1}, {0, 0, -1, 1}, {0, 0, 1, -1}}, rdp.getIncidenceMatrix());
     }
 
     @Test
-    void probarDisparoTest(){
-        Assertions.assertArrayEquals(new int[]{-1,1,-1,0,0}, rdp.probarDisparo(0));
+    void probarDisparoTest() {
+        Assertions.assertArrayEquals(new int[]{-1, 1, -1, 0, 0}, rdp.probarDisparo(0));
     }
 
     @Test
-    void dispararTransicionTest(){
+    void dispararTransicionTest() {
         Assertions.assertTrue(rdp.dispararTransicion(0));
     }
 
+}

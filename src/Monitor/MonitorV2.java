@@ -2,23 +2,20 @@ package Monitor;
 import Colas.ColaCondicion;
 import Politica.PoliticMode;
 import Politica.Politica;
-import petriNet.MathOperator;
 import petriNet.PetriNet;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class MonitorV2 {
 
-    //FIXME Utilizar ReentrantLock En lugar de Lock para tener acceso a todos los metodos
     private final ReentrantLock conditionQueueLock = new ReentrantLock(); // lock para generar colas
-    private final ArrayList<ColaCondicion> colasCondicion = new ArrayList<ColaCondicion>();
+    private final ArrayList<ColaCondicion> colasCondicion = new ArrayList<>();
     private final Semaphore ingressSemaphore = new Semaphore(1,true);
     private Politica policy;
     private PetriNet petriNet;
-    private final int[] fake_sens= {1,1,0,0,0,1};
 
     public MonitorV2(int nthreads,PoliticMode polMode){
 
@@ -31,8 +28,7 @@ public class MonitorV2 {
     }
 
     /*
-     * @brief  : intenta obtener el recurso de la RdP
-     * @return : true si se pudo realizar, false si la transcicion no esta sensibilizada
+     * Intenta obtener el recurso de la RdP
      */
     public void disparar(int numTranscicion){
 
@@ -40,45 +36,39 @@ public class MonitorV2 {
             ingressSemaphore.acquire();
             conditionQueueLock.lock();
             if (petriNet.dispararTransicion(numTranscicion)){
-                //Obtener sensibilizadas
-                //Ver si hay alguna en la cola esperando por una transcicon
-                //que fue sensibilizada luego del disparo
-                //si hay alguna adentro que pueda disparar le preg a la politica cual
-                //lo despierto y me voy
-                //sino libero el semaforo de entrada y me voy
-
+                afterFireAction();
             }
             else{
                 ingressSemaphore.release();
                 colasCondicion.get(numTranscicion).encolar();
                 //Si me despertaron se que puedo disparar
-                //Entonces disparo
-                //Ver si hay alguna en la cola esperando por una transcicon
-                //que fue sensibilizada luego del disparo
-                //si puedo despertar alguno de adentro le preg cual a la politica
-                //des pierto al hilo y me voy
-                //sino libero el Semaforo de entrdaa al monitor
-
-
+                petriNet.dispararTransicion(numTranscicion);
+                afterFireAction();
             }
-
-
         }
         catch(InterruptedException e){
             System.exit(1);
         }
     }
-
     /*
-     * Opera para saber sobre que colas se pueden despertar hilos,
-     * es decir, que haya alguien esperando para disparar X transcicion y dicha
-     * transcicion este sensibilizada
+     * Debe ser ejecutada por todos los hilos luego de realizar un disparo valido
+     * Verifica si puede despertar algun hilo, en caso de poder lo hace
+     * Encaso de no poder despertar libera lel semaforo de entrada al monitor
      */
-    /*private int[] getReadyVect(int [] sensibilizadas){
-        MathOperator mo = new MathOperator();
-        return mo.andVector(sensibilizadas.length, getWaitingVect(), sensibilizadas);
-    }*/
+    private void afterFireAction(){
+        int [] sensibilizadas;
+        sensibilizadas = petriNet.obtenerSensTemporal(getWaitingVect());
 
+        if (Arrays.equals(new int[sensibilizadas.length],sensibilizadas)){
+            conditionQueueLock.unlock();
+            ingressSemaphore.release();
+        }
+        else{
+            int nextAwake = policy.getNextAwake(sensibilizadas);
+            colasCondicion.get(nextAwake).desencolar();
+            conditionQueueLock.unlock();
+        }
+    }
     /*
      *@brief : Recorre las cosas de condicion para ver si hay hilos esperando
      */
@@ -96,6 +86,7 @@ public class MonitorV2 {
     /*
         Para probar boludeses con las colas etc
      */
+    /*
     public void  dispararFake(int t) throws InterruptedException {
         ingressSemaphore.acquire();
         conditionQueueLock.lock();
@@ -118,5 +109,5 @@ public class MonitorV2 {
             conditionQueueLock.unlock();
         }
 
-    }
+    }*/
 }
