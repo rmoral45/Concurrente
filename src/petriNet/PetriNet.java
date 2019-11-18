@@ -13,13 +13,13 @@ public class PetriNet {
 
     private boolean [] esperando; // Indica si algun hilo quiso dipararla,y por lo tanto el timestamp es valido
     private long    [] transitionTimeStamp; //timeStamp del momento cuando quiso ser disprada
-    private boolean [] isTemporal; //indica si la transicion es temporizada
     private long    [] alpha; //contiene en limite inferior del intervalo temporal para cada transcision;
 
 
 
     public PetriNet(String fileName){
 
+        //FIXME Inicializar alpha, timestamp y esperando
         Parser parser = new Parser(fileName);
         this.nplaces = parser.getNplaces();
         this.ntransitions = parser.getNtransitions();
@@ -64,7 +64,7 @@ public class PetriNet {
         return new_marking;
     }
 
-    
+
     /**
      * Revisa si se cumplio el timestamp para una transcion temporal que ya quiso ser disparada
      *
