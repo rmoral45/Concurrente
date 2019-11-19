@@ -1,3 +1,6 @@
+import Monitor.MonitorV2;
+import Politica.PoliticMode;
+import ThreadLauncher.Disparador;
 import petriNet.*;
 import Colas.*;
 
@@ -6,19 +9,16 @@ public class main {
     public static void main(String[] args){
 
 
-        PetriNet rdp = new PetriNet("/home/ramiro/repos/Concurrente/src/petriNet/petriNet_parameters.json");
+        PetriNet rdp          = new PetriNet("/home/ramiro/repos/Concurrente/src/petriNet/petriNet_parameters.json");
+        MonitorV2 monitor     = new MonitorV2(2, PoliticMode.RANDOM, rdp);
+        Disparador productor  = new Disparador( new int [] {0,1}, 5, monitor);
+        Disparador consumidor = new Disparador( new int [] {2,3}, 5, monitor);
+        Thread thprod         = new Thread( productor);
+        Thread thcons         = new Thread( consumidor);
 
+        thprod.start();
+        thcons.start();
 
-        /*int nplaces = rdp.getNplaces();
-        int ntransitions = rdp.getNtransitions();
-        int [][] petriNet_matrix = rdp.getIncidenceMatrix();
-
-        for(int i = 0; i < nplaces; i++)
-            for(int j = 0; j < ntransitions; j++) {
-                System.out.printf("Fila %d: %s\n", i, petriNet_matrix[i][j]);
-            }
-*/
-        return;
     }
 }
 

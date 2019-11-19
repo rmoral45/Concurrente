@@ -57,7 +57,7 @@ public class MathOperator {
         if(vector1.length != vector2.length){
             System.out.print("Vectores de distinto tamaño!!\n");
             System.out.printf("Vector1.length: %d ---- Vector2.length: %d\n", vector1.length, vector2.length);
-            break;
+            //break;
         }
 
         int size = vector1.length;

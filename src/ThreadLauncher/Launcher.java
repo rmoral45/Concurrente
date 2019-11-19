@@ -14,7 +14,7 @@ public class Launcher {
         ArrayList<Thread> threadPool = new ArrayList<Thread>();
 
         for (int i=0; i< nthreads; i++)
-            threadPool.add(new Thread( new Disparador(i,monitor) ));
+            threadPool.add(new Thread( new Disparador(new int[] {i},i,monitor) ));
 
         for (int i=0; i< nthreads; i++)
             threadPool.get(i).start();

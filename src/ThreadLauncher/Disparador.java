@@ -8,19 +8,21 @@ public class Disparador implements Runnable {
     private List<Integer> transitionSequence;
     private int nextFire = 0;
     private MonitorV2 monitor;
-    private int disparoDeseado;
+    private int [] sequenciaDisparos;
+    private int ntimes;
 
-    public Disparador(int d, MonitorV2 m) {
+    public Disparador(int [] seq,int nt, MonitorV2 m) {
 
-        this.disparoDeseado = d;
+        sequenciaDisparos= seq;
+        ntimes = nt;
         this.monitor = m;
     }
 
     @Override
     public void run() {
-        while (true) {
-            this.monitor.disparar(this.disparoDeseado);
-        }
+       for(int i=0; i<ntimes;i++)
+           for (int f : sequenciaDisparos)
+               monitor.disparar(f);
 
     }
 }

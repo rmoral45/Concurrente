@@ -17,9 +17,10 @@ public class MonitorV2 {
     private Politica policy;
     private PetriNet petriNet;
 
-    public MonitorV2(int nthreads,PoliticMode polMode){
+    public MonitorV2(int nthreads,PoliticMode polMode, PetriNet pn){
 
         policy = new Politica( new int [] {1,1,1,1,1}, polMode);
+        petriNet = pn;
         for (int i=0; i<nthreads; i++) {
             ColaCondicion cc = new ColaCondicion(conditionQueueLock.newCondition(),i);
             colasCondicion.add(cc);
@@ -57,7 +58,7 @@ public class MonitorV2 {
      */
     private void afterFireAction(){
         int [] sensibilizadas;
-        sensibilizadas = petriNet.obtenerSensTemporal(getWaitingVect());
+        sensibilizadas = petriNet.obtenerSensibilizadas(getWaitingVect());
 
         if (Arrays.equals(new int[sensibilizadas.length],sensibilizadas)){
             conditionQueueLock.unlock();

@@ -26,6 +26,8 @@ public class PetriNet {
         this.incidenceMatrix = parser.getPetriNet_matrix();
         this.mark_vector = parser.getInitial_marking();
         //falta agregar arcos lectores y arcos inhibidores
+
+
     }
 
     int getNtransitions() {
@@ -36,7 +38,7 @@ public class PetriNet {
         return nplaces;
     }
 
-    int[] getMark_vector() {
+    public int[] getMark_vector() {
         return mark_vector;
     }
 
@@ -44,6 +46,19 @@ public class PetriNet {
         return incidenceMatrix;
     }
 
+    /**
+     *
+     * @param wanted vector de 1's y 0's indicando si la plaza debe sumarse o no
+     * @return suma del marcado en todas las plazas deseadas
+     */
+    public int getMarcAddition(int [] wanted){
+        int addition = 0;
+        for (int i=0; i< wanted.length; i++){
+            if (wanted[i] == 1)
+                addition += mark_vector[i];
+        }
+        return addition;
+    }
     /**
      * habilitarTransicion - dispara una transicion SIN CAMBIAR EL ESTADO DE LA RED
      * dispara la transicion pasada como argumento
@@ -108,11 +123,53 @@ public class PetriNet {
         }
 
     }
+    public boolean dispararTransicion(int transition){
+        //Verifico que los recursos enten disponibles
+        int[] new_marking  = this.probarDisparo(transition);
+
+        if(MathOperator.HasNegative(new_marking))
+            return false;
+        else {
+            // No es una transcicion  temporal, por lo tanto solo debe haberse cumplido
+            // que los recursos esten disponibles
+            this.mark_vector = new_marking;
+            return true;
+        }
+
+
+    }
 
     private void setEsperando(int transition, boolean val){
         esperando[transition] = val;
     }
 
+    public int[] obtenerSensibilizadas(int [] waiting){
+
+        /*
+            Una transcion puede sensibilarse xq hubo un cambio de estado en el sistema,
+            si la transcicion debio esperar un tiempo puede que al momento de dormirse los recursos
+            hayan estado pero se los haya llevado algun otro hilo antes que se cumpla el tiempo
+        */
+        //[Diego] cambio ntransitions por waiting.length
+        //int [] sensibilizadas = new int[this.ntransitions];
+        int [] sensibilizadas = new int[waiting.length];
+        int [] tmp_vector;
+
+        //for(int i = 0; i < this.ntransitions; i++) {
+        for(int i = 0; i < waiting.length; i++) {
+            if (waiting[i] == 1){
+                tmp_vector = probarDisparo(i);
+                if ( !MathOperator.HasNegative(tmp_vector)) {
+                    sensibilizadas[i] = 1;
+                }
+                else {
+                    sensibilizadas[i] = 0;
+                }
+            }
+        }
+
+        return  sensibilizadas;
+    }
 
     public int[] obtenerSensTemporal(int [] waiting){
 
