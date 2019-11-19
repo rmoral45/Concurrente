@@ -18,7 +18,7 @@ public class MonitorV2Test {
     @Test
     void T_InvariantTest() throws InterruptedException {
         PetriNet rdp          = new PetriNet("/home/dabratte/repos/Concurrente/src/petriNet/prod_cons_parameters.json");
-        MonitorV2 monitor     = new MonitorV2(2, PoliticMode.RANDOM, rdp);
+        MonitorV2 monitor     = new MonitorV2(rdp.getNtransitions(), PoliticMode.RANDOM, rdp);
         Disparador productor  = new Disparador( new int [] {0,1}, 5, monitor);
         Disparador consumidor = new Disparador( new int [] {2,3}, 5, monitor);
         Thread thprod         = new Thread( productor);
@@ -38,7 +38,7 @@ public class MonitorV2Test {
      @Test
     void ProductorOneShotTest() throws InterruptedException {
          PetriNet rdp          = new PetriNet("/home/dabratte/repos/Concurrente/src/petriNet/prod_cons_parameters.json");
-         MonitorV2 monitor     = new MonitorV2(2, PoliticMode.RANDOM, rdp);
+         MonitorV2 monitor     = new MonitorV2(rdp.getNtransitions(), PoliticMode.RANDOM, rdp);
          Disparador productor  = new Disparador( new int [] {0}, 1, monitor);
          Thread thprod         = new Thread( productor);
 
@@ -50,7 +50,7 @@ public class MonitorV2Test {
     @Test
     void ProductorMultipleShotTest() throws InterruptedException {
         PetriNet rdp          = new PetriNet("/home/dabratte/repos/Concurrente/src/petriNet/prod_cons_parameters.json");
-        MonitorV2 monitor     = new MonitorV2(2, PoliticMode.RANDOM, rdp);
+        MonitorV2 monitor     = new MonitorV2(rdp.getNtransitions(), PoliticMode.RANDOM, rdp);
         Disparador productor  = new Disparador( new int [] {0,1}, 10, monitor);
         Thread thprod         = new Thread( productor);
 

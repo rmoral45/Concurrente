@@ -30,7 +30,7 @@ public class PetriNet {
 
     }
 
-    int getNtransitions() {
+    public int getNtransitions() {
         return ntransitions;
     }
 
@@ -150,9 +150,8 @@ public class PetriNet {
             si la transcicion debio esperar un tiempo puede que al momento de dormirse los recursos
             hayan estado pero se los haya llevado algun otro hilo antes que se cumpla el tiempo
         */
-        //[Diego] cambio ntransitions por waiting.length
-        //int [] sensibilizadas = new int[this.ntransitions];
-        int [] sensibilizadas = new int[waiting.length];
+        int [] sensibilizadas = new int[this.ntransitions];
+        //int [] sensibilizadas = new int[waiting.length];
         int [] tmp_vector;
 
         //for(int i = 0; i < this.ntransitions; i++) {

@@ -17,11 +17,11 @@ public class MonitorV2 {
     private Politica policy;
     private PetriNet petriNet;
 
-    public MonitorV2(int nthreads,PoliticMode polMode, PetriNet pn){
+    public MonitorV2(int ntrans,PoliticMode polMode, PetriNet pn){
 
         policy = new Politica( new int [] {1,1,1,1,1}, polMode);
         petriNet = pn;
-        for (int i=0; i<nthreads; i++) {
+        for (int i=0; i<ntrans; i++) {
             ColaCondicion cc = new ColaCondicion(conditionQueueLock.newCondition(),i);
             colasCondicion.add(cc);
         }
