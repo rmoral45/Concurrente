@@ -2,5 +2,15 @@
     "petriNet": {
           "incidence_matrix": [[-1,1,0,0],[1,-1,0,0],[-1,1,-1,1],[0,0,-1,1],[0,0,1,-1]],
           "init_marking": [1,0,1,1,0]
+     },
+    "Disparadores": {
+          "D1" : {
+            "sequence" : [0,1,2],
+            "nt" : 2
+          },
+          "D2" : {
+            "sequence" : [3,4,5],
+            "nt" : 2
+          }
      }
  }
