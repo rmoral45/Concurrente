@@ -6,12 +6,14 @@ public class PetriNet {
     private int nplaces;
     private int ntransitions;
     //private int[][] incidenceMatrix;
-    public int [][] incidenceMatrix;
-    private int[] mark_vector;
+    public int  [][] incidenceMatrix;
+    private int [][] H;
+    private int [][] R;
+    private int []   mark_vector;
 
     //[Diego] Agrego variables necesarias para RdP Temporales
 
-    private boolean [] esperando; // Indica si algun hilo quiso dipararla,y por lo tanto el timestamp es valido
+    private boolean [] validTimeStamp; // Indica si se senbilizo por algun disparo, por ende su timestamp fue seteado
     private long    [] transitionTimeStamp; //timeStamp del momento cuando quiso ser disprada
     private long    [] alpha; //contiene en limite inferior del intervalo temporal para cada transcision;
 
@@ -60,12 +62,11 @@ public class PetriNet {
         return addition;
     }
     /**
-     * habilitarTransicion - dispara una transicion SIN CAMBIAR EL ESTADO DE LA RED
-     * dispara la transicion pasada como argumento
-     * [Diego] Esta funcion deberia aplicar la Ec. de Estado Generalizada
+     * dispara una transicion SIN CAMBIAR EL ESTADO DE LA RED
+     * Solamente aplica la ecuacion para obtener el nuevo marcado (I x Sigma) + Mj
      * EXCEPTO la parte temporal !!
      * @param transition numero de transicion a disparar.
-     * @return int[] - retorna el vector de marcado obtenido al disparar la transicion.
+     * @return int[] - retorna el vector de marcado obtenido al disparar la transicion. Mj+1
      */
     public int[] probarDisparo(int transition){
 
@@ -87,7 +88,7 @@ public class PetriNet {
     private boolean testTimeWindow(int transition){
 
         long currentTime = System.currentTimeMillis();
-        if (alpha[transition] > 0 && esperando[transition]){
+        if (alpha[transition] > 0 && validTimeStamp[transition]){
 
             return ((currentTime - transitionTimeStamp[transition]) > alpha[transition]);
         }
@@ -97,32 +98,7 @@ public class PetriNet {
 
     }
 
-    /**
-     *Toda transcicion puede ser definida coomo temporal, en el caso de una transcicion
-     * con unintervalo [0, infinito] es una transcicion 'normal'
-     */
 
-    private boolean dispararTemporal(int transition){
-            //Verifico que los recursos enten disponibles
-        int[] new_marking  = this.probarDisparo(transition);
-
-        if(MathOperator.HasNegative(new_marking))
-            return false;
-        else {
-            if (alpha[transition] == 0){
-                // No es una transcicion  temporal, por lo tanto solo debe haberse cumplido
-                // que los recursos esten disponibles
-                this.mark_vector = new_marking;
-                return true;
-            }
-            else{
-                esperando[transition] = true;
-                transitionTimeStamp[transition] = System.currentTimeMillis();
-                return false;
-            }
-        }
-
-    }
     public boolean dispararTransicion(int transition){
         //Verifico que los recursos enten disponibles
         int[] new_marking  = this.probarDisparo(transition);
@@ -137,10 +113,6 @@ public class PetriNet {
         }
 
 
-    }
-
-    private void setEsperando(int transition, boolean val){
-        esperando[transition] = val;
     }
 
     public int[] obtenerSensibilizadas(int [] waiting){
@@ -170,25 +142,86 @@ public class PetriNet {
         return  sensibilizadas;
     }
 
-    public int[] obtenerSensTemporal(int [] waiting){
+/*
+  -----------------------------------------------------------------------------------------
+  -----------------------------------------------------------------------------------------
 
+
+                Metodos para RDP con Semantica Extendida
+
+                        -Arcos Inhibidores
+
+                        -Arcos Lectores
+
+                        -Transiciones Temporales
+
+
+ ------------------------------------------------------------------------------------------
+ ------------------------------------------------------------------------------------------
+ */
+    /**
+     *Toda transcicion puede ser definida coomo temporal, en el caso de una transcicion
+     * con unintervalo [0, infinito] es una transcicion 'normal'
+     */
+
+    private FireResultType dispararTemporal(int transition, long currentTime){
+
+        int[] new_marking  = this.probarDisparo(transition);
+
+        if(MathOperator.HasNegative(new_marking))
+            return FireResultType.RESOURCE_UNAVAILABLE;
+
+        else if((currentTime - transitionTimeStamp[transition]) < alpha[transition]
+                && validTimeStamp[transition])
+            return FireResultType.TIME_DISABLED;
+
+        /* Ya dispare la transcicion temporal que habia sido sensibilizada,
+            por ende el timeStamp que fue seteado con anterioridad ya no es valido  */
+
+        validTimeStamp[transition] = false;
+        return FireResultType.SUCCESS;
+
+    }
+
+    /**
+     * Este metodo no se puede optimizar usando el vector waiting[] ya que se deben
+     * probar las transciciones temporales, aunque no haya ningun hilo esperando para
+     * dispararlas
+     * @return
+     */
+
+    public int[] obtenerSensTemporal(long currentTime){
         /*
-            Una transcion puede sensibilarse xq hubo un cambio de estado en el sistema,
-            si la transcicion debio esperar un tiempo puede que al momento de dormirse los recursos
-            hayan estado pero se los haya llevado algun otro hilo antes que se cumpla el tiempo 
-        */
+            Verificar si la que fue sensibilizada ya se le habia seteado el timeStamp valido
+            entonces no actualizar
+         */
 
         int [] sensibilizadas = new int[this.ntransitions];
-        int [] tmp_vector;
+        int [] posibleMark;
+        int [] habilitadasPorInhibidor;
+        int [] habilitadasPorLector;
+        int [] Q;
+        int [] W;
+
+        /*
+            Calculo Q y W
+        */
+        //FIXME revisar el calculo de Q y W por que creo que estaba mal el paper
+        Q = MathOperator.cero(mark_vector);
+        W = MathOperator.uno(mark_vector);
+        habilitadasPorInhibidor = MathOperator.vectmatProd(H,Q);
+        habilitadasPorLector    = MathOperator.vectmatProd(R,W);
 
         for(int i = 0; i < this.ntransitions; i++) {
-            if (waiting[i] == 1){
-                tmp_vector = probarDisparo(i);
-                if ( !MathOperator.HasNegative(tmp_vector) && testTimeWindow(i) )
-                    sensibilizadas[i] = 1;
-                else
-                    sensibilizadas[i] = 0;
+            posibleMark = probarDisparo(i);
+            sensibilizadas[i] = MathOperator.sign(posibleMark) * habilitadasPorInhibidor[i] * habilitadasPorLector[i];
+            //Verificar si ya estaba sensibilizada de antes
+            if (sensibilizadas[i] == 1 && !validTimeStamp[i]){
+                validTimeStamp[i] = true;
+                transitionTimeStamp[i] = currentTime;
             }
+
+
         }
 
          return  sensibilizadas;

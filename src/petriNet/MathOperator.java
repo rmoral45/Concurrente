@@ -1,5 +1,6 @@
 package petriNet;
 
+import java.security.InvalidAlgorithmParameterException;
 import java.util.ArrayList;
 
 public class MathOperator {
@@ -51,13 +52,11 @@ public class MathOperator {
      * @param vector2 segundo operando de la operacion and
      * @return retorna el resultado de la and entre ambos vectores
      */
-    public static int[] andVector(int[] vector1, int[] vector2){
+    public static int[] andVector(int[] vector1, int[] vector2) throws InvalidAlgorithmParameterException {
     //public int[] andVector(int[] vector1, int[] vector2){
 
         if(vector1.length != vector2.length){
-            System.out.print("Vectores de distinto tamaño!!\n");
-            System.out.printf("Vector1.length: %d ---- Vector2.length: %d\n", vector1.length, vector2.length);
-            //break;
+            throw new InvalidAlgorithmParameterException("Fallo en funcion andVector");
         }
 
         int size = vector1.length;
@@ -255,5 +254,33 @@ public class MathOperator {
         }
         
         return isNegative;
+    }
+
+    public static int[] cero(int [] vect){
+        int [] ceroVect = new int[vect.length];
+
+        for (int i = 0; i<vect.length; i++)
+            ceroVect[i] = (vect[i] == 0) ? 1 : 0;
+
+        return ceroVect;
+    }
+
+    public static int[] uno(int [] vect){
+        int [] unoVect = new int[vect.length];
+
+        for (int i = 0; i<vect.length; i++)
+            unoVect[i] = (vect[i] != 0) ? 1 : 0;
+
+        return unoVect;
+    }
+
+    public static int sign(int [] vect){
+        int signVal = 1;
+
+        for (int i = 0; i<vect.length; i++)
+            if (vect[i] < 0)
+                signVal = 0;
+
+        return signVal;
     }
 }
