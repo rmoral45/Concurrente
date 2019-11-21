@@ -176,7 +176,7 @@ public class PetriNet {
      * con unintervalo [0, infinito] es una transcicion 'normal'
      */
 
-    private FireResultType dispararExtendida(int transition, long currentTime){
+    public FireResultType dispararExtendida(int transition, long currentTime){
 
         boolean validFire;
         int[] new_marking  = this.probarDisparoExtendida(transition);
