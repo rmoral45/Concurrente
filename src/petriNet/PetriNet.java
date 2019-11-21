@@ -5,8 +5,7 @@ public class PetriNet {
 
     private int nplaces;
     private int ntransitions;
-    //private int[][] incidenceMatrix;
-    public int  [][] incidenceMatrix;
+    private int[][] incidenceMatrix;
     private int [][] H;
     private int [][] R;
     private int []   mark_vector;
