@@ -49,13 +49,6 @@ public class ThreadTriggerConfigurator {
             triggersList.add(tmp);
         }
 
-        for(int m = 0; m <2; m++){
-            for (int l = 0; l < 3; l++) {
-                int [] asd = triggersList.get(m).getSequence();
-                System.out.printf("EL ELEMENTO %d DEL VECTOR %d es: %d\n", l, m, asd[l]);
-            }
-        }
-
         //por ultimo, llamamos al setter de la clase
         this.setThreadTriggers(triggersList);
 
