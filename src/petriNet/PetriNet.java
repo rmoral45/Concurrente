@@ -19,14 +19,13 @@ public class PetriNet {
 
 
 
-    public PetriNet(String fileName){
+    public PetriNet(PetriNetConfigurator pnConfig){
 
         //FIXME Inicializar alpha, timestamp y esperando
-        Parser parser = new Parser(fileName);
-        this.nplaces = parser.getNplaces();
-        this.ntransitions = parser.getNtransitions();
-        this.incidenceMatrix = parser.getPetriNet_matrix();
-        this.mark_vector = parser.getInitial_marking();
+        this.nplaces = pnConfig.getNplaces();
+        this.ntransitions = pnConfig.getNtransitions();
+        this.incidenceMatrix = pnConfig.getIncidence_matrix();
+        this.mark_vector = pnConfig.getInitial_marking();
         //falta agregar arcos lectores y arcos inhibidores
 
 
