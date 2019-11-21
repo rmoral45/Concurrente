@@ -1,13 +1,15 @@
 package petriNet;
 
-import org.junit.jupiter.api.Test;
+import Parser.JsonFileReader;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 
 public class PetriNetTest {
 
-    PetriNet rdp = new PetriNet("/home/ramiro/repos/Concurrente/src/petriNet/petriNet_parameters.json");
 
+    JsonFileReader fr1 = new JsonFileReader("/home/ramiro/repos/Concurrente/src/petriNet/parameters.json");
+    PetriNet rdp = new PetriNet(fr1.getPnConfigurator());
 
     @Test
     void getNumberPlacesTest() {
