@@ -158,16 +158,50 @@ public class PetriNet {
  ------------------------------------------------------------------------------------------
  ------------------------------------------------------------------------------------------
  */
+
+
+    public int[] probarDisparoExtendida(int transition){
+
+        int [] vector_de_disparo = new int [ntransitions];
+        vector_de_disparo[transition] = 1;
+
+        int [] new_marking;
+        new_marking = MathOperator.vectmatProd(this.incidenceMatrix, vector_de_disparo);
+        new_marking = MathOperator.addVector(new_marking,this.mark_vector);
+
+        return new_marking;
+    }
+
     /**
-     *Toda transcicion puede ser definida coomo temporal, en el caso de una transcicion
+     * Toda transcicion puede ser definida coomo temporal, en el caso de una transcicion
      * con unintervalo [0, infinito] es una transcicion 'normal'
      */
 
-    private FireResultType dispararTemporal(int transition, long currentTime){
+    private FireResultType dispararExtendida(int transition, long currentTime){
 
-        int[] new_marking  = this.probarDisparo(transition);
+        boolean validFire;
+        int[] new_marking  = this.probarDisparoExtendida(transition);
+        int [] posibleMark;
+        int [] habilitadasPorInhibidor;
+        int [] habilitadasPorLector;
+        int [] Q;
+        int [] W;
 
-        if(MathOperator.HasNegative(new_marking))
+        /*
+            Calculo Q y W
+        */
+        //FIXME revisar el calculo de Q y W por que creo que estaba mal el paper
+        Q = MathOperator.cero(mark_vector);
+        W = MathOperator.uno(mark_vector);
+        habilitadasPorInhibidor = MathOperator.vectmatProd(H,Q);
+        habilitadasPorLector    = MathOperator.vectmatProd(R,W);
+        posibleMark = probarDisparo(transition);
+
+        validFire = MathOperator.sign(posibleMark)
+                    * habilitadasPorInhibidor[transition]
+                    * habilitadasPorLector[transition] == 1;
+
+        if(!validFire)
             return FireResultType.RESOURCE_UNAVAILABLE;
 
         else if((currentTime - transitionTimeStamp[transition]) < alpha[transition]
@@ -178,6 +212,7 @@ public class PetriNet {
             por ende el timeStamp que fue seteado con anterioridad ya no es valido  */
 
         validTimeStamp[transition] = false;
+        this.mark_vector = posibleMark;
         return FireResultType.SUCCESS;
 
     }
@@ -189,7 +224,7 @@ public class PetriNet {
      * @return
      */
 
-    public int[] obtenerSensTemporal(long currentTime){
+    public int[] obtenerSensibilizadaExtendida(long currentTime){
         /*
             Verificar si la que fue sensibilizada ya se le habia seteado el timeStamp valido
             entonces no actualizar
@@ -206,10 +241,14 @@ public class PetriNet {
             Calculo Q y W
         */
         //FIXME revisar el calculo de Q y W por que creo que estaba mal el paper
-        Q = MathOperator.cero(mark_vector);
-        W = MathOperator.uno(mark_vector);
+        // [Update] Efectivamente estaba mal, cambie la func uno() por cero()
+        Q = MathOperator.uno(mark_vector);
+        W = MathOperator.cero(mark_vector);
         habilitadasPorInhibidor = MathOperator.vectmatProd(H,Q);
         habilitadasPorLector    = MathOperator.vectmatProd(R,W);
+        //Fixme negar el vector habilitadas por inhibidor y por lector
+        habilitadasPorInhibidor = MathOperator.negateVect(habilitadasPorInhibidor);
+        habilitadasPorLector = MathOperator.negateVect(habilitadasPorLector);
 
         for(int i = 0; i < this.ntransitions; i++) {
             posibleMark = probarDisparo(i);
@@ -218,6 +257,7 @@ public class PetriNet {
             if (sensibilizadas[i] == 1 && !validTimeStamp[i]){
                 validTimeStamp[i] = true;
                 transitionTimeStamp[i] = currentTime;
+                sensibilizadas[i] = 0; //Verdaderamente no esta sensibilizada
             }
 
 

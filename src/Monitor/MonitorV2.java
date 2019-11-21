@@ -16,11 +16,13 @@ public class MonitorV2 {
     private final Semaphore ingressSemaphore = new Semaphore(1,true);
     private Politica policy;
     private PetriNet petriNet;
+    private  boolean K;
 
     public MonitorV2(int ntrans,PoliticMode polMode, PetriNet pn){
 
         policy = new Politica( new int [] {1,1,1,1,1}, polMode);
         petriNet = pn;
+        K = false;
         for (int i=0; i<ntrans; i++) {
             ColaCondicion cc = new ColaCondicion(conditionQueueLock.newCondition(),i);
             colasCondicion.add(cc);
@@ -50,6 +52,40 @@ public class MonitorV2 {
         catch(InterruptedException e){
             System.exit(1);
         }
+    }
+    /*
+        Metodo que aplica la ec de estado generalizada y lo hace adentro de un loop como
+        plantea mico en el diagrama de secuencia
+     */
+    public void dispararV2(int numTranscicion) throws InterruptedException {
+
+            ingressSemaphore.acquire();
+            conditionQueueLock.lock();
+            K = true;
+            while(K){
+
+                K =petriNet.dispararTransicion(numTranscicion);
+                if (K){
+                    int [] sensibilizadas;
+                    sensibilizadas = petriNet.obtenerSensibilizadas(getWaitingVect());
+                    if (Arrays.equals(new int[sensibilizadas.length],sensibilizadas)){
+                        K= false;
+                    }
+                    else{
+                        int nextAwake = policy.getNextAwake(sensibilizadas);
+                        colasCondicion.get(nextAwake).desencolar();
+                        conditionQueueLock.unlock();
+                        return;
+                    }
+                }
+                else{
+                    ingressSemaphore.release();
+                    colasCondicion.get(numTranscicion).encolar();
+                }
+
+            }
+
+            ingressSemaphore.release();
     }
     /*
      * Debe ser ejecutada por todos los hilos luego de realizar un disparo valido

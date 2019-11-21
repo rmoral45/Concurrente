@@ -283,4 +283,15 @@ public class MathOperator {
 
         return signVal;
     }
+    public static int [] negateVect(int [] vect){
+        int [] negVec = new int[vect.length];
+
+        for (int i = 0; i < vect.length; i++)
+            if (vect[i] == 0)
+                negVec[i] = 1;
+            else if (vect[i] == 1)
+                negVec[i] = 0;
+
+        return negVec;
+    }
 }
