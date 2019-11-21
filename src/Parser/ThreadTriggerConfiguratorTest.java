@@ -24,13 +24,13 @@ public class ThreadTriggerConfiguratorTest {
         Assertions.assertEquals(2,ALtt1.get(0).getNshoots());
     }
 
-   /* JsonFileReader fr3 = new JsonFileReader("/home/ramiro/repos/Concurrente/src/petriNet/parameters.json");
+    JsonFileReader fr3 = new JsonFileReader("/home/ramiro/repos/Concurrente/src/petriNet/parameters.json");
     ThreadTriggerConfigurator ttConf3 = new ThreadTriggerConfigurator(fr3.Triggers_test);
     ArrayList<ThreadTrigger> ALtt2 = ttConf3.getThreadTriggers();
     @Test
     void checkTriggerTwoTest(){
-        Assertions.assertArrayEquals(new int[]{3,4,5}, ALtt1.get(0).getSequence());
+        Assertions.assertArrayEquals(new int[]{0,1,2}, ALtt2.get(0).getSequence());
         Assertions.assertEquals(2,ALtt1.get(1).getNshoots());
-    }*/
+    }
 
 }
