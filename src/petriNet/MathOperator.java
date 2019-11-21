@@ -324,4 +324,14 @@ public class MathOperator {
 
         return negVec;
     }
+
+    public static int [] binarizeVect(int [] vect){
+        int [] binVec = new int[vect.length];
+
+        for (int i = 0; i < vect.length; i++)
+            if (vect[i] > 0)
+                binVec[i] = 1;
+
+        return binVec;
+    }
 }

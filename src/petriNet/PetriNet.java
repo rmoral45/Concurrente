@@ -1,6 +1,8 @@
 package petriNet;
 import Parser.*;
 
+import java.security.InvalidAlgorithmParameterException;
+
 public class PetriNet {
 
     private int nplaces;
@@ -66,16 +68,16 @@ public class PetriNet {
      * @param transition numero de transicion a disparar.
      * @return int[] - retorna el vector de marcado obtenido al disparar la transicion. Mj+1
      */
-    public int[] probarDisparo(int transition){
+    public int[] probarDisparo(int transition) throws InvalidAlgorithmParameterException {
 
         int [] vector_de_disparo = new int [ntransitions];
         vector_de_disparo[transition] = 1;
 
         int [] new_marking;
         new_marking = MathOperator.vectmatProd(this.incidenceMatrix, vector_de_disparo);
-        new_marking = MathOperator.addVector(new_marking,this.mark_vector);
-
+        new_marking = MathOperator.addVector(new_marking, this.mark_vector);
         return new_marking;
+
     }
 
 
@@ -97,7 +99,7 @@ public class PetriNet {
     }
 
 
-    public boolean dispararTransicion(int transition){
+    public boolean dispararTransicion(int transition) throws InvalidAlgorithmParameterException {
         //Verifico que los recursos enten disponibles
         int[] new_marking  = this.probarDisparo(transition);
 
@@ -113,7 +115,7 @@ public class PetriNet {
 
     }
 
-    public int[] obtenerSensibilizadas(int [] waiting){
+    public int[] obtenerSensibilizadas(int [] waiting) throws InvalidAlgorithmParameterException {
 
         /*
             Una transcion puede sensibilarse xq hubo un cambio de estado en el sistema,
@@ -159,7 +161,7 @@ public class PetriNet {
  */
 
 
-    public int[] probarDisparoExtendida(int transition){
+    public int[] probarDisparoExtendida(int transition) throws InvalidAlgorithmParameterException {
 
         int [] vector_de_disparo = new int [ntransitions];
         vector_de_disparo[transition] = 1;
@@ -176,7 +178,7 @@ public class PetriNet {
      * con unintervalo [0, infinito] es una transcicion 'normal'
      */
 
-    public FireResultType dispararExtendida(int transition, long currentTime){
+    public FireResultType dispararExtendida(int transition, long currentTime) throws InvalidAlgorithmParameterException {
 
         boolean validFire;
         int[] new_marking  = this.probarDisparoExtendida(transition);
@@ -223,7 +225,7 @@ public class PetriNet {
      * @return
      */
 
-    public int[] obtenerSensibilizadaExtendida(long currentTime){
+    public int[] obtenerSensibilizadaExtendida(long currentTime) throws InvalidAlgorithmParameterException {
         /*
             Verificar si la que fue sensibilizada ya se le habia seteado el timeStamp valido
             entonces no actualizar
@@ -239,15 +241,27 @@ public class PetriNet {
         /*
             Calculo Q y W
         */
-        //FIXME revisar el calculo de Q y W por que creo que estaba mal el paper
-        // [Update] Efectivamente estaba mal, cambie la func uno() por cero()
         Q = MathOperator.uno(mark_vector);
         W = MathOperator.cero(mark_vector);
+
+        /*
+            Aplico Ec para arcos ihbidores y lectores
+         */
         habilitadasPorInhibidor = MathOperator.vectmatProd(H,Q);
         habilitadasPorLector    = MathOperator.vectmatProd(R,W);
-        //Fixme negar el vector habilitadas por inhibidor y por lector
+
+        /*
+            Convierto a vectores de 1's y 0's
+         */
+        habilitadasPorInhibidor = MathOperator.binarizeVect(habilitadasPorInhibidor);
+        habilitadasPorLector    = MathOperator.binarizeVect(habilitadasPorLector);
+
+        /*
+            Niego los vectores
+         */
         habilitadasPorInhibidor = MathOperator.negateVect(habilitadasPorInhibidor);
-        habilitadasPorLector = MathOperator.negateVect(habilitadasPorLector);
+        habilitadasPorLector    = MathOperator.negateVect(habilitadasPorLector);
+
 
         for(int i = 0; i < this.ntransitions; i++) {
             posibleMark = probarDisparo(i);

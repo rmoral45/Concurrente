@@ -64,7 +64,7 @@ public class MonitorV2 {
             K = true;
             while(K){
 
-                K =petriNet.dispararTransicion(numTranscicion);
+                K = petriNet.dispararTransicion(numTranscicion);
                 if (K){
                     int [] sensibilizadas;
                     sensibilizadas = petriNet.obtenerSensibilizadas(getWaitingVect());
@@ -87,7 +87,8 @@ public class MonitorV2 {
 
             ingressSemaphore.release();
     }
-    /*
+
+    /**
      * Debe ser ejecutada por todos los hilos luego de realizar un disparo valido
      * Verifica si puede despertar algun hilo, en caso de poder lo hace
      * Encaso de no poder despertar libera lel semaforo de entrada al monitor
@@ -106,8 +107,12 @@ public class MonitorV2 {
             conditionQueueLock.unlock();
         }
     }
-    /*
-     *@brief : Recorre las cosas de condicion para ver si hay hilos esperando
+
+
+    /**
+     *Recorre las cosas de condicion para ver si hay hilos esperando
+     *
+     * @return un vector binario con 1's en la pos N si hay hilos esperando en la cola N o 0's caso contrario
      */
     private int[] getWaitingVect(){
 
