@@ -30,28 +30,23 @@ public class ThreadTriggerConfigurator {
 
         //a cada trigger ahora lo tenemos que mapear a un ThreadTrigger, a eso lo hacemos de la siguiente manera:
         //creamos un threadtrigger temporal
-        ThreadTrigger tmp = new ThreadTrigger();
+
         for(int j = 0; j < ntriggers; j++) {
+            ThreadTrigger tmp = new ThreadTrigger();
             //averiguamos el largo del vector de secuencia de disparos del trigger
             int sequence_size = triggersJsonObjects.get(j).getAsJsonArray("sequence").size();
             int[] vector_tmp = new int[sequence_size];
             //creamos un vector temporal para agregar al thread trigger temporal
-            for (int k = 0; k < sequence_size; k++)
+            for (int k = 0; k < sequence_size; k++) {
                 vector_tmp[k] = triggersJsonObjects.get(j).getAsJsonArray("sequence").get(k).getAsInt();
-
+                System.out.printf("TRIGGER NUMERO %d -- ELEMENTO LEIDO: %d\n", j, vector_tmp[k]);
+            }
             //agregamos el vector creado y la cantidad de disparos al thread trigger temporal
             tmp.setNshoots(triggersJsonObjects.get(j).get("nt").getAsInt());
             tmp.setSequence(vector_tmp);
 
             //por ultimo agregamos el trigger temporal al arreglo de triggers
             triggersList.add(tmp);
-        }
-
-        for(int m = 0; m <2; m++){
-            for (int l = 0; l < 3; l++) {
-                int [] asd = triggersList.get(m).getSequence();
-                System.out.printf("EL ELEMENTO %d DEL VECTOR %d es: %d\n", l, m, asd[l]);
-            }
         }
 
         //por ultimo, llamamos al setter de la clase

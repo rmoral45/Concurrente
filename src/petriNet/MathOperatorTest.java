@@ -2,12 +2,14 @@ package petriNet;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.security.InvalidAlgorithmParameterException;
+
 class MathOperatorTest {
 
     MathOperator mathOperator = new MathOperator();
 
     @Test
-    void AddVectorTest(){
+    void AddVectorTest() throws InvalidAlgorithmParameterException {
         //------------------addVector assertions------------------
         Assertions.assertArrayEquals(new int[]{10,2}, mathOperator.addVector(new int[]{7,1},new int[]{3,1}));
         //Assertions.assertArrayEquals(new int[]{10,2}, MathOperator.addVector(new int[]{7,1},new int[]{3,1}));
@@ -15,31 +17,31 @@ class MathOperatorTest {
 
     //VERIFICAR ESTO!!
     @Test
-    void AndVectorTest(){
+    void AndVectorTest() throws InvalidAlgorithmParameterException {
         //------------------ProdVector assertions------------------
         Assertions.assertArrayEquals(new int[]{1,1,1,5}, mathOperator.andVector(new int[]{1,1,1,5}, new int[]{1,1,1,5}));
     }
 
     @Test
-    void InnerProdTest(){
+    void InnerProdTest() throws InvalidAlgorithmParameterException{
         //------------------innerProdVector assertions------------------
         Assertions.assertArrayEquals(new int[]{4,4}, mathOperator.innerProdVector(new int[]{2,2},new int[]{2,2}));
         //Assertions.assertArrayEquals(new int[]{6,4}, mathOperator.innerProdVector(new int[]{1,2},new int[]{2,2}));
     }
 
     @Test
-    void MatrixAddTest(){
+    void MatrixAddTest() throws InvalidAlgorithmParameterException{
         Assertions.assertArrayEquals(new int[][]{{1,1,4},{2,3,0},{0,0,0}}, mathOperator.matrixAdd(new int[][]{{1,0,3},{1,2,0},{0,0,0}}, new int[][]{{0,1,1},{1,1,0},{0,0,0}}));
     }
 
     @Test
-    void MatrixProdTest(){
+    void MatrixProdTest() throws InvalidAlgorithmParameterException{
         Assertions.assertArrayEquals(new int[][]{{2,4},{6,8}}, mathOperator.matrixProd(new int[][]{{1,2},{3,4}}, new int[][]{{2,2},{2,2}}));
         //Assertions.assertArrayEquals(new int[][]{{2,3},{6,10}}, mathOperator.matrixProd(new int[][]{{1,2},{3,4}}, new int[][]{{2,2},{2,2}}));
     }
 
     @Test
-    void VectMatrixProdTest(){
+    void VectMatrixProdTest() throws InvalidAlgorithmParameterException{
         Assertions.assertArrayEquals(new int[]{22,24}, mathOperator.vectmatProd(new int[][]{{5,4},{3,6}}, new int[]{2,3}));
     }
 

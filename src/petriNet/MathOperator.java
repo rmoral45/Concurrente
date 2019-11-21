@@ -16,8 +16,12 @@ public class MathOperator {
      * @param vector2 segundo operando de la suma
      * @return devuelve el vector que resulta de la suma
      */
-    public static int[] addVector(int[] vector1, int[] vector2){
+    public static int[] addVector(int[] vector1, int[] vector2) throws InvalidAlgorithmParameterException{
     //public int[] addVector(int[] vector1, int[] vector2){
+
+        if(vector1.length != vector2.length)
+            throw new InvalidAlgorithmParameterException("Fallo en funcion addVector");
+
         int size = vector1.length;
         int[] result = new int[size];
 
@@ -33,8 +37,12 @@ public class MathOperator {
      * @param vector2 segundo operando del producto punto
      * @return devuelve el vector que resulta del producto punto
      */
-    public static int[] innerProdVector(int[] vector1, int[] vector2){
+    public static int[] innerProdVector(int[] vector1, int[] vector2) throws InvalidAlgorithmParameterException{
     //public int[] innerProdVector(int[] vector1, int[] vector2){
+
+        if(vector1.length != vector2.length){
+            throw new InvalidAlgorithmParameterException("Fallo en funcion innerProdVector");
+        }
 
 
         int size = vector1.length;
@@ -74,16 +82,24 @@ public class MathOperator {
      * @param vector2 segundo operando de la suma
      * @return retormna una matriz que resulta de la suma entre ambos parametros
      */
-    public static int[][] matrixAdd(int[][] vector1, int[][] vector2){
+    public static int[][] matrixAdd(int[][] vector1, int[][] vector2) throws InvalidAlgorithmParameterException{
     //public int[][] matrixAdd(int[][] vector1, int[][] vector2){
 
+        if(vector1.length != vector1.length)
+            throw new InvalidAlgorithmParameterException("Fallo en funcion matrixAdd - tamaño de filas distinto");
 
-        int size = vector1[0].length;
-        int[][] result = new int[size][size];
+        for(int i = 0; i < vector1.length; i++)
+            if(vector1[i].length != vector2[i].length)
+                throw new InvalidAlgorithmParameterException("Fallo en funcion matrixAdd - " +
+                                                            "el tamaño de la columna" + i + "es distinto");
 
-        for(int i = 0; i < size; i++)
-            for(int j = 0; j < size; j++)
-            result[i][j] = vector1[i][j] + vector2[i][j];
+        int size1 = vector1.length;
+        int size2 = vector1[0].length;
+        int[][] result = new int[size1][size2];
+
+        for(int i = 0; i < size1; i++)
+            for(int j = 0; j < size2; j++)
+                result[i][j] = vector1[i][j] + vector2[i][j];
 
         return result;
     }
@@ -94,16 +110,25 @@ public class MathOperator {
      * @param vector2 segundo operando del producto
      * @return retorna una matriz entre el producto de vector1 y vector2
      */
-    public static int[][] matrixProd(int[][] vector1, int[][] vector2){
+    public static int[][] matrixProd(int[][] vector1, int[][] vector2) throws InvalidAlgorithmParameterException{
     //public int[][] matrixProd(int[][] vector1, int[][] vector2){
 
-        int size = vector1[0].length;
+        if(vector1.length != vector2.length)
+            throw new InvalidAlgorithmParameterException("Fallo en matrixProd - tamaño de filas distinto");
+
+        for(int i = 0; i < vector1.length; i++)
+            if(vector1[i].length != vector2[i].length)
+                throw new InvalidAlgorithmParameterException("Fallo en funcion matrixProd - " +
+                                                            "el tamaño de la columna" + i + "es distinto");
 
 
-        int[][] result = new int[size][size];
+        int size1 = vector1.length;
+        int size2 = vector1[0].length;
 
-        for(int i = 0; i < size; i++)
-            for(int j = 0; j < size; j++)
+        int[][] result = new int[size1][size2];
+
+        for(int i = 0; i < size1; i++)
+            for(int j = 0; j < size2; j++)
                 result[i][j] = vector1[i][j] * vector2[i][j];
 
         return result;
@@ -115,8 +140,13 @@ public class MathOperator {
      * @param vector
      * @return retorna un vector resultado del producto entre la matriz y el vector pasados como parametro
      */
-    public static int[] vectmatProd(int [][] matrix, int[] vector){
+    public static int[] vectmatProd(int [][] matrix, int[] vector) throws InvalidAlgorithmParameterException{
     //public int[] vectmatProd(int [][] matrix, int[] vector){
+
+        for(int j = 0; j < matrix.length; j++)
+            if(matrix[j].length != vector.length)
+                throw new InvalidAlgorithmParameterException("La fila "+j+" es de distino tamaño que el vector");
+
         int matrix_size = matrix.length;
         int vector_size = vector.length;
         int [] result = new int[matrix_size];
