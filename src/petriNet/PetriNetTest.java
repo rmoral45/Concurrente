@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.security.InvalidAlgorithmParameterException;
+
 
 public class PetriNetTest {
 
@@ -41,13 +43,13 @@ public class PetriNetTest {
     }
 
     @Test
-    void probarDisparoTest() {
+    void probarDisparoTest() throws InvalidAlgorithmParameterException {
         PetriNet rdp = new PetriNet(fr1.getPnConfigurator());
         Assertions.assertArrayEquals(new int[]{-1, 1, -1, 0, 0}, rdp.probarDisparo(0));
     }
 
     @Test
-    void dispararTransicionTest() {
+    void dispararTransicionTest() throws InvalidAlgorithmParameterException {
         PetriNet rdp = new PetriNet(fr1.getPnConfigurator());
         Assertions.assertTrue(rdp.dispararTransicion(0));
     }
@@ -59,19 +61,19 @@ public class PetriNetTest {
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Test
-    void validateT0Shot() {
+    void validateT0Shot() throws InvalidAlgorithmParameterException {
         long currT = 1000; //seteo tiempo cuyalquyiera,total ninguna es temporal
         PetriNet rdp = new PetriNet(fr1.getPnConfigurator());
         Assertions.assertEquals(FireResultType.SUCCESS,rdp.dispararExtendida(0, currT));
     }
     @Test
-    void validateT4Shot() {
+    void validateT4Shot() throws InvalidAlgorithmParameterException {
         long currT = 1000; //seteo tiempo cuyalquyiera,total ninguna es temporal
         PetriNet rdp = new PetriNet(fr1.getPnConfigurator());
         Assertions.assertEquals(FireResultType.RESOURCE_UNAVAILABLE,rdp.dispararExtendida(4, currT));
     }
     @Test
-    void validateT5Shot() {
+    void validateT5Shot() throws InvalidAlgorithmParameterException {
         long currT = 1000; //seteo tiempo cuyalquyiera,total ninguna es temporal
         PetriNet rdp = new PetriNet(fr1.getPnConfigurator());
         Assertions.assertEquals(FireResultType.RESOURCE_UNAVAILABLE,rdp.dispararExtendida(5, currT));
