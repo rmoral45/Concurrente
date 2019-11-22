@@ -10,8 +10,9 @@ public class PetriNetConfigurator {
     private int ntransitions;
     private int [][] incidence_matrix;
     private int [] initial_marking;
-    private int [] inib_arcs;
-    private int [] lector_arcs;
+    private int [] alpha_vector;
+    private int [][] inib_matrix;
+    private int [][] lector_matrix;
 
     /**
      * Clase destinada a configurar los parametros de la petriNet.
@@ -40,19 +41,31 @@ public class PetriNetConfigurator {
             this.initial_marking[k] = tmp_marking.get(k).getAsInt();
 
 
-        //inicializamos vector de arcos inhibidores
-        this.inib_arcs = new int[ntransitions];
-            /*JsonArray inib_arcs_tmp = jsonObject.getAsJsonObject("petriNet").getAsJsonArray("inib_arcs");
-              for(int i = 0; i < nplaces; i++)
-                this.inib_arcs[i] = inib_arcs_tmp.get(i).getAsInt();
-             */
+        //inicializamos matriz de arcos inhibidores
+        this.inib_matrix = new int[ntransitions][ntransitions];
+        JsonArray inib_arcs_tmp = petriNet.getAsJsonArray("inhib_matrix");
+        JsonArray tmp_row;
+        for(int i = 0; i < ntransitions; i++)
+            for(int j = 0; j < ntransitions; j++) {
+                tmp_row = inib_arcs_tmp.get(i).getAsJsonArray();
+                this.inib_matrix[i][j] = tmp_row.get(j).getAsInt();
+            }
 
-        //inicializamos vector de arcos lectores
-        this.lector_arcs = new int[ntransitions];
-            /*JsonArray lector_arcs_tmp = jsonObject.getAsJsonObject("petriNet").getAsJsonArray("inib_arcs");
-              for(int i = 0; i < nplaces; i++)
-                this.lector_arcs[i] = lector_arcs_tmp.get(i).getAsInt();
-             */
+        //inicializamos matriz de arcos lectores
+        this.lector_matrix = new int[ntransitions][ntransitions];
+        JsonArray lector_arcs_tmp = petriNet.getAsJsonArray("lector_matrix");
+        JsonArray tmp_row2;
+        for(int i = 0; i < ntransitions; i++)
+            for(int j = 0; j < ntransitions; j++) {
+                tmp_row2 = lector_arcs_tmp.get(i).getAsJsonArray();
+                this.lector_matrix[i][j] = tmp_row2.get(j).getAsInt();
+            }
+
+        //inicializamos vector de alphas
+        this.alpha_vector = new int[ntransitions];
+        JsonArray tmp_alphas = petriNet.getAsJsonArray("alpha");
+        for(int i = 0; i < ntransitions; i++)
+            this.alpha_vector[i] = tmp_alphas.get(i).getAsInt();
     }
 
     public int getNplaces() {
@@ -71,11 +84,15 @@ public class PetriNetConfigurator {
         return initial_marking;
     }
 
-    public int[] getLector_arcs() {
-        return lector_arcs;
+    public int[] getAlpha_vector() {
+        return alpha_vector;
     }
 
-    public int[] getInib_arcs() {
-        return inib_arcs;
+    public int[][] getLector_arcs() {
+        return lector_matrix;
+    }
+
+    public int[][] getInib_arcs() {
+        return inib_matrix;
     }
 }

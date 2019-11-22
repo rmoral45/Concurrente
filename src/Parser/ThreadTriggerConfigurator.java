@@ -39,7 +39,6 @@ public class ThreadTriggerConfigurator {
             //creamos un vector temporal para agregar al thread trigger temporal
             for (int k = 0; k < sequence_size; k++) {
                 vector_tmp[k] = triggersJsonObjects.get(j).getAsJsonArray("sequence").get(k).getAsInt();
-                System.out.printf("TRIGGER NUMERO %d -- ELEMENTO LEIDO: %d\n", j, vector_tmp[k]);
             }
             //agregamos el vector creado y la cantidad de disparos al thread trigger temporal
             tmp.setNshoots(triggersJsonObjects.get(j).get("nt").getAsInt());
