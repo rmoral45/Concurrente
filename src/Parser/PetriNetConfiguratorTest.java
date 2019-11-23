@@ -30,7 +30,7 @@ public class PetriNetConfiguratorTest {
     PetriNetConfigurator pnConf4 = new PetriNetConfigurator(fr4.petriNet_test);
     @Test
     void getAlpaVectorTest(){
-        Assertions.assertArrayEquals(new int[]{0,0,0,0,0,0,0,0,0,0}, pnConf4.getAlpha_vector());
+        Assertions.assertArrayEquals(new long[]{0,0,0,0,0,0,0,0,0,0}, pnConf4.getAlpha_vector());
     }
 
     JsonFileReader fr5 = new JsonFileReader("/home/ramiro/repos/Concurrente/src/petriNet/red_paper.json");

@@ -28,7 +28,7 @@ public class Politica {
      * @param sensibilizadas
      * @return
      */
-    public int getNextAwake(int [] sensibilizadas){
+    public int getNextAwake(int [] sensibilizadas) throws InvalidAlgorithmParameterException {
 
         int nextAwake = 0;
         switch(mode){
@@ -100,7 +100,7 @@ public class Politica {
      *
      * @return Numero de cola a la cual realizarle signal()
      */
-    private int getHighestPriorityNext(int [] sensibilizadas){
+    private int getHighestPriorityNext(int [] sensibilizadas) throws InvalidAlgorithmParameterException {
 
         int [] availables = MathOperator.getMaxIndexVect( MathOperator.innerProdVector(sensibilizadas, priorities));
         if (availables.length == 1)

@@ -4,6 +4,7 @@ import Politica.PoliticMode;
 import Politica.Politica;
 import petriNet.PetriNet;
 
+import java.security.InvalidAlgorithmParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.Semaphore;
@@ -49,7 +50,7 @@ public class MonitorV2 {
                 afterFireAction();
             }
         }
-        catch(InterruptedException e){
+        catch(InterruptedException | InvalidAlgorithmParameterException e){
             System.exit(1);
         }
     }
@@ -57,7 +58,7 @@ public class MonitorV2 {
         Metodo que aplica la ec de estado generalizada y lo hace adentro de un loop como
         plantea mico en el diagrama de secuencia
      */
-    public void dispararV2(int numTranscicion) throws InterruptedException {
+    public void dispararV2(int numTranscicion) throws InterruptedException, InvalidAlgorithmParameterException {
 
             ingressSemaphore.acquire();
             conditionQueueLock.lock();
@@ -93,7 +94,7 @@ public class MonitorV2 {
      * Verifica si puede despertar algun hilo, en caso de poder lo hace
      * Encaso de no poder despertar libera lel semaforo de entrada al monitor
      */
-    private void afterFireAction(){
+    private void afterFireAction() throws InvalidAlgorithmParameterException {
         int [] sensibilizadas;
         sensibilizadas = petriNet.obtenerSensibilizadas(getWaitingVect());
 
@@ -124,6 +125,16 @@ public class MonitorV2 {
         return wv;
     }
 
+    ///--------------------------------------------------------------------------------------
+
+    //                          Disparo con tiempo
+
+    //---------------------------------------------------------------------------------------
+
+
+    void dispTemp(int transition){
+
+    }
     
     /*
         Para probar boludeses con las colas etc

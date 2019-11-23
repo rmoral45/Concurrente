@@ -35,7 +35,7 @@ class PoliticaTest {
         assertEquals(3,pol3.getNextAwake(new int[] {1,1,1,1}));
     }*/
     @Test
-    void getNextWithRandomtTest(){
+    void getNextWithRandomtTest() throws InvalidAlgorithmParameterException {
 
         Politica pol1 = new Politica(new int [] {0,1,2,3,4,5}, PoliticMode.RANDOM);
 
@@ -49,7 +49,7 @@ class PoliticaTest {
     }
 
     @Test
-    void getNextWithHighPrioTest(){
+    void getNextWithHighPrioTest() throws InvalidAlgorithmParameterException {
         int nq2 = 7;
         Politica pol2 = new Politica(new int [] {2, 1, 1, 3, 5}, PoliticMode.HIGH_PRIO);
 

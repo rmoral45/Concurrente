@@ -27,6 +27,11 @@ public class PetriNet {
         this.ntransitions = pnConfig.getNtransitions();
         this.incidenceMatrix = pnConfig.getIncidence_matrix();
         this.mark_vector = pnConfig.getInitial_marking();
+        this.H = pnConfig.getInib_arcs();
+        this.R = pnConfig.getLector_arcs();
+        this.alpha = pnConfig.getAlpha_vector();
+        this.transitionTimeStamp = new long [ntransitions];
+        this.validTimeStamp = new boolean [ntransitions];
         //falta agregar arcos lectores y arcos inhibidores
 
 
@@ -181,21 +186,35 @@ public class PetriNet {
     public FireResultType dispararExtendida(int transition, long currentTime) throws InvalidAlgorithmParameterException {
 
         boolean validFire;
-        int[] new_marking  = this.probarDisparoExtendida(transition);
         int [] posibleMark;
         int [] habilitadasPorInhibidor;
         int [] habilitadasPorLector;
         int [] Q;
         int [] W;
 
-        /*
+       /*
             Calculo Q y W
         */
-        //FIXME revisar el calculo de Q y W por que creo que estaba mal el paper
-        Q = MathOperator.cero(mark_vector);
-        W = MathOperator.uno(mark_vector);
+        Q = MathOperator.uno(mark_vector);
+        W = MathOperator.cero(mark_vector);
+
+        /*
+            Aplico Ec para arcos ihbidores y lectores
+         */
         habilitadasPorInhibidor = MathOperator.vectmatProd(H,Q);
         habilitadasPorLector    = MathOperator.vectmatProd(R,W);
+
+        /*
+            Convierto a vectores de 1's y 0's
+         */
+        habilitadasPorInhibidor = MathOperator.binarizeVect(habilitadasPorInhibidor);
+        habilitadasPorLector    = MathOperator.binarizeVect(habilitadasPorLector);
+
+        /*
+            Niego los vectores
+         */
+        habilitadasPorInhibidor = MathOperator.negateVect(habilitadasPorInhibidor);
+        habilitadasPorLector    = MathOperator.negateVect(habilitadasPorLector);
         posibleMark = probarDisparo(transition);
 
         validFire = MathOperator.sign(posibleMark)

@@ -144,8 +144,11 @@ public class MathOperator {
     //public int[] vectmatProd(int [][] matrix, int[] vector){
 
         for(int j = 0; j < matrix.length; j++)
-            if(matrix[j].length != vector.length)
-                throw new InvalidAlgorithmParameterException("La fila "+j+" es de distino tamaño que el vector");
+            if(matrix[j].length != vector.length) {
+                System.out.print("La cant de columnas es " + matrix[j].length);
+                System.out.print("La cant de vector es " + vector.length);
+                throw new InvalidAlgorithmParameterException("La fila " + j + " es de distino tamaño que el vector");
+            }
 
         int matrix_size = matrix.length;
         int vector_size = vector.length;
