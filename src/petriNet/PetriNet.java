@@ -199,9 +199,6 @@ public class PetriNet {
     public FireResultType dispararExtendida(int transition, long currentTime) throws InvalidAlgorithmParameterException {
 
 
-        if((currentTime - transitionTimeStamp[transition]) < alpha[transition]
-                && validTimeStamp[transition])
-            return FireResultType.TIME_DISABLED;
 
         boolean validFire;
         int [] posibleMark;
@@ -241,12 +238,13 @@ public class PetriNet {
 
         if(!validFire)
             return FireResultType.RESOURCE_UNAVAILABLE;
+
         //FIXME este else if lo llevo al principio, para que lo primero que haga sea preguntar por la ventana
-        /*
+
         else if((currentTime - transitionTimeStamp[transition]) < alpha[transition]
                 && validTimeStamp[transition])
             return FireResultType.TIME_DISABLED;
-        */
+
         /* Ya dispare la transcicion temporal que habia sido sensibilizada,
             por ende el timeStamp que fue seteado con anterioridad ya no es valido  */
 
@@ -265,7 +263,7 @@ public class PetriNet {
      * Este metodo no se puede optimizar usando el vector waiting[] ya que se deben
      * probar las transciciones temporales, aunque no haya ningun hilo esperando para
      * dispararlas
-     * @return
+     * @return vector con 0's si no esta sens, 1's si esta sensibilizada y 2's si paso de no sensibilizada a sensibilizada
      */
 
     public int[] obtenerSensibilizadaExtendida(long currentTime) throws InvalidAlgorithmParameterException {
@@ -310,10 +308,10 @@ public class PetriNet {
             posibleMark = probarDisparo(i);
             sensibilizadas[i] = MathOperator.sign(posibleMark) * habilitadasPorInhibidor[i] * habilitadasPorLector[i];
             //Verificar si ya estaba sensibilizada de antes
-            if (sensibilizadas[i] == 1 && !validTimeStamp[i]){
+            if (sensibilizadas[i] == 1 && !validTimeStamp[i] && alpha[i] > 0){
                 validTimeStamp[i] = true;
                 transitionTimeStamp[i] = currentTime;
-                sensibilizadas[i] = 0; //Verdaderamente no esta sensibilizada
+                sensibilizadas[i] = 2; //Verdaderamente no esta sensibilizada
             }
 
 
@@ -324,5 +322,9 @@ public class PetriNet {
 
     public long getRemainingTime(long currTime, int transition){
         return ((transitionTimeStamp[transition] + alpha[transition]) - currTime );
+    }
+
+    public long getAlpha(int transition){
+        return alpha[transition];
     }
 }

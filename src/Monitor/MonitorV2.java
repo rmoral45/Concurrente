@@ -95,11 +95,9 @@ public class MonitorV2 {
 
         ingressSemaphore.acquire();
         temporalSemaphore.acquire(); //Semaforo que toman los hilos temporales
-        //conditionQueueLock.lock();
-        //FIXME unlock() a lock para controlar colas
+
         K = true;
         FireResultType fr;
-        boolean mustSleep = false;
         while(K){
             temporalSemaphore.acquire();
             long currentTime = System.currentTimeMillis();
@@ -108,7 +106,8 @@ public class MonitorV2 {
             if (fr == FireResultType.SUCCESS){
                 int [] sensibilizadas;
                 sensibilizadas = petriNet.obtenerSensibilizadaExtendida(currentTime);
-                //Fixme aca debo despertar los hilos temporales que recien fueron sensibilizados
+                /*despierto a todos los hilos que deben setear su propio tiempo*/
+                sensibilizadas = awakeTemporal(sensibilizadas);
                 wakeUp(sensibilizadas);
                 return;
             }
@@ -117,20 +116,19 @@ public class MonitorV2 {
                 wakeUp(new int [colasCondicion.size()]);
                 colasCondicion.get(numTranscicion).encolar();
 
-                if (petriNet.getRemainingTime(currentTime,numTranscicion) > 0)
+                if (petriNet.getAlpha(numTranscicion) > 0) // fui despertado para setear tiempo
                     colasCondicion.get(numTranscicion).encolarTemporal(petriNet.getRemainingTime(currentTime,numTranscicion));
 
             }
+            
             /*Si el resultado no fue exitoso por falta de tiempo*/
             else if ((fr == FireResultType.TIME_DISABLED)) {
                 wakeUp(new int [colasCondicion.size()]);
                 colasCondicion.get(numTranscicion).encolarTemporal(petriNet.getRemainingTime(currentTime,numTranscicion));
-                //conditionQueueLock.lock();
             }
 
         }
-        temporalSemaphore.release();
-        ingressSemaphore.release();
+
     }
 
     /**
@@ -177,6 +175,17 @@ public class MonitorV2 {
             temporalSemaphore.release();
             ingressSemaphore.release();
         }
+    }
+    private int []  awakeTemporal(int [] sensibilizadas){
+        int [] nuevaSens = new int [sensibilizadas.length];
+        for (int i = 0; i < sensibilizadas.length; i++){
+            if (sensibilizadas[i] > 1 && (colasCondicion.get(i).getQueueLen() > 0)){
+                sensibilizadas[i] = 0;
+                colasCondicion.get(i).desencolar();
+            }
+        }
+        return nuevaSens;
+
     }
 
     /**
