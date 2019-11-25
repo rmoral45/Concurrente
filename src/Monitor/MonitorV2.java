@@ -115,8 +115,10 @@ public class MonitorV2 {
                 colasCondicion.get(numTranscicion).encolar();
 
                 if (petriNet.getAlpha(numTranscicion) > 0) // fui despertado para setear tiempo
-                    colasCondicion.get(numTranscicion).encolarTemporal(petriNet.getRemainingTime(currentTime,numTranscicion));
-
+                {
+                    currentTime = System.currentTimeMillis();
+                    colasCondicion.get(numTranscicion).encolarTemporal(petriNet.getRemainingTime(currentTime, numTranscicion));
+                }
             }
             
             /*Si el resultado no fue exitoso por falta de tiempo*/

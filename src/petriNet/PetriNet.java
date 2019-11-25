@@ -249,8 +249,8 @@ public class PetriNet {
             por ende el timeStamp que fue seteado con anterioridad ya no es valido  */
 
         if (logger != null) {
-            logger.myLogger.info("[disparo : " + transition + "; marcado : "
-                    + Arrays.toString(this.mark_vector) + " ]");
+            logger.myLogger.info("{\"disparo\" : " + transition + ", \"marcado\" : "
+                    + Arrays.toString(this.mark_vector) + " }");
         }
 
         validTimeStamp[transition] = false;
