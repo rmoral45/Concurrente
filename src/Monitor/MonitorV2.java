@@ -9,7 +9,6 @@ import java.security.InvalidAlgorithmParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class MonitorV2 {
 
@@ -94,12 +93,11 @@ public class MonitorV2 {
     public void dispararTemp(int numTranscicion) throws InterruptedException, InvalidAlgorithmParameterException {
 
         ingressSemaphore.acquire();
-        temporalSemaphore.acquire(); //Semaforo que toman los hilos temporales
-
+        
         K = true;
         FireResultType fr;
         while(K){
-            temporalSemaphore.acquire();
+            temporalSemaphore.acquire();  //Semaforo que toman los hilos temporales
             long currentTime = System.currentTimeMillis();
             fr = petriNet.dispararExtendida(numTranscicion, currentTime);
 
