@@ -99,10 +99,9 @@ public class MonitorV2 {
         //FIXME unlock() a lock para controlar colas
         K = true;
         FireResultType fr;
-        long currentTime = System.currentTimeMillis();
-
+        boolean mustSleep = false;
         while(K){
-
+            long currentTime = System.currentTimeMillis();
             fr = petriNet.dispararExtendida(numTranscicion, currentTime);
 
             if (fr == FireResultType.SUCCESS){
@@ -112,15 +111,20 @@ public class MonitorV2 {
                 wakeUp(sensibilizadas);
                 return;
             }
-            else if (fr == FireResultType.RESOURCE_UNAVAILABLE){
+
+            if (fr == FireResultType.RESOURCE_UNAVAILABLE){
                 wakeUp(new int [colasCondicion.size()]);
                 colasCondicion.get(numTranscicion).encolar();
-                temporalSemaphore.acquire();
+                if (petriNet.getRemainingTime(currentTime,numTranscicion) > 0)
+                    mustSleep = true;
+                else
+                    temporalSemaphore.acquire();
                 //conditionQueueLock.lock();
 
             }
+            
             /*Si el resultado no fue exitoso por falta de tiempo*/
-            else {
+            if (fr == FireResultType.TIME_DISABLED || mustSleep) {
                 wakeUp(new int [colasCondicion.size()]);
                 colasCondicion.get(numTranscicion).encolarTemporal(petriNet.getRemainingTime(currentTime,numTranscicion));
                 temporalSemaphore.acquire();
