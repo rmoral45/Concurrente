@@ -18,17 +18,15 @@ class ColaCondicionTest {
         int nthread = 4;
         ReentrantLock lock = new ReentrantLock();
         Condition condition = lock.newCondition();
-        ColaCondicion cola = new ColaCondicion(condition,numCond);
+        ColaCondicion cola = new ColaCondicion(numCond);
         try{
             for (int i=0; i<nthread; i++) {
                 Thread th = new Thread(new EncolarTestObject(cola,lock));
                 th.start();
                 Thread.sleep(300);
             }
-            lock.lock();
+
             assertEquals(nthread, cola.getQueueLen());
-            assertEquals(nthread, lock.getWaitQueueLength(condition));
-            lock.unlock();
             Thread.sleep(1000);
             (new Thread(new DesencolarTestObject(cola,lock,nthread))).start();
             Thread.sleep(1000);

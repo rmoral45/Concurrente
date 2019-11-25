@@ -17,7 +17,6 @@ public class PetriNetConfigurator {
     private int [][] inib_matrix;
     private int [][] lector_matrix;
 
-    MyLoggerWrapper loggerWrapper = MyLoggerWrapper.getInstance();
 
 
     /**
@@ -26,7 +25,6 @@ public class PetriNetConfigurator {
      */
     public PetriNetConfigurator(JsonObject petriNet) throws IOException {
 
-        loggerWrapper.myLogger.info("Logueando en PetriNetConfigurator");
         JsonArray matrix_as_vector = petriNet.getAsJsonArray("incidence_matrix");
 
         this.nplaces = matrix_as_vector.size();
@@ -40,7 +38,7 @@ public class PetriNetConfigurator {
                 tmp = matrix_as_vector.get(i).getAsJsonArray();
                 this.incidence_matrix[i][j] = tmp.get(j).getAsInt();
             }
-        loggerWrapper.myLogger.severe("matriz de incidencia logueada");
+
 
 
         //inicializamos vector de marcado inicial
@@ -48,7 +46,7 @@ public class PetriNetConfigurator {
         JsonArray tmp_marking = petriNet.getAsJsonArray("init_marking");
         for(int k = 0; k < this.nplaces; k++)
             this.initial_marking[k] = tmp_marking.get(k).getAsInt();
-        loggerWrapper.myLogger.severe("marcado inicial logueado");
+
 
 
         //inicializamos matriz de arcos inhibidores
@@ -61,7 +59,7 @@ public class PetriNetConfigurator {
                 this.inib_matrix[i][j] = tmp_row.get(j).getAsInt();
             }
 
-        loggerWrapper.myLogger.severe("matriz de arcos inhibidores logueada");
+
 
         //inicializamos matriz de arcos lectores
         this.lector_matrix = new int[ntransitions][nplaces];
@@ -72,7 +70,7 @@ public class PetriNetConfigurator {
                 tmp_row2 = lector_arcs_tmp.get(i).getAsJsonArray();
                 this.lector_matrix[i][j] = tmp_row2.get(j).getAsInt();
             }
-        loggerWrapper.myLogger.severe("matriz de arcos lectores logueada");
+
 
         //inicializamos vector de alphas
         this.alpha_vector = new long[ntransitions];
@@ -81,7 +79,7 @@ public class PetriNetConfigurator {
             this.alpha_vector[i] = tmp_alphas.get(i).getAsLong();
             this.alpha_vector[i] = tmp_alphas.get(i).getAsInt();
         }
-        loggerWrapper.myLogger.severe("vector de alphas logueado");
+
 
     }
 

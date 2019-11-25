@@ -1,13 +1,16 @@
 package petriNet;
+import MyLogger.MyLoggerWrapper;
 import Parser.*;
 
+import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
+import java.util.Arrays;
 
 public class PetriNet {
 
     private int nplaces;
     private int ntransitions;
-    private int[][] incidenceMatrix;
+    private int [][] incidenceMatrix;
     private int [][] H;
     private int [][] R;
     private int []   mark_vector;
@@ -17,10 +20,11 @@ public class PetriNet {
     private boolean [] validTimeStamp; // Indica si se senbilizo por algun disparo, por ende su timestamp fue seteado
     private long    [] transitionTimeStamp; //timeStamp del momento cuando quiso ser disprada
     private long    [] alpha; //contiene en limite inferior del intervalo temporal para cada transcision;
+    MyLoggerWrapper logger;
 
 
 
-    public PetriNet(PetriNetConfigurator pnConfig){
+    public PetriNet(PetriNetConfigurator pnConfig, boolean enableLog, String logPath) throws IOException {
 
         //FIXME Inicializar alpha, timestamp y esperando
         this.nplaces = pnConfig.getNplaces();
@@ -33,6 +37,10 @@ public class PetriNet {
         this.transitionTimeStamp = new long [ntransitions];
         this.validTimeStamp = new boolean [ntransitions];
         //falta agregar arcos lectores y arcos inhibidores
+        if (enableLog)
+            logger = MyLoggerWrapper.getInstance(logPath);
+        else
+            logger = null;
 
 
     }
@@ -114,6 +122,11 @@ public class PetriNet {
             // No es una transcicion  temporal, por lo tanto solo debe haberse cumplido
             // que los recursos esten disponibles
             this.mark_vector = new_marking;
+            if (logger != null) {
+                logger.myLogger.info("[disparo : " + transition + "; marcado : "
+                                     + Arrays.toString(this.mark_vector) + " ]");
+            }
+
             return true;
         }
 
@@ -185,6 +198,11 @@ public class PetriNet {
 
     public FireResultType dispararExtendida(int transition, long currentTime) throws InvalidAlgorithmParameterException {
 
+
+        if((currentTime - transitionTimeStamp[transition]) < alpha[transition]
+                && validTimeStamp[transition])
+            return FireResultType.TIME_DISABLED;
+
         boolean validFire;
         int [] posibleMark;
         int [] habilitadasPorInhibidor;
@@ -223,13 +241,19 @@ public class PetriNet {
 
         if(!validFire)
             return FireResultType.RESOURCE_UNAVAILABLE;
-
+        //FIXME este else if lo llevo al principio, para que lo primero que haga sea preguntar por la ventana
+        /*
         else if((currentTime - transitionTimeStamp[transition]) < alpha[transition]
                 && validTimeStamp[transition])
             return FireResultType.TIME_DISABLED;
-
+        */
         /* Ya dispare la transcicion temporal que habia sido sensibilizada,
             por ende el timeStamp que fue seteado con anterioridad ya no es valido  */
+
+        if (logger != null) {
+            logger.myLogger.info("[disparo : " + transition + "; marcado : "
+                    + Arrays.toString(this.mark_vector) + " ]");
+        }
 
         validTimeStamp[transition] = false;
         this.mark_vector = posibleMark;
@@ -296,5 +320,9 @@ public class PetriNet {
         }
 
          return  sensibilizadas;
+    }
+
+    public long getRemainingTime(long currTime, int transition){
+        return ((transitionTimeStamp[transition] + alpha[transition]) - currTime );
     }
 }

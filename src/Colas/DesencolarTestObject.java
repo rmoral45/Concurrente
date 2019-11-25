@@ -15,10 +15,10 @@ public class DesencolarTestObject implements Runnable {
     }
     @Override
     public void run() {
-        lock.lock();
+        //lock.lock();
         for (int i=0; i<ntrhread; i++)
             this.cola.desencolar();
 
-        lock.unlock();
+        //lock.unlock();
     }
 }

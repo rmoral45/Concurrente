@@ -2,6 +2,7 @@ package Monitor;
 import Colas.ColaCondicion;
 import Politica.PoliticMode;
 import Politica.Politica;
+import petriNet.FireResultType;
 import petriNet.PetriNet;
 
 import java.security.InvalidAlgorithmParameterException;
@@ -12,9 +13,10 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class MonitorV2 {
 
-    private final ReentrantLock conditionQueueLock = new ReentrantLock(); // lock para generar colas
+    //private final ReentrantLock conditionQueueLock = new ReentrantLock(); // lock para generar colas
     private final ArrayList<ColaCondicion> colasCondicion = new ArrayList<>();
-    private final Semaphore ingressSemaphore = new Semaphore(1,true);
+    private final Semaphore ingressSemaphore  = new Semaphore(1,true);
+    private final Semaphore temporalSemaphore = new Semaphore(1,true);
     private Politica policy;
     private PetriNet petriNet;
     private  boolean K;
@@ -25,7 +27,7 @@ public class MonitorV2 {
         petriNet = pn;
         K = false;
         for (int i=0; i<ntrans; i++) {
-            ColaCondicion cc = new ColaCondicion(conditionQueueLock.newCondition(),i);
+            ColaCondicion cc = new ColaCondicion(i);
             colasCondicion.add(cc);
         }
 
@@ -38,7 +40,7 @@ public class MonitorV2 {
 
         try{
             ingressSemaphore.acquire();
-            conditionQueueLock.lock();
+            //conditionQueueLock.lock();
             if (petriNet.dispararTransicion(numTranscicion)){
                 afterFireAction();
             }
@@ -61,7 +63,7 @@ public class MonitorV2 {
     public void dispararV2(int numTranscicion) throws InterruptedException, InvalidAlgorithmParameterException {
 
             ingressSemaphore.acquire();
-            conditionQueueLock.lock();
+            //conditionQueueLock.lock();
             K = true;
             while(K){
 
@@ -75,7 +77,7 @@ public class MonitorV2 {
                     else{
                         int nextAwake = policy.getNextAwake(sensibilizadas);
                         colasCondicion.get(nextAwake).desencolar();
-                        conditionQueueLock.unlock();
+                        //conditionQueueLock.unlock();
                         return;
                     }
                 }
@@ -89,6 +91,47 @@ public class MonitorV2 {
             ingressSemaphore.release();
     }
 
+    public void dispararTemp(int numTranscicion) throws InterruptedException, InvalidAlgorithmParameterException {
+
+        ingressSemaphore.acquire();
+        temporalSemaphore.acquire(); //Semaforo que toman los hilos temporales
+        //conditionQueueLock.lock();
+        //FIXME unlock() a lock para controlar colas
+        K = true;
+        FireResultType fr;
+        long currentTime = System.currentTimeMillis();
+
+        while(K){
+
+            fr = petriNet.dispararExtendida(numTranscicion, currentTime);
+
+            if (fr == FireResultType.SUCCESS){
+                int [] sensibilizadas;
+                sensibilizadas = petriNet.obtenerSensibilizadaExtendida(currentTime);
+                //Fixme aca debo despertar los hilos temporales que recien fueron sensibilizados
+                wakeUp(sensibilizadas);
+                return;
+            }
+            else if (fr == FireResultType.RESOURCE_UNAVAILABLE){
+                wakeUp(new int [colasCondicion.size()]);
+                colasCondicion.get(numTranscicion).encolar();
+                temporalSemaphore.acquire();
+                //conditionQueueLock.lock();
+
+            }
+            /*Si el resultado no fue exitoso por falta de tiempo*/
+            else {
+                wakeUp(new int [colasCondicion.size()]);
+                colasCondicion.get(numTranscicion).encolarTemporal(petriNet.getRemainingTime(currentTime,numTranscicion));
+                temporalSemaphore.acquire();
+                //conditionQueueLock.lock();
+            }
+
+        }
+        temporalSemaphore.release();
+        ingressSemaphore.release();
+    }
+
     /**
      * Debe ser ejecutada por todos los hilos luego de realizar un disparo valido
      * Verifica si puede despertar algun hilo, en caso de poder lo hace
@@ -99,16 +142,41 @@ public class MonitorV2 {
         sensibilizadas = petriNet.obtenerSensibilizadas(getWaitingVect());
 
         if (Arrays.equals(new int[sensibilizadas.length],sensibilizadas)){
-            conditionQueueLock.unlock();
+            //conditionQueueLock.unlock();
             ingressSemaphore.release();
         }
         else{
             int nextAwake = policy.getNextAwake(sensibilizadas);
             colasCondicion.get(nextAwake).desencolar();
-            conditionQueueLock.unlock();
+            //conditionQueueLock.unlock();
         }
     }
 
+    private void wakeUp(int [] sensibilizadas) throws InvalidAlgorithmParameterException {
+
+        if (temporalSemaphore.hasQueuedThreads()){
+            /*
+                Le cedo el monitor al hilo que fue despertado por tener los
+                recursos y ya cumplio el tiempo de espera
+             */
+            this.temporalSemaphore.release();
+            //this.conditionQueueLock.unlock();
+        }
+
+        else if (!Arrays.equals(new int[sensibilizadas.length],sensibilizadas)){
+            /*Hay alguien para despertar, veo quien*/
+            int nextAwake = policy.getNextAwake(sensibilizadas);
+            colasCondicion.get(nextAwake).desencolar();
+            //conditionQueueLock.unlock();
+            temporalSemaphore.release();
+        }
+
+        else{
+            //conditionQueueLock.unlock();
+            temporalSemaphore.release();
+            ingressSemaphore.release();
+        }
+    }
 
     /**
      *Recorre las cosas de condicion para ver si hay hilos esperando

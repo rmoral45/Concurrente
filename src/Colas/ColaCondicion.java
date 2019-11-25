@@ -1,6 +1,7 @@
 package Colas;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -11,16 +12,20 @@ public class ColaCondicion {
         FIXME Los metodos y parametros relacionados al tiempo se van a implementar en otra clase que herede de esta
     */
 
-    private Condition condition;
     private final ArrayList<Long> threadsTimestamp = new ArrayList<Long>();
     private boolean safeGuard; //usada para prevenir "spurious wakeup"
     private int numCondicion;
     private int queueLen;
+    private ReentrantLock conditionQueueLock ;
+    private Condition resourceCondition;
+    private Condition timeCondition;
 
-    public ColaCondicion(Condition c,int t) {
+    public ColaCondicion(int t) {
+        conditionQueueLock = new ReentrantLock(true);
+        resourceCondition = conditionQueueLock.newCondition();
+        timeCondition = conditionQueueLock.newCondition();
         safeGuard = false;
         numCondicion = t;
-        condition = c;
         queueLen = 0;
     }
 
@@ -34,28 +39,46 @@ public class ColaCondicion {
     }
 
     public void encolar (){
+        conditionQueueLock.lock();
         safeGuard = true;
         threadsTimestamp.add(System.currentTimeMillis());
         queueLen++;
         //System.out.print("Encolando\n");
          try{
              while (safeGuard)
-                 condition.await();
+                 resourceCondition.await();
         }
          catch(InterruptedException e){
              System.out.print("\n\n\nTu vieja\n\n\n");
          }
          finally{
-             System.out.print("Hilo de la cola " + numCondicion + "Despertado\n");
+             conditionQueueLock.unlock();
+
          }
     }
 
+    public void encolarTemporal (long timeToSleep){
+        queueLen++;
+        conditionQueueLock.lock();
+        try{
+                timeCondition.await(timeToSleep, TimeUnit.MILLISECONDS);
+        }
+        catch(InterruptedException e){
+            System.out.print("Error en encolaTemporal de la condicion " + numCondicion);
+            System.exit(1);
+        }
+        finally {
+            conditionQueueLock.unlock();
+        }
+    }
 
     public void desencolar(){
         //System.out.print("Desencolando cola :" + numCondicion + "\n");
+        conditionQueueLock.lock();
         threadsTimestamp.remove(0);
         safeGuard = false;
         queueLen--;
-        condition.signal();
+        resourceCondition.signal();
+        conditionQueueLock.unlock();
     }
 }

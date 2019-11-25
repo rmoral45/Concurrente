@@ -14,9 +14,9 @@ public class EncolarTestObject implements Runnable{
 
     @Override
     public void run() {
-        lock.lock();
+        //lock.lock();
         this.cola.encolar();
-        lock.unlock();
+        //lock.unlock();
     }
 
 

@@ -21,16 +21,16 @@ public class MyLoggerWrapper {
 
     private static MyLoggerWrapper myLoggerWrapper = null;
 
-    public static MyLoggerWrapper getInstance() throws IOException {
+    public static MyLoggerWrapper getInstance( String logPath ) throws IOException {
         if(myLoggerWrapper == null) {
-            prepareLogger();
+            prepareLogger(logPath);
             myLoggerWrapper = new MyLoggerWrapper();
         }
         return myLoggerWrapper;
     }
 
-    private static void prepareLogger() throws IOException {
-        FileHandler myFileHandler = new FileHandler("/home/ramiro/repos/Concurrente/src/MyLogger/project.log");
+    private static void prepareLogger(String logPath) throws IOException {
+        FileHandler myFileHandler = new FileHandler(logPath);
         myFileHandler.setFormatter(new SimpleFormatter());
         myLogger.addHandler(myFileHandler);
         myLogger.setUseParentHandlers(false);
