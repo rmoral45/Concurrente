@@ -101,6 +101,7 @@ public class MonitorV2 {
         FireResultType fr;
         boolean mustSleep = false;
         while(K){
+            temporalSemaphore.acquire();
             long currentTime = System.currentTimeMillis();
             fr = petriNet.dispararExtendida(numTranscicion, currentTime);
 
@@ -112,22 +113,18 @@ public class MonitorV2 {
                 return;
             }
 
-            if (fr == FireResultType.RESOURCE_UNAVAILABLE){
+            else if (fr == FireResultType.RESOURCE_UNAVAILABLE){
                 wakeUp(new int [colasCondicion.size()]);
                 colasCondicion.get(numTranscicion).encolar();
+
                 if (petriNet.getRemainingTime(currentTime,numTranscicion) > 0)
-                    mustSleep = true;
-                else
-                    temporalSemaphore.acquire();
-                //conditionQueueLock.lock();
+                    colasCondicion.get(numTranscicion).encolarTemporal(petriNet.getRemainingTime(currentTime,numTranscicion));
 
             }
-            
             /*Si el resultado no fue exitoso por falta de tiempo*/
-            if (fr == FireResultType.TIME_DISABLED || mustSleep) {
+            else if ((fr == FireResultType.TIME_DISABLED)) {
                 wakeUp(new int [colasCondicion.size()]);
                 colasCondicion.get(numTranscicion).encolarTemporal(petriNet.getRemainingTime(currentTime,numTranscicion));
-                temporalSemaphore.acquire();
                 //conditionQueueLock.lock();
             }
 
