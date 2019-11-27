@@ -1,14 +1,8 @@
 package petriNet;
 
-import Config.PetriNetConfigurator;
 import Config.JsonFileReader;
-import Config.PetriNetConfigurator;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
 
 
 public class PetriNetTest {
@@ -61,33 +55,29 @@ public class PetriNetTest {
     @Test
     void validateT0Shot() throws Exception {
         JsonFileReader fr1 = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/red_paper.json");
-        PetriNetConfigurator pnConf1 = new PetriNetConfigurator(fr1.petriNet_test);
         long currT = 1000; //seteo tiempo cuyalquyiera,total ninguna es temporal
-        PetriNet rdp = new PetriNet(pnConf1,true,"/home/dabratte/repos/Concurrente/log_files/test.log");
+        PetriNet rdp = new PetriNet(fr1.getPnConfigurator(),true,"/home/dabratte/repos/Concurrente/log_files/test.log");
         Assertions.assertEquals(FireResultType.SUCCESS,rdp.dispararExtendida(0, currT));
     }
     @Test
     void validateT3Shot() throws Exception {
         JsonFileReader fr1 = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/red_paper.json");
-        PetriNetConfigurator pnConf1 = new PetriNetConfigurator(fr1.petriNet_test);
         long currT = 1000; //seteo tiempo cuyalquyiera,total ninguna es temporal
-        PetriNet rdp = new PetriNet(pnConf1, true,"/home/dabratte/repos/Concurrente/log_files/test.log");
+        PetriNet rdp = new PetriNet(fr1.getPnConfigurator(), true,"/home/dabratte/repos/Concurrente/log_files/test.log");
         Assertions.assertEquals(FireResultType.SUCCESS,rdp.dispararExtendida(3, currT));
     }
     @Test
     void validateT4Shot() throws Exception {
         JsonFileReader fr1 = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/red_paper.json");
-        PetriNetConfigurator pnConf1 = new PetriNetConfigurator(fr1.petriNet_test);
         long currT = 1000; //seteo tiempo cuyalquyiera,total ninguna es temporal
-        PetriNet rdp = new PetriNet(pnConf1,true,"/home/dabratte/repos/Concurrente/log_files/test.log");
+        PetriNet rdp = new PetriNet(fr1.getPnConfigurator(),true,"/home/dabratte/repos/Concurrente/log_files/test.log");
         Assertions.assertEquals(FireResultType.RESOURCE_UNAVAILABLE,rdp.dispararExtendida(4, currT));
     }
     @Test
     void validateT5Shot() throws Exception {
         JsonFileReader fr1 = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/red_paper.json");
-        PetriNetConfigurator pnConf1 = new PetriNetConfigurator(fr1.petriNet_test);
         long currT = 1000; //seteo tiempo cuyalquyiera,total ninguna es temporal
-        PetriNet rdp = new PetriNet(pnConf1,true,"/home/dabratte/repos/Concurrente/log_files/test.log");
+        PetriNet rdp = new PetriNet(fr1.getPnConfigurator(),true,"/home/dabratte/repos/Concurrente/log_files/test.log");
         Assertions.assertEquals(FireResultType.RESOURCE_UNAVAILABLE,rdp.dispararExtendida(5, currT));
     }
 }

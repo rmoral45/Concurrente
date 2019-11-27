@@ -36,11 +36,11 @@
                                         [ 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0  ],
                                         [ 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0  ]
                                   ],
-                "pInvariants_matrix" :  [
+                "p_invariants_matrix" :  [
                                           [0,0,0,0,0,0,0,0],
                                           [0,0,0,0,0,0,0,0]
-                ],
-                "pInvariants_Vector" : [0,0]
+                                  ],
+                "p_invariants_vector" : [0,0]
         },
         "Triggers": {
                 "T0" : {

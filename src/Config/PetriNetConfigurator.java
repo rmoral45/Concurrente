@@ -98,8 +98,6 @@ public class PetriNetConfigurator {
         for(int i = 0; i < npInvariants; i++)
             this.places_invariants_vector[i] = pInvariants_vector_tmp.get(i).getAsInt();
 
-
-
     }
 
     public int getNplaces() {
