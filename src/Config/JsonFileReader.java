@@ -12,11 +12,7 @@ public class JsonFileReader {
     private PetriNetConfigurator pnConfigurator;
     private Config.ThreadTriggerConfigurator triggerConfigurator;
 
-    /* --------------- FOR TESTING ---------------*/
-    //DESCOMENTAR CUANDO SE CORRA EL TEST DE PETRINET CONFIGURATOR
-    public JsonObject petriNet_test;
-    //DESCOMENTAR CUANDO SE CORRA EL TEST DE THREADTRIGGER CONFIGURATOR
-    public JsonObject Triggers_test;
+
 
     public JsonFileReader(String fileName) {
 
@@ -27,18 +23,14 @@ public class JsonFileReader {
             JsonObject jsonObject = new JsonParser().parse(reader).getAsJsonObject();
             //leemos la petriNet y creamos el configurator de la misma
             JsonObject petriNet = jsonObject.getAsJsonObject("petriNet");
-            PetriNetConfigurator pnConfigurator = new PetriNetConfigurator(petriNet);
+           this.pnConfigurator = new PetriNetConfigurator(petriNet);
 
             //--------------------------------------------------(Thread Triggers)---------------------------------------
             //leemos json
             JsonObject triggers = jsonObject.getAsJsonObject("Triggers");
             //leemos los triggers y creamos el configurator de los mismos
-            Config.ThreadTriggerConfigurator triggerConfigurator = new Config.ThreadTriggerConfigurator(triggers);
+            this.triggerConfigurator = new Config.ThreadTriggerConfigurator(triggers);
 
-            /* --------------- FOR TESTING ---------------*/
-            //DESCOMENTAR CUANDO SE CORRA EL TEST DE PETRINET CONFIGURATOR
-            this.petriNet_test = jsonObject.getAsJsonObject("petriNet");
-            this.Triggers_test = jsonObject.getAsJsonObject("Triggers");
 
 
         } catch (FileNotFoundException e) {
