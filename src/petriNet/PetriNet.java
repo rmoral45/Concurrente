@@ -1,6 +1,7 @@
 package petriNet;
+
+import Config.PetriNetConfigurator;
 import MyLogger.MyLoggerWrapper;
-import Parser.*;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
