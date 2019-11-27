@@ -20,7 +20,6 @@ public class PetriNetConfigurator {
     private int [] places_invariants_vector;
 
 
-
     /**
      * Clase destinada a configurar los parametros de la petriNet.
      * @param petriNet recibe el json de la petriNet y setea todos los parametros necesarios.
@@ -82,7 +81,7 @@ public class PetriNetConfigurator {
         }
 
         //leemos matriz de invariantes de plaza
-        JsonArray pInvariants_matrix_tmp = petriNet.getAsJsonArray("pInvariants_matrix");
+        JsonArray pInvariants_matrix_tmp = petriNet.getAsJsonArray("p_invariants_matrix");
         this.npInvariants = pInvariants_matrix_tmp.size();
         this.places_invariants_matrix = new int[npInvariants][nplaces];
         JsonArray tmp_row3;
@@ -95,7 +94,7 @@ public class PetriNetConfigurator {
         //leemos vector de invariantes de plaza
         //FIXME VERIFICAR SI ESTE VECTOR ES DE npInvariants o nplaces
         this.places_invariants_vector = new int[npInvariants];
-        JsonArray pInvariants_vector_tmp = petriNet.getAsJsonArray("pInvariants_Vector");
+        JsonArray pInvariants_vector_tmp = petriNet.getAsJsonArray("p_invariants_vector");
         for(int i = 0; i < npInvariants; i++)
             this.places_invariants_vector[i] = pInvariants_vector_tmp.get(i).getAsInt();
 

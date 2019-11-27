@@ -1,4 +1,5 @@
-package Parser;
+package Config;
+import Config.PetriNetConfigurator;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -9,7 +10,7 @@ import java.io.IOException;
 public class JsonFileReader {
 
     private PetriNetConfigurator pnConfigurator;
-    private ThreadTriggerConfigurator triggerConfigurator;
+    private Config.ThreadTriggerConfigurator triggerConfigurator;
 
     /* --------------- FOR TESTING ---------------*/
     //DESCOMENTAR CUANDO SE CORRA EL TEST DE PETRINET CONFIGURATOR
@@ -32,7 +33,7 @@ public class JsonFileReader {
             //leemos json
             JsonObject triggers = jsonObject.getAsJsonObject("Triggers");
             //leemos los triggers y creamos el configurator de los mismos
-            ThreadTriggerConfigurator triggerConfigurator = new ThreadTriggerConfigurator(triggers);
+            Config.ThreadTriggerConfigurator triggerConfigurator = new Config.ThreadTriggerConfigurator(triggers);
 
             /* --------------- FOR TESTING ---------------*/
             //DESCOMENTAR CUANDO SE CORRA EL TEST DE PETRINET CONFIGURATOR
@@ -51,7 +52,7 @@ public class JsonFileReader {
         return pnConfigurator;
     }
 
-    public ThreadTriggerConfigurator getTriggerConfigurator() {
+    public Config.ThreadTriggerConfigurator getTriggerConfigurator() {
         return triggerConfigurator;
     }
 }

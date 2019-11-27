@@ -1,13 +1,21 @@
 package Monitor;
 import static org.junit.jupiter.api.Assertions.*;
 
+import Config.JsonFileReader;
+import Config.PetriNetConfigurator;
+import Config.ThreadTrigger;
+import Config.ThreadTriggerConfigurator;
 import Politica.PoliticMode;
 import ThreadLauncher.Disparador;
+import ThreadLauncher.Launcher;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import petriNet.MathOperator;
 import petriNet.PetriNet;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class MonitorV2Test {
 
@@ -63,4 +71,14 @@ public class MonitorV2Test {
         assertArrayEquals(new int [] {1,0,1,1,0}, rdp.getMark_vector());
     }
     */
+    @Test
+    void ProductorConsumidorTemporizada() throws IOException {
+        JsonFileReader fr = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/prod_cons_temporizada.json");
+
+        PetriNetConfigurator pnConf = new PetriNetConfigurator(fr.petriNet_test);
+        PetriNet rdp = new PetriNet(pnConf, true,"/home/dabratte/repos/Concurrente/log_files/pctemp.log");
+        MonitorV2 monitor = new MonitorV2(rdp.getNtransitions(),PoliticMode.RANDOM,rdp);
+        ThreadTriggerConfigurator ttConf = fr.getTriggerConfigurator();
+        Launcher ln = new Launcher(ttConf, monitor);
+    }
 }

@@ -2,8 +2,10 @@ package petriNet;
 
 import Config.PetriNetConfigurator;
 import MyLogger.MyLoggerWrapper;
+import com.sun.jdi.event.ExceptionEvent;
 
 import java.io.IOException;
+import java.nio.InvalidMarkException;
 import java.security.InvalidAlgorithmParameterException;
 import java.util.Arrays;
 
@@ -15,6 +17,8 @@ public class PetriNet {
     private int [][] H;
     private int [][] R;
     private int []   mark_vector;
+    private int [][] pInvarianMatrix;
+    private int []   pInvarianVector;
 
     //[Diego] Agrego variables necesarias para RdP Temporales
 
@@ -35,6 +39,8 @@ public class PetriNet {
         this.H = pnConfig.getInib_arcs();
         this.R = pnConfig.getLector_arcs();
         this.alpha = pnConfig.getAlpha_vector();
+        this.pInvarianMatrix = pnConfig.getPlaces_invariants_matrix();
+        this.pInvarianVector = pnConfig.getPlaces_invariants_vector();
         this.transitionTimeStamp = new long [ntransitions];
         this.validTimeStamp = new boolean [ntransitions];
         //falta agregar arcos lectores y arcos inhibidores
@@ -161,6 +167,19 @@ public class PetriNet {
         return  sensibilizadas;
     }
 
+    private void testInvariantesPlaza(int numTransicion) throws Exception {
+        int acc = 0;
+        for (int i = 0; i < pInvarianMatrix.length; i++){
+            acc = 0;
+            for (int j = 0; j < pInvarianMatrix[0].length; j++){
+                if (pInvarianMatrix[i][j] == 1)
+                    acc += mark_vector[j];
+            }
+            if (acc != pInvarianVector[i])
+                throw new Exception("Fallo test de invariantes en disparo de transcicion :" + numTransicion);
+        }
+    }
+
 /*
   -----------------------------------------------------------------------------------------
   -----------------------------------------------------------------------------------------
@@ -197,7 +216,7 @@ public class PetriNet {
      * con unintervalo [0, infinito] es una transcicion 'normal'
      */
 
-    public FireResultType dispararExtendida(int transition, long currentTime) throws InvalidAlgorithmParameterException {
+    public FireResultType dispararExtendida(int transition, long currentTime) throws Exception {
 
 
 
@@ -253,7 +272,7 @@ public class PetriNet {
             logger.myLogger.info("{\"disparo\" : " + transition + ", \"marcado\" : "
                     + Arrays.toString(this.mark_vector) + " }");
         }
-
+        testInvariantesPlaza(transition);
         validTimeStamp[transition] = false;
         this.mark_vector = posibleMark;
         return FireResultType.SUCCESS;

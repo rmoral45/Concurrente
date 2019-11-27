@@ -15,7 +15,7 @@ public class MonitorV2 {
     //private final ReentrantLock conditionQueueLock = new ReentrantLock(); // lock para generar colas
     private final ArrayList<ColaCondicion> colasCondicion = new ArrayList<>();
     private final Semaphore ingressSemaphore  = new Semaphore(1,true);
-    private final Semaphore temporalSemaphore = new Semaphore(1,true);
+    private final Semaphore shotSemaphore = new Semaphore(1,true);
     private Politica policy;
     private PetriNet petriNet;
     private  boolean K;
@@ -25,7 +25,7 @@ public class MonitorV2 {
         policy = new Politica( new int [] {1,1,1,1,1}, polMode);
         petriNet = pn;
         K = false;
-        for (int i=0; i<ntrans; i++) {
+        for (int i = 0; i < ntrans; i++) {
             ColaCondicion cc = new ColaCondicion(i);
             colasCondicion.add(cc);
         }
@@ -90,14 +90,14 @@ public class MonitorV2 {
             ingressSemaphore.release();
     }
 
-    public void dispararTemp(int numTranscicion) throws InterruptedException, InvalidAlgorithmParameterException {
+    public void dispararTemp(int numTranscicion) throws Exception {
 
         ingressSemaphore.acquire();
         
         K = true;
         FireResultType fr;
         while(K){
-            temporalSemaphore.acquire();  //Semaforo que toman los hilos temporales
+            shotSemaphore.acquire();  //Semaforo que toman los hilos temporales
             long currentTime = System.currentTimeMillis();
             fr = petriNet.dispararExtendida(numTranscicion, currentTime);
 
@@ -105,6 +105,7 @@ public class MonitorV2 {
                 int [] sensibilizadas;
                 sensibilizadas = petriNet.obtenerSensibilizadaExtendida(currentTime);
                 /*despierto a todos los hilos que deben setear su propio tiempo*/
+                //FIXME se debe havcer una and con los hilos que estan esperando en las colas primero
                 sensibilizadas = awakeTemporal(sensibilizadas);
                 wakeUp(sensibilizadas);
                 return;
@@ -153,12 +154,12 @@ public class MonitorV2 {
 
     private void wakeUp(int [] sensibilizadas) throws InvalidAlgorithmParameterException {
 
-        if (temporalSemaphore.hasQueuedThreads()){
+        if (shotSemaphore.hasQueuedThreads()){
             /*
                 Le cedo el monitor al hilo que fue despertado por tener los
                 recursos y ya cumplio el tiempo de espera
              */
-            this.temporalSemaphore.release();
+            this.shotSemaphore.release();
             //this.conditionQueueLock.unlock();
         }
 
@@ -167,19 +168,20 @@ public class MonitorV2 {
             int nextAwake = policy.getNextAwake(sensibilizadas);
             colasCondicion.get(nextAwake).desencolar();
             //conditionQueueLock.unlock();
-            temporalSemaphore.release();
+            shotSemaphore.release();
         }
 
         else{
             //conditionQueueLock.unlock();
-            temporalSemaphore.release();
+            shotSemaphore.release();
             ingressSemaphore.release();
         }
     }
     private int []  awakeTemporal(int [] sensibilizadas){
         int [] nuevaSens = new int [sensibilizadas.length];
+        int [] waitingVect = getWaitingVect();
         for (int i = 0; i < sensibilizadas.length; i++){
-            if (sensibilizadas[i] > 1 && (colasCondicion.get(i).getQueueLen() > 0)){
+            if (sensibilizadas[i] > 1 && waitingVect[i] > 0){
                 sensibilizadas[i] = 0;
                 colasCondicion.get(i).desencolar();
             }

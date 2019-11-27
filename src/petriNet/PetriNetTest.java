@@ -1,7 +1,8 @@
 package petriNet;
 
-import Parser.JsonFileReader;
-import Parser.PetriNetConfigurator;
+import Config.PetriNetConfigurator;
+import Config.JsonFileReader;
+import Config.PetriNetConfigurator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -58,7 +59,7 @@ public class PetriNetTest {
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Test
-    void validateT0Shot() throws InvalidAlgorithmParameterException, IOException {
+    void validateT0Shot() throws Exception {
         JsonFileReader fr1 = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/red_paper.json");
         PetriNetConfigurator pnConf1 = new PetriNetConfigurator(fr1.petriNet_test);
         long currT = 1000; //seteo tiempo cuyalquyiera,total ninguna es temporal
@@ -66,7 +67,7 @@ public class PetriNetTest {
         Assertions.assertEquals(FireResultType.SUCCESS,rdp.dispararExtendida(0, currT));
     }
     @Test
-    void validateT3Shot() throws InvalidAlgorithmParameterException, IOException {
+    void validateT3Shot() throws Exception {
         JsonFileReader fr1 = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/red_paper.json");
         PetriNetConfigurator pnConf1 = new PetriNetConfigurator(fr1.petriNet_test);
         long currT = 1000; //seteo tiempo cuyalquyiera,total ninguna es temporal
@@ -74,7 +75,7 @@ public class PetriNetTest {
         Assertions.assertEquals(FireResultType.SUCCESS,rdp.dispararExtendida(3, currT));
     }
     @Test
-    void validateT4Shot() throws InvalidAlgorithmParameterException, IOException {
+    void validateT4Shot() throws Exception {
         JsonFileReader fr1 = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/red_paper.json");
         PetriNetConfigurator pnConf1 = new PetriNetConfigurator(fr1.petriNet_test);
         long currT = 1000; //seteo tiempo cuyalquyiera,total ninguna es temporal
@@ -82,7 +83,7 @@ public class PetriNetTest {
         Assertions.assertEquals(FireResultType.RESOURCE_UNAVAILABLE,rdp.dispararExtendida(4, currT));
     }
     @Test
-    void validateT5Shot() throws InvalidAlgorithmParameterException, IOException {
+    void validateT5Shot() throws Exception {
         JsonFileReader fr1 = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/red_paper.json");
         PetriNetConfigurator pnConf1 = new PetriNetConfigurator(fr1.petriNet_test);
         long currT = 1000; //seteo tiempo cuyalquyiera,total ninguna es temporal

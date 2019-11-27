@@ -1,4 +1,4 @@
-package Parser;
+package Config;
 
 public class ThreadTrigger {
 

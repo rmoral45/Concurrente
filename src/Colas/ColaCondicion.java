@@ -58,7 +58,6 @@ public class ColaCondicion {
     }
 
     public void encolarTemporal (long timeToSleep){
-        queueLen++;
         conditionQueueLock.lock();
         try{
                 timeCondition.await(timeToSleep, TimeUnit.MILLISECONDS);

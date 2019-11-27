@@ -1,4 +1,5 @@
 package ThreadLauncher;
+import Config.ThreadTrigger;
 import Monitor.MonitorV2;
 import java.util.Arrays;
 import java.util.List;
@@ -11,10 +12,10 @@ public class Disparador implements Runnable {
     private int [] sequenciaDisparos;
     private int ntimes;
 
-    public Disparador(int [] seq,int nt, MonitorV2 m) {
+    public Disparador(ThreadTrigger tt, MonitorV2 m) {
 
-        sequenciaDisparos= seq;
-        ntimes = nt;
+        sequenciaDisparos = tt.getSequence();
+        ntimes = tt.getNshoots();
         this.monitor = m;
     }
 

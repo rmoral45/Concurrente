@@ -1,4 +1,4 @@
-package Parser;
+package Config;
 
 import com.google.gson.JsonObject;
 
