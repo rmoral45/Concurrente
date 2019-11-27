@@ -1,6 +1,5 @@
-package Parser;
+package Config;
 
-import MyLogger.MyLoggerWrapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -11,11 +10,14 @@ public class PetriNetConfigurator {
     //Vars for petriNet
     private int nplaces;
     private int ntransitions;
+    private int npInvariants;
     private int [][] incidence_matrix;
     private int [] initial_marking;
     private long [] alpha_vector;
     private int [][] inib_matrix;
     private int [][] lector_matrix;
+    private int [][] places_invariants_matrix;
+    private int [] places_invariants_vector;
 
 
 
@@ -71,7 +73,6 @@ public class PetriNetConfigurator {
                 this.lector_matrix[i][j] = tmp_row2.get(j).getAsInt();
             }
 
-
         //inicializamos vector de alphas
         this.alpha_vector = new long[ntransitions];
         JsonArray tmp_alphas = petriNet.getAsJsonArray("alpha");
@@ -79,6 +80,25 @@ public class PetriNetConfigurator {
             this.alpha_vector[i] = tmp_alphas.get(i).getAsLong();
             this.alpha_vector[i] = tmp_alphas.get(i).getAsInt();
         }
+
+        //leemos matriz de invariantes de plaza
+        JsonArray pInvariants_matrix_tmp = petriNet.getAsJsonArray("pInvariants_matrix");
+        this.npInvariants = pInvariants_matrix_tmp.size();
+        this.places_invariants_matrix = new int[npInvariants][nplaces];
+        JsonArray tmp_row3;
+        for(int i = 0; i < npInvariants; i++)
+            for(int j = 0; j < nplaces; j++){
+                tmp_row3 = pInvariants_matrix_tmp.get(i).getAsJsonArray();
+                this.places_invariants_matrix[i][j] = tmp_row3.get(j).getAsInt();
+            }
+
+        //leemos vector de invariantes de plaza
+        //FIXME VERIFICAR SI ESTE VECTOR ES DE npInvariants o nplaces
+        this.places_invariants_vector = new int[npInvariants];
+        JsonArray pInvariants_vector_tmp = petriNet.getAsJsonArray("pInvariants_Vector");
+        for(int i = 0; i < npInvariants; i++)
+            this.places_invariants_vector[i] = pInvariants_vector_tmp.get(i).getAsInt();
+
 
 
     }
@@ -109,5 +129,13 @@ public class PetriNetConfigurator {
 
     public int[][] getInib_arcs() {
         return inib_matrix;
+    }
+
+    public int[] getPlaces_invariants_vector() {
+        return places_invariants_vector;
+    }
+
+    public int[][] getPlaces_invariants_matrix() {
+        return places_invariants_matrix;
     }
 }
