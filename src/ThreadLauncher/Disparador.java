@@ -22,8 +22,13 @@ public class Disparador implements Runnable {
     @Override
     public void run() {
        for(int i=0; i<ntimes;i++)
-           for (int f : sequenciaDisparos)
-               monitor.disparar(f);
+           for (int f : sequenciaDisparos) {
+               try {
+                   monitor.dispararTemp(f);
+               } catch (Exception e) {
+                   e.printStackTrace();
+               }
+           }
 
     }
 }

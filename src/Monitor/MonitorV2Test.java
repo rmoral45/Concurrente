@@ -72,7 +72,7 @@ public class MonitorV2Test {
     }
     */
     @Test
-    void ProductorConsumidorTemporizada() throws IOException {
+    void ProductorConsumidorTemporizada() throws IOException, InterruptedException {
         JsonFileReader fr = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/prod_cons_temporizada.json");
 
         //PetriNetConfigurator pnConf = new PetriNetConfigurator(fr.petriNet_test);
@@ -80,5 +80,6 @@ public class MonitorV2Test {
         MonitorV2 monitor = new MonitorV2(rdp.getNtransitions(),PoliticMode.RANDOM,rdp);
         ThreadTriggerConfigurator ttConf = fr.getTriggerConfigurator();
         Launcher ln = new Launcher(ttConf, monitor);
+        Thread.sleep(10000000);
     }
 }

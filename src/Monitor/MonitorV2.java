@@ -1,10 +1,13 @@
 package Monitor;
 import Colas.ColaCondicion;
+import MyLogger.MyLoggerWrapper;
 import Politica.PoliticMode;
 import Politica.Politica;
 import petriNet.FireResultType;
+import petriNet.MathOperator;
 import petriNet.PetriNet;
 
+import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,12 +22,14 @@ public class MonitorV2 {
     private Politica policy;
     private PetriNet petriNet;
     private  boolean K;
+    MyLoggerWrapper logger;
 
-    public MonitorV2(int ntrans,PoliticMode polMode, PetriNet pn){
+    public MonitorV2(int ntrans,PoliticMode polMode, PetriNet pn) throws IOException {
 
         policy = new Politica( new int [] {1,1,1,1,1}, polMode);
         petriNet = pn;
         K = false;
+        logger = MyLoggerWrapper.getInstance("/home/dabratte/repos/Concurrente/log_files/pctemp.log");
         for (int i = 0; i < ntrans; i++) {
             ColaCondicion cc = new ColaCondicion(i);
             colasCondicion.add(cc);
@@ -114,7 +119,6 @@ public class MonitorV2 {
             else if (fr == FireResultType.RESOURCE_UNAVAILABLE){
                 wakeUp(new int [colasCondicion.size()]);
                 colasCondicion.get(numTranscicion).encolar();
-
                 if (petriNet.getAlpha(numTranscicion) > 0) // fui despertado para setear tiempo
                 {
                     currentTime = System.currentTimeMillis();
@@ -124,6 +128,9 @@ public class MonitorV2 {
             
             /*Si el resultado no fue exitoso por falta de tiempo*/
             else if ((fr == FireResultType.TIME_DISABLED)) {
+            //    if (logger != null) {
+           //         logger.myLogger.info("\nDisparo de T" + numTranscicion + "FALLO POR TIEMPO\n");
+             //   }
                 wakeUp(new int [colasCondicion.size()]);
                 colasCondicion.get(numTranscicion).encolarTemporal(petriNet.getRemainingTime(currentTime,numTranscicion));
             }
@@ -154,6 +161,9 @@ public class MonitorV2 {
 
     private void wakeUp(int [] sensibilizadas) throws InvalidAlgorithmParameterException {
 
+        int [] wv = getWaitingVect();
+        sensibilizadas = MathOperator.innerProdVector(wv,sensibilizadas);
+
         if (shotSemaphore.hasQueuedThreads()){
             /*
                 Le cedo el monitor al hilo que fue despertado por tener los
@@ -166,6 +176,7 @@ public class MonitorV2 {
         else if (!Arrays.equals(new int[sensibilizadas.length],sensibilizadas)){
             /*Hay alguien para despertar, veo quien*/
             int nextAwake = policy.getNextAwake(sensibilizadas);
+
             colasCondicion.get(nextAwake).desencolar();
             //conditionQueueLock.unlock();
             shotSemaphore.release();
@@ -182,9 +193,11 @@ public class MonitorV2 {
         int [] waitingVect = getWaitingVect();
         for (int i = 0; i < sensibilizadas.length; i++){
             if (sensibilizadas[i] > 1 && waitingVect[i] > 0){
-                sensibilizadas[i] = 0;
+                nuevaSens[i] = 0;
                 colasCondicion.get(i).desencolar();
             }
+            else
+                nuevaSens[i] = sensibilizadas[i];
         }
         return nuevaSens;
 
@@ -212,10 +225,7 @@ public class MonitorV2 {
     //---------------------------------------------------------------------------------------
 
 
-    void dispTemp(int transition){
 
-    }
-    
     /*
         Para probar boludeses con las colas etc
      */

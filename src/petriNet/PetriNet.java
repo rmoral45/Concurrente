@@ -268,13 +268,13 @@ public class PetriNet {
         /* Ya dispare la transcicion temporal que habia sido sensibilizada,
             por ende el timeStamp que fue seteado con anterioridad ya no es valido  */
 
-        if (logger != null) {
-            logger.myLogger.info("{\"disparo\" : " + transition + ", \"marcado\" : "
-                    + Arrays.toString(this.mark_vector) + " }");
-        }
         testInvariantesPlaza(transition);
         validTimeStamp[transition] = false;
         this.mark_vector = posibleMark;
+        if (logger != null) {
+            logger.myLogger.info("{\"disparo\" : T" + transition + ", \"marcado\" : "
+                    + Arrays.toString(this.mark_vector) + " }");
+        }
         return FireResultType.SUCCESS;
 
     }
@@ -292,7 +292,7 @@ public class PetriNet {
             entonces no actualizar
          */
 
-        int [] sensibilizadas = new int[this.ntransitions];
+        int [] sens = new int[this.ntransitions];
         int [] posibleMark;
         int [] habilitadasPorInhibidor;
         int [] habilitadasPorLector;
@@ -326,18 +326,18 @@ public class PetriNet {
 
         for(int i = 0; i < this.ntransitions; i++) {
             posibleMark = probarDisparo(i);
-            sensibilizadas[i] = MathOperator.sign(posibleMark) * habilitadasPorInhibidor[i] * habilitadasPorLector[i];
+            sens[i] = MathOperator.sign(posibleMark) * habilitadasPorInhibidor[i] * habilitadasPorLector[i];
             //Verificar si ya estaba sensibilizada de antes
-            if (sensibilizadas[i] == 1 && !validTimeStamp[i] && alpha[i] > 0){
+            if (sens[i] == 1 && !validTimeStamp[i] && alpha[i] > 0){
                 validTimeStamp[i] = true;
                 transitionTimeStamp[i] = currentTime;
-                sensibilizadas[i] = 2; //Verdaderamente no esta sensibilizada
+                sens[i] = 2; //Verdaderamente no esta sensibilizada
             }
 
 
         }
 
-         return  sensibilizadas;
+         return  sens;
     }
 
     public long getRemainingTime(long currTime, int transition){
