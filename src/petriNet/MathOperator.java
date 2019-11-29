@@ -337,4 +337,17 @@ public class MathOperator {
 
         return binVec;
     }
+
+    /**
+     * Metodo destinado a sumar todos los elementos de un vector
+     * @param vect vector sobre el que se opera
+     * @return retorna la suma de todos los elementos de un vector
+     */
+    public static int addElements(int [] vect){
+        int result = 0;
+        for(int i = 0; i < vect.length; i++)
+            result += vect[i];
+
+        return result;
+    }
 }
