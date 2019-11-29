@@ -2,10 +2,8 @@ package petriNet;
 
 import Config.PetriNetConfigurator;
 import MyLogger.MyLoggerWrapper;
-import com.sun.jdi.event.ExceptionEvent;
 
 import java.io.IOException;
-import java.nio.InvalidMarkException;
 import java.security.InvalidAlgorithmParameterException;
 import java.util.Arrays;
 
@@ -169,12 +167,16 @@ public class PetriNet {
 
     private void testInvariantesPlaza(int numTransicion) throws Exception {
         int acc = 0;
+        int [] tmp = new int[this.nplaces];
         for (int i = 0; i < pInvarianMatrix.length; i++){
-            acc = 0;
-            for (int j = 0; j < pInvarianMatrix[0].length; j++){
+            //acc = 0;
+            tmp = MathOperator.innerProdVector(pInvarianMatrix[i], mark_vector);
+            acc = MathOperator.addElements(tmp);
+            /*for (int j = 0; j < pInvarianMatrix[0].length; j++){
                 if (pInvarianMatrix[i][j] == 1)
                     acc += mark_vector[j];
-            }
+            }*/
+
             if (acc != pInvarianVector[i])
                 throw new Exception("Fallo test de invariantes en disparo de transcicion :" + numTransicion);
         }
