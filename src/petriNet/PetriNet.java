@@ -14,7 +14,7 @@ public class PetriNet {
     private int [][] incidenceMatrix;
     private int [][] H;
     private int [][] R;
-    private int []   mark_vector;
+    private int [] markVector;
     private int [][] pInvarianMatrix;
     private int []   pInvarianVector;
 
@@ -33,7 +33,7 @@ public class PetriNet {
         this.nplaces = pnConfig.getNplaces();
         this.ntransitions = pnConfig.getNtransitions();
         this.incidenceMatrix = pnConfig.getIncidence_matrix();
-        this.mark_vector = pnConfig.getInitial_marking();
+        this.markVector = pnConfig.getInitial_marking();
         this.H = pnConfig.getInib_arcs();
         this.R = pnConfig.getLector_arcs();
         this.alpha = pnConfig.getAlpha_vector();
@@ -58,8 +58,8 @@ public class PetriNet {
         return nplaces;
     }
 
-    public int[] getMark_vector() {
-        return mark_vector;
+    public int[] getMarkVector() {
+        return markVector;
     }
 
     int[][] getIncidenceMatrix() {
@@ -75,7 +75,7 @@ public class PetriNet {
         int addition = 0;
         for (int i=0; i< wanted.length; i++){
             if (wanted[i] == 1)
-                addition += mark_vector[i];
+                addition += markVector[i];
         }
         return addition;
     }
@@ -93,7 +93,7 @@ public class PetriNet {
 
         int [] new_marking;
         new_marking = MathOperator.vectmatProd(this.incidenceMatrix, vector_de_disparo);
-        new_marking = MathOperator.addVector(new_marking, this.mark_vector);
+        new_marking = MathOperator.addVector(new_marking, this.markVector);
         return new_marking;
 
     }
@@ -126,10 +126,10 @@ public class PetriNet {
         else {
             // No es una transcicion  temporal, por lo tanto solo debe haberse cumplido
             // que los recursos esten disponibles
-            this.mark_vector = new_marking;
+            this.markVector = new_marking;
             if (logger != null) {
                 logger.myLogger.info("[disparo : " + transition + "; marcado : "
-                                     + Arrays.toString(this.mark_vector) + " ]");
+                                     + Arrays.toString(this.markVector) + " ]");
             }
 
             return true;
@@ -170,7 +170,7 @@ public class PetriNet {
         int [] tmp = new int[this.nplaces];
         for (int i = 0; i < pInvarianMatrix.length; i++){
             //acc = 0;
-            tmp = MathOperator.innerProdVector(pInvarianMatrix[i], mark_vector);
+            tmp = MathOperator.innerProdVector(pInvarianMatrix[i], markVector);
             acc = MathOperator.addElements(tmp);
             /*for (int j = 0; j < pInvarianMatrix[0].length; j++){
                 if (pInvarianMatrix[i][j] == 1)
@@ -208,7 +208,7 @@ public class PetriNet {
 
         int [] new_marking;
         new_marking = MathOperator.vectmatProd(this.incidenceMatrix, vector_de_disparo);
-        new_marking = MathOperator.addVector(new_marking,this.mark_vector);
+        new_marking = MathOperator.addVector(new_marking,this.markVector);
 
         return new_marking;
     }
@@ -232,8 +232,8 @@ public class PetriNet {
        /*
             Calculo Q y W
         */
-        Q = MathOperator.uno(mark_vector);
-        W = MathOperator.cero(mark_vector);
+        Q = MathOperator.uno(markVector);
+        W = MathOperator.cero(markVector);
 
         /*
             Aplico Ec para arcos ihbidores y lectores
@@ -272,10 +272,10 @@ public class PetriNet {
 
         testInvariantesPlaza(transition);
         validTimeStamp[transition] = false;
-        this.mark_vector = posibleMark;
+        this.markVector = posibleMark;
         if (logger != null) {
             logger.myLogger.info("{\"disparo\" : T" + transition + ", \"marcado\" : "
-                    + Arrays.toString(this.mark_vector) + " }");
+                    + Arrays.toString(this.markVector) + " }");
         }
         return FireResultType.SUCCESS;
 
@@ -304,8 +304,8 @@ public class PetriNet {
         /*
             Calculo Q y W
         */
-        Q = MathOperator.uno(mark_vector);
-        W = MathOperator.cero(mark_vector);
+        Q = MathOperator.uno(markVector);
+        W = MathOperator.cero(markVector);
 
         /*
             Aplico Ec para arcos ihbidores y lectores
