@@ -32,13 +32,13 @@ public class PetriNet {
         //FIXME Inicializar alpha, timestamp y esperando
         this.nplaces = pnConfig.getNplaces();
         this.ntransitions = pnConfig.getNtransitions();
-        this.incidenceMatrix = pnConfig.getIncidence_matrix();
-        this.markVector = pnConfig.getInitial_marking();
-        this.H = pnConfig.getInib_arcs();
-        this.R = pnConfig.getLector_arcs();
-        this.alpha = pnConfig.getAlpha_vector();
-        this.pInvarianMatrix = pnConfig.getPlaces_invariants_matrix();
-        this.pInvarianVector = pnConfig.getPlaces_invariants_vector();
+        this.incidenceMatrix = pnConfig.getIncidenceMatrix();
+        this.markVector = pnConfig.getInitialMarking();
+        this.H = pnConfig.getInibArcs();
+        this.R = pnConfig.getLectorArcs();
+        this.alpha = pnConfig.getAlphaVector();
+        this.pInvarianMatrix = pnConfig.getPlacesInvariantsMatrix();
+        this.pInvarianVector = pnConfig.getPlacesInvariantsVector();
         this.transitionTimeStamp = new long [ntransitions];
         this.validTimeStamp = new boolean [ntransitions];
         //falta agregar arcos lectores y arcos inhibidores

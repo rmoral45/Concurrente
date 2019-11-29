@@ -21,13 +21,13 @@ public class PetriNetConfiguratorTest {
     @Test
     void getMarkingVectorTest() {
         JsonFileReader fr1 = new JsonFileReader("/home/ramiro/repos/Concurrente/src/petriNet/red_paper.json");
-        Assertions.assertArrayEquals(new int[]{1, 2, 0, 0, 0, 0, 1, 0},fr1.getPnConfigurator().getInitial_marking());
+        Assertions.assertArrayEquals(new int[]{1, 2, 0, 0, 0, 0, 1, 0},fr1.getPnConfigurator().getInitialMarking());
     }
 
     @Test
     void getAlpaVectorTest(){
         JsonFileReader fr1 = new JsonFileReader("/home/ramiro/repos/Concurrente/src/petriNet/red_paper.json");
-        Assertions.assertArrayEquals(new long[]{0,0,0,0,0,0,0,0,0,0}, fr1.getPnConfigurator().getAlpha_vector());
+        Assertions.assertArrayEquals(new long[]{0,0,0,0,0,0,0,0,0,0}, fr1.getPnConfigurator().getAlphaVector());
     }
 
     @Test
@@ -37,7 +37,7 @@ public class PetriNetConfiguratorTest {
                                                  {0, 0, 1, 0, -1, -1, 0, 0, 0, 0}, {0, 0, 0, 1, 0, 0, -1, 0, 0, 0},
                                                  {0, 0, 0, 0, 1, 0, 0, -1, 0, 0}, {0 ,0 ,0 ,0 ,0 ,1 ,0 , 0, -1, 0},
                                                  {0, 0, 0, -1, -1, -1, 1, 1, 1, 0}, {0, 1, 0, 0, 0, 0, 1, 1, 1, 0}},
-                                                 fr1.getPnConfigurator().getIncidence_matrix());
+                                                 fr1.getPnConfigurator().getIncidenceMatrix());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class PetriNetConfiguratorTest {
                                                  {0, 0, 0, 0, 0, 0, 0, 0}, {0, 1, 0, 0, 0, 0, 0, 0},
                                                  {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0},
                                                  {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}},
-                                                 fr1.getPnConfigurator().getLector_arcs());
+                                                 fr1.getPnConfigurator().getLectorArcs());
     }
 
     @Test
@@ -59,6 +59,6 @@ public class PetriNetConfiguratorTest {
                                                  {1, 0, 0, 0, 0, 0, 0, 0}, {1, 0, 0, 0, 0, 0, 0, 0},
                                                  {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0},
                                                  {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}},
-                                                 fr1.getPnConfigurator().getInib_arcs());
+                                                 fr1.getPnConfigurator().getInibArcs());
     }
 }
