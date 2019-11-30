@@ -26,7 +26,7 @@ public class MonitorV2 {
 
     public MonitorV2(int ntrans,PoliticMode polMode, PetriNet pn) throws IOException {
 
-        policy = new Politica( new int [] {1,1,1,1,1}, polMode);
+        policy = new Politica( new int [] {1,1,1,1,1,1,8,1,1,2,5,1,1,1,1,1}, polMode);
         petriNet = pn;
         K = false;
         logger = MyLoggerWrapper.getInstance("/home/dabratte/repos/Concurrente/log_files/pctemp.log");

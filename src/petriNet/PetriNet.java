@@ -172,9 +172,9 @@ public class PetriNet {
             //acc = 0;
             tmp = MathOperator.innerProdVector(pInvarianMatrix[i], markVector);
             acc = MathOperator.addElements(tmp);
-            /*for (int j = 0; j < pInvarianMatrix[0].length; j++){
+           /* for (int j = 0; j < pInvarianMatrix[0].length; j++){
                 if (pInvarianMatrix[i][j] == 1)
-                    acc += mark_vector[j];
+                    acc += markVector[j];
             }*/
 
             if (acc != pInvarianVector[i])
@@ -274,7 +274,7 @@ public class PetriNet {
         validTimeStamp[transition] = false;
         this.markVector = posibleMark;
         if (logger != null) {
-            logger.myLogger.info("{\"disparo\" : T" + transition + ", \"marcado\" : "
+            logger.myLogger.info("{\"disparo\" : " + transition + ", \"marcado\" : "
                     + Arrays.toString(this.markVector) + " }");
         }
         return FireResultType.SUCCESS;

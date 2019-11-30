@@ -1,8 +1,9 @@
+
 from pdb import set_trace as bp
 import re
 import json
-LOG_FILE = './test.log'
-
+LOG_FILE = '../finalv4.log'
+N_TRANSICIONES = 16
 def main():
 
         with open(LOG_FILE) as fd:
@@ -20,27 +21,14 @@ def main():
                 for js in jslist :
                         transiciones.append(js['disparo'])
                         marcados.append(js['marcado'])
-                bp()
-                
+                for i in range(N_TRANSICIONES):
+                        if transiciones.count(i) < 1:
+                                print('La transicion : ', i, ' no se disparo nunca\n')
+
+                for i in range(N_TRANSICIONES):
+                        print('La transicion : ', i, ' se disparo ', transiciones.count(i))
 
 
-
-def testInvariantePlaza(marcado):
-        plazas      = [
-                        [1,2,3],
-                        [0,1,5]
-                      ]
-
-        invariantes = [1,3]
-
-        for p, inv in zip(plazas,invariantes):
-                for marca in marcado :
-                        acc = 0
-                        for k in p:
-                                acc += marca[k]
-                        if (acc != inv):
-                                print ('Fallo invariante', p)
-                                print ('Deberia ser : ',inv,'y es : ', acc )
 
 if __name__ == '__main__':
         main()
