@@ -3,7 +3,7 @@ from pdb import set_trace as bp
 import re
 import json
 import numpy
-LOG_FILE = '../final.log'
+LOG_FILE = '../finalv8.log'
 PETRI_FILE = '/home/dabratte/repos/Concurrente/src/petriNet/red_final.json'
 N_TRANSICIONES = 16
 def main():
@@ -61,7 +61,7 @@ def probar_Tinv(ts, ntrns,marca_log):
                 Mi   = numpy.matrix(jobs['petriNet']['init_marking'])
                 Mf   = numpy.transpose((matI * sigma)) + Mi
                 Mlog = numpy.matrix(marca_log)
-                print('Marcado final atravez de invariantes : \n',Mf,'\n')
+                print('\nMarcado final atravez de invariantes : \n',Mf,'\n')
                 print('Marcado final del log :\n', Mlog, '\n')
                 print('Comparacion : ', Mlog == Mf)
 
