@@ -85,7 +85,7 @@ public class MathOperator {
     public static int[][] matrixAdd(int[][] vector1, int[][] vector2) throws InvalidAlgorithmParameterException{
     //public int[][] matrixAdd(int[][] vector1, int[][] vector2){
 
-        if(vector1.length != vector1.length)
+        if(vector1.length != vector2.length)
             throw new InvalidAlgorithmParameterException("Fallo en funcion matrixAdd - tamaño de filas distinto");
 
         for(int i = 0; i < vector1.length; i++)

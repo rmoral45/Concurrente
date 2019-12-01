@@ -3,7 +3,7 @@ from pdb import set_trace as bp
 import re
 import json
 import numpy
-LOG_FILE = '../finalv8.log'
+LOG_FILE = '../finalv9.log'
 PETRI_FILE = '/home/dabratte/repos/Concurrente/src/petriNet/red_final.json'
 N_TRANSICIONES = 16
 def main():

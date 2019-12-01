@@ -8,25 +8,20 @@ public class Politica {
 
     private final Random gen = new Random(System.currentTimeMillis()); //uso el tiempo para semilla
     private int next;
-    private int numCondQueue;
     private int [] priorities;
     private PoliticMode mode;
 
     public Politica(int [] pri, PoliticMode polMode){
-        //numCondQueue = nqueue; //Fixme eliminar mas adelante
         mode = polMode;
         next = -1;
         priorities =  pri;
-        /*priorities = new int[nqueue];
-        for (int i=0; i< nqueue; i++)
-            priorities[i] = 0;*/
     }
 
     /**
      * Retorna el numero de cola que se debe despertar
      *
-     * @param sensibilizadas
-     * @return
+     * @param sensibilizadas vector de transciciones sensibilizadas
+     * @return numero de transcicion a despertar
      */
     public int getNextAwake(int [] sensibilizadas) throws InvalidAlgorithmParameterException {
 
@@ -37,22 +32,13 @@ public class Politica {
                 nextAwake = getRandomNext(sensibilizadas);
                 break;
             case ROND_ROBIN:
-                    try {
-                        getRoundRobinNext(sensibilizadas);
-                        return next;
-                    }catch (InvalidAlgorithmParameterException e){
-                        System.exit(1);
-                    }
-                    nextAwake = next;
-                    break;
+                getRoundRobinNext(sensibilizadas);
+                nextAwake = next;
+                break;
                     
             case HIGH_PRIO:
                 nextAwake = getHighestPriorityNext(sensibilizadas);
                 break;
-
-            /*default:
-                nextAwake = getRandomNext(sensibilizadas);
-                return  nextAwake;*/
         }
         return nextAwake;
     }
@@ -79,10 +65,9 @@ public class Politica {
      *
      * @param sensibilizadas Vector con 1's y 0's indicando si la transcicion esta sensibilizada
      */
-    private int getRoundRobinNext(int [] sensibilizadas) throws InvalidAlgorithmParameterException {
+    private void getRoundRobinNext(int [] sensibilizadas) {
 
         next++;
-        //FIXME se deberia utilizar sensibilizadas.length ?
         if (next == sensibilizadas.length)
             next = 0;
         while (sensibilizadas[next] == 0) {
@@ -90,7 +75,6 @@ public class Politica {
             if (next == sensibilizadas.length)
                 next = 0;
         }
-        return next;
     }
 
     /**

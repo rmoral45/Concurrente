@@ -8,9 +8,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ColaCondicion {
 
-    /*
-        FIXME Los metodos y parametros relacionados al tiempo se van a implementar en otra clase que herede de esta
-    */
 
     private final ArrayList<Long> threadsTimestamp = new ArrayList<Long>();
     private boolean safeGuard; //usada para prevenir "spurious wakeup"
@@ -34,22 +31,19 @@ public class ColaCondicion {
     }
 
 
-    public long getOldestTimestamp(){
-        return threadsTimestamp.get(0);
-    }
+
 
     public void encolar (){
         conditionQueueLock.lock();
         safeGuard = true;
         threadsTimestamp.add(System.currentTimeMillis());
         queueLen++;
-        //System.out.print("Encolando\n");
          try{
              while (safeGuard)
                  resourceCondition.await();
         }
          catch(InterruptedException e){
-             System.out.print("\n\n\nTu vieja\n\n\n");
+             System.exit(1);
          }
          finally{
              conditionQueueLock.unlock();

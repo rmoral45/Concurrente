@@ -23,13 +23,12 @@ public class PetriNet {
     private boolean [] validTimeStamp; // Indica si se senbilizo por algun disparo, por ende su timestamp fue seteado
     private long    [] transitionTimeStamp; //timeStamp del momento cuando quiso ser disprada
     private long    [] alpha; //contiene en limite inferior del intervalo temporal para cada transcision;
-    MyLoggerWrapper logger;
+    private MyLoggerWrapper logger;
 
 
 
     public PetriNet(PetriNetConfigurator pnConfig, boolean enableLog, String logPath) throws IOException {
 
-        //FIXME Inicializar alpha, timestamp y esperando
         this.nplaces = pnConfig.getNplaces();
         this.ntransitions = pnConfig.getNtransitions();
         this.incidenceMatrix = pnConfig.getIncidenceMatrix();
@@ -54,7 +53,7 @@ public class PetriNet {
         return ntransitions;
     }
 
-    int getNplaces() {
+    public int getNplaces() {
         return nplaces;
     }
 
@@ -62,23 +61,10 @@ public class PetriNet {
         return markVector;
     }
 
-    int[][] getIncidenceMatrix() {
+    public int[][] getIncidenceMatrix() {
         return incidenceMatrix;
     }
 
-    /**
-     *
-     * @param wanted vector de 1's y 0's indicando si la plaza debe sumarse o no
-     * @return suma del marcado en todas las plazas deseadas
-     */
-    public int getMarcAddition(int [] wanted){
-        int addition = 0;
-        for (int i=0; i< wanted.length; i++){
-            if (wanted[i] == 1)
-                addition += markVector[i];
-        }
-        return addition;
-    }
     /**
      * dispara una transicion SIN CAMBIAR EL ESTADO DE LA RED
      * Solamente aplica la ecuacion para obtener el nuevo marcado (I x Sigma) + Mj
@@ -86,7 +72,7 @@ public class PetriNet {
      * @param transition numero de transicion a disparar.
      * @return int[] - retorna el vector de marcado obtenido al disparar la transicion. Mj+1
      */
-    public int[] probarDisparo(int transition) throws InvalidAlgorithmParameterException {
+    private int[] probarDisparo(int transition) throws InvalidAlgorithmParameterException {
 
         int [] vector_de_disparo = new int [ntransitions];
         vector_de_disparo[transition] = 1;
@@ -99,22 +85,6 @@ public class PetriNet {
     }
 
 
-    /**
-     * Revisa si se cumplio el timestamp para una transcion temporal que ya quiso ser disparada
-     *
-     */
-    private boolean testTimeWindow(int transition){
-
-        long currentTime = System.currentTimeMillis();
-        if (alpha[transition] > 0 && validTimeStamp[transition]){
-
-            return ((currentTime - transitionTimeStamp[transition]) > alpha[transition]);
-        }
-        else {
-            return true;
-        }
-
-    }
 
 
     public boolean dispararTransicion(int transition) throws InvalidAlgorithmParameterException {
@@ -138,18 +108,17 @@ public class PetriNet {
 
     }
 
+    /**
+     * Obtiene transciciones que fueron sensibilizadas a partir de la Ec estado
+     * @param waiting vector de 1's y 0's indicando si hay o no alguien esperando para disparar
+     * @return vector de 1's y 0's indicando las transciciones que pueden ser disparadas
+     * @throws InvalidAlgorithmParameterException
+     */
     public int[] obtenerSensibilizadas(int [] waiting) throws InvalidAlgorithmParameterException {
 
-        /*
-            Una transcion puede sensibilarse xq hubo un cambio de estado en el sistema,
-            si la transcicion debio esperar un tiempo puede que al momento de dormirse los recursos
-            hayan estado pero se los haya llevado algun otro hilo antes que se cumpla el tiempo
-        */
         int [] sensibilizadas = new int[this.ntransitions];
-        //int [] sensibilizadas = new int[waiting.length];
         int [] tmp_vector;
 
-        //for(int i = 0; i < this.ntransitions; i++) {
         for(int i = 0; i < waiting.length; i++) {
             if (waiting[i] == 1){
                 tmp_vector = probarDisparo(i);
@@ -166,19 +135,13 @@ public class PetriNet {
     }
 
     private void testInvariantesPlaza(int numTransicion) throws Exception {
-        int acc = 0;
-        int [] tmp = new int[this.nplaces];
+        int acc;
+        int [] tmp;
         for (int i = 0; i < pInvarianMatrix.length; i++){
-            //acc = 0;
             tmp = MathOperator.innerProdVector(pInvarianMatrix[i], markVector);
             acc = MathOperator.addElements(tmp);
-           /* for (int j = 0; j < pInvarianMatrix[0].length; j++){
-                if (pInvarianMatrix[i][j] == 1)
-                    acc += markVector[j];
-            }*/
-
             if (acc != pInvarianVector[i])
-                throw new Exception("Fallo test de invariantes en disparo de transcicion :" + numTransicion);
+                throw new IllegalStateException("Fallo test de invariantes en disparo de transcicion :" + numTransicion);
         }
     }
 
@@ -200,18 +163,6 @@ public class PetriNet {
  ------------------------------------------------------------------------------------------
  */
 
-
-    public int[] probarDisparoExtendida(int transition) throws InvalidAlgorithmParameterException {
-
-        int [] vector_de_disparo = new int [ntransitions];
-        vector_de_disparo[transition] = 1;
-
-        int [] new_marking;
-        new_marking = MathOperator.vectmatProd(this.incidenceMatrix, vector_de_disparo);
-        new_marking = MathOperator.addVector(new_marking,this.markVector);
-
-        return new_marking;
-    }
 
     /**
      * Toda transcicion puede ser definida coomo temporal, en el caso de una transcicion
@@ -261,7 +212,6 @@ public class PetriNet {
         if(!validFire)
             return FireResultType.RESOURCE_UNAVAILABLE;
 
-        //FIXME este else if lo llevo al principio, para que lo primero que haga sea preguntar por la ventana
 
         else if((currentTime - transitionTimeStamp[transition]) < alpha[transition]
                 && validTimeStamp[transition])
@@ -270,9 +220,9 @@ public class PetriNet {
         /* Ya dispare la transcicion temporal que habia sido sensibilizada,
             por ende el timeStamp que fue seteado con anterioridad ya no es valido  */
 
-        testInvariantesPlaza(transition);
         validTimeStamp[transition] = false;
         this.markVector = posibleMark;
+        testInvariantesPlaza(transition);
         if (logger != null) {
             logger.myLogger.info("{\"disparo\" : " + transition + ", \"marcado\" : "
                     + Arrays.toString(this.markVector) + " }");

@@ -1,8 +1,6 @@
 package Politica;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import petriNet.MathOperator;
 
@@ -50,7 +48,7 @@ class PoliticaTest {
 
     @Test
     void getNextWithHighPrioTest() throws InvalidAlgorithmParameterException {
-        int nq2 = 7;
+
         Politica pol2 = new Politica(new int [] {2, 1, 1, 3, 5}, PoliticMode.HIGH_PRIO);
 
         assertEquals(4,pol2.getNextAwake(new int[] {1,1,1,1,1}));

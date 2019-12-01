@@ -37,37 +37,15 @@ public class MonitorV2 {
 
     }
 
-    /*
-     * Intenta obtener el recurso de la RdP
-     */
-    public void disparar(int numTranscicion){
-
-        try{
-            ingressSemaphore.acquire();
-            //conditionQueueLock.lock();
-            if (petriNet.dispararTransicion(numTranscicion)){
-                afterFireAction();
-            }
-            else{
-                ingressSemaphore.release();
-                colasCondicion.get(numTranscicion).encolar();
-                //Si me despertaron se que puedo disparar
-                petriNet.dispararTransicion(numTranscicion);
-                afterFireAction();
-            }
-        }
-        catch(InterruptedException | InvalidAlgorithmParameterException e){
-            System.exit(1);
-        }
-    }
-    /*
-        Metodo que aplica la ec de estado generalizada y lo hace adentro de un loop como
-        plantea mico en el diagrama de secuencia
+    /**
+     * Metodo para obtener recursos atraves del monitor, NO aplica Ec.Generalizada
+     * @param numTranscicion numero de transicion que se desea disparar
+     * @throws InterruptedException
+     * @throws InvalidAlgorithmParameterException
      */
     public void dispararV2(int numTranscicion) throws InterruptedException, InvalidAlgorithmParameterException {
 
             ingressSemaphore.acquire();
-            //conditionQueueLock.lock();
             K = true;
             while(K){
 
@@ -102,16 +80,20 @@ public class MonitorV2 {
         K = true;
         FireResultType fr;
         while(K){
-            shotSemaphore.acquire();  //Semaforo que toman los hilos temporales
+
+            /* semaforo que toman los hilos que ya estan dentro del monitor*/
+            shotSemaphore.acquire();
+
             long currentTime = System.currentTimeMillis();
             fr = petriNet.dispararExtendida(numTranscicion, currentTime);
 
             if (fr == FireResultType.SUCCESS){
                 int [] sensibilizadas;
                 sensibilizadas = petriNet.obtenerSensibilizadaExtendida(currentTime);
+
                 /*despierto a todos los hilos que deben setear su propio tiempo*/
-                //FIXME se debe havcer una and con los hilos que estan esperando en las colas primero
                 sensibilizadas = awakeTemporal(sensibilizadas);
+
                 wakeUp(sensibilizadas);
                 return;
             }
@@ -128,9 +110,6 @@ public class MonitorV2 {
             
             /*Si el resultado no fue exitoso por falta de tiempo*/
             else if ((fr == FireResultType.TIME_DISABLED)) {
-            //    if (logger != null) {
-           //         logger.myLogger.info("\nDisparo de T" + numTranscicion + "FALLO POR TIEMPO\n");
-             //   }
                 wakeUp(new int [colasCondicion.size()]);
                 colasCondicion.get(numTranscicion).encolarTemporal(petriNet.getRemainingTime(currentTime,numTranscicion));
             }
@@ -139,26 +118,12 @@ public class MonitorV2 {
 
     }
 
+
     /**
-     * Debe ser ejecutada por todos los hilos luego de realizar un disparo valido
-     * Verifica si puede despertar algun hilo, en caso de poder lo hace
-     * Encaso de no poder despertar libera lel semaforo de entrada al monitor
+     * Metodo ejecutado por todos los hilos,ya sea que el disparo sea valido o no.
+     * @param sensibilizadas vector de transciciones sensibilizadas
+     * @throws InvalidAlgorithmParameterException
      */
-    private void afterFireAction() throws InvalidAlgorithmParameterException {
-        int [] sensibilizadas;
-        sensibilizadas = petriNet.obtenerSensibilizadas(getWaitingVect());
-
-        if (Arrays.equals(new int[sensibilizadas.length],sensibilizadas)){
-            //conditionQueueLock.unlock();
-            ingressSemaphore.release();
-        }
-        else{
-            int nextAwake = policy.getNextAwake(sensibilizadas);
-            colasCondicion.get(nextAwake).desencolar();
-            //conditionQueueLock.unlock();
-        }
-    }
-
     private void wakeUp(int [] sensibilizadas) throws InvalidAlgorithmParameterException {
 
         int [] wv = getWaitingVect();
@@ -170,24 +135,31 @@ public class MonitorV2 {
                 recursos y ya cumplio el tiempo de espera
              */
             this.shotSemaphore.release();
-            //this.conditionQueueLock.unlock();
+
         }
 
         else if (!Arrays.equals(new int[sensibilizadas.length],sensibilizadas)){
+
             /*Hay alguien para despertar, veo quien*/
             int nextAwake = policy.getNextAwake(sensibilizadas);
 
             colasCondicion.get(nextAwake).desencolar();
-            //conditionQueueLock.unlock();
             shotSemaphore.release();
         }
 
         else{
-            //conditionQueueLock.unlock();
+            /*No hay nadie adentro que pueda disparar, dejo entrar un nuevo hilo al monitor*/
             shotSemaphore.release();
             ingressSemaphore.release();
         }
     }
+
+    /**
+     * Despierta a todos los hilos que intentaron disparar transciciones temporales
+     *  y no pudieron por falta de recursos
+     * @param sensibilizadas vector de sensibilizados
+     * @return vector de sensibilizados modificado para no contener hilos de trans temporales
+     */
     private int []  awakeTemporal(int [] sensibilizadas){
         int [] nuevaSens = new int [sensibilizadas.length];
         int [] waitingVect = getWaitingVect();
@@ -218,39 +190,4 @@ public class MonitorV2 {
         return wv;
     }
 
-    ///--------------------------------------------------------------------------------------
-
-    //                          Disparo con tiempo
-
-    //---------------------------------------------------------------------------------------
-
-
-
-    /*
-        Para probar boludeses con las colas etc
-     */
-    /*
-    public void  dispararFake(int t) throws InterruptedException {
-        ingressSemaphore.acquire();
-        conditionQueueLock.lock();
-        try {
-            if (t == 10) {
-                //System.out.print("Hilo despertador entrando al monitor\n");
-                for (int i = 0; i < colasCondicion.size(); i++) {
-                    int awake = policy.getNextAwake(fake_sens);
-                    if (colasCondicion.get(awake).getQueueLen() > 0)
-                        colasCondicion.get(awake).desencolar();
-                }
-                ingressSemaphore.release();
-            } else {
-                    ingressSemaphore.release();
-                    //System.out.print("Hilo numero " + t + " yendoseeeee a dormir\n");
-                    colasCondicion.get(t).encolar();
-            }
-        }
-        finally{
-            conditionQueueLock.unlock();
-        }
-
-    }*/
 }
