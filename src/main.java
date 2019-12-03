@@ -12,7 +12,7 @@ public class main {
     public static void main(String[] args) throws IOException, InterruptedException {
 
 
-        JsonFileReader fr = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/red_final.json");
+        JsonFileReader fr = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/red_final_prio_subida.json");
 
         //PetriNetConfigurator pnConf = new PetriNetConfigurator(fr.petriNet_test);
         PetriNet rdp = new PetriNet(fr.getPnConfigurator(), true,"/home/dabratte/repos/Concurrente/log_files/finalv11.log");
