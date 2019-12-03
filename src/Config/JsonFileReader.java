@@ -1,5 +1,4 @@
 package Config;
-import Config.PetriNetConfigurator;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -11,6 +10,7 @@ public class JsonFileReader {
 
     private PetriNetConfigurator pnConfigurator;
     private Config.ThreadTriggerConfigurator triggerConfigurator;
+    private PolicyConfigurator policyConfigurator;
 
 
 
@@ -31,6 +31,11 @@ public class JsonFileReader {
             //leemos los triggers y creamos el configurator de los mismos
             this.triggerConfigurator = new Config.ThreadTriggerConfigurator(triggers);
 
+            //--------------------------------------------------(Politic)-----------------------------------------------
+            //leemos json
+            JsonObject policy = jsonObject.getAsJsonObject("Policy");
+            //leemos el vector de politica
+            this.policyConfigurator = new PolicyConfigurator(policy);
 
 
         } catch (FileNotFoundException e) {
@@ -46,6 +51,10 @@ public class JsonFileReader {
 
     public Config.ThreadTriggerConfigurator getTriggerConfigurator() {
         return triggerConfigurator;
+    }
+
+    public PolicyConfigurator getPolicyConfigurator() {
+        return policyConfigurator;
     }
 }
 

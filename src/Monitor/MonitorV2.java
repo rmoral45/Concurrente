@@ -1,7 +1,6 @@
 package Monitor;
 import Colas.ColaCondicion;
 import MyLogger.MyLoggerWrapper;
-import Politica.PoliticMode;
 import Politica.Politica;
 import petriNet.FireResultType;
 import petriNet.MathOperator;
@@ -24,9 +23,10 @@ public class MonitorV2 {
     private  boolean K;
     MyLoggerWrapper logger;
 
-    public MonitorV2(int ntrans,PoliticMode polMode, PetriNet pn) throws IOException {
+    public MonitorV2(int ntrans, Politica policy, PetriNet pn) throws IOException {
 
-        policy = new Politica( new int [] {1,1,1,1,1,1,8,1,1,2,5,1,1,1,1,1}, polMode);
+        //policy = new Politica( new int [] {1,1,1,1,1,1,8,1,1,2,5,1,1,1,1,1}, polMode);
+        this.policy = policy;
         petriNet = pn;
         K = false;
         logger = MyLoggerWrapper.getInstance("/home/dabratte/repos/Concurrente/log_files/pctemp.log");

@@ -1,8 +1,9 @@
 package Politica;
-import java.security.InvalidAlgorithmParameterException;
-import java.util.Arrays;
-import java.util.Random;
+import Config.PolicyConfigurator;
 import petriNet.MathOperator;
+
+import java.security.InvalidAlgorithmParameterException;
+import java.util.Random;
 
 public class Politica {
 
@@ -11,10 +12,16 @@ public class Politica {
     private int [] priorities;
     private PoliticMode mode;
 
-    public Politica(int [] pri, PoliticMode polMode){
+    /*public Politica(int [] pri, PoliticMode polMode){
         mode = polMode;
         next = -1;
         priorities =  pri;
+    }*/
+
+    public Politica(PolicyConfigurator policyConfigurator){
+        this.mode = policyConfigurator.getMode();
+        this.next = policyConfigurator.getNext();
+        this.priorities = policyConfigurator.getPriorities();
     }
 
     /**
