@@ -1,10 +1,13 @@
 package Politica;
 
-import static org.junit.jupiter.api.Assertions.*;
+import Config.JsonFileReader;
 import org.junit.jupiter.api.Test;
 import petriNet.MathOperator;
 
 import java.security.InvalidAlgorithmParameterException;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class PoliticaTest {
@@ -35,7 +38,9 @@ class PoliticaTest {
     @Test
     void getNextWithRandomtTest() throws InvalidAlgorithmParameterException {
 
-        Politica pol1 = new Politica(new int [] {0,1,2,3,4,5}, PoliticMode.RANDOM);
+        JsonFileReader fr1 = new JsonFileReader("/home/ramiro/repos/Concurrente/src/petriNet/testPolitica/testPolitica1.json");
+
+        Politica pol1 = new Politica(fr1.getPolicyConfigurator());
 
         assertEquals(0,pol1.getNextAwake(new int[] {1,0}));
 
@@ -49,7 +54,8 @@ class PoliticaTest {
     @Test
     void getNextWithHighPrioTest() throws InvalidAlgorithmParameterException {
 
-        Politica pol2 = new Politica(new int [] {2, 1, 1, 3, 5}, PoliticMode.HIGH_PRIO);
+        JsonFileReader fr1 = new JsonFileReader("/home/ramiro/repos/Concurrente/src/petriNet/testPolitica/testPolitica2.json");
+        Politica pol2 = new Politica(fr1.getPolicyConfigurator());
 
         assertEquals(4,pol2.getNextAwake(new int[] {1,1,1,1,1}));
 

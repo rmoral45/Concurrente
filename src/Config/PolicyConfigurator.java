@@ -4,11 +4,13 @@ import Politica.PoliticMode;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+
+
 public class PolicyConfigurator {
 
     private int next;
     private int [] priorities;
-    private PoliticMode mode;
+    private Politica.PoliticMode mode;
 
     public PolicyConfigurator(JsonObject policy) {
 
@@ -21,7 +23,6 @@ public class PolicyConfigurator {
 
         String tmp_mode = policy.get("mode").getAsString();
         this.mode = PoliticMode.valueOf(tmp_mode);
-
     }
 
     public int getNext() {
@@ -32,7 +33,7 @@ public class PolicyConfigurator {
         return priorities;
     }
 
-    public PoliticMode getMode() {
+   public PoliticMode getMode() {
         return mode;
     }
 }
