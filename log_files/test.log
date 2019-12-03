@@ -1,4 +1,4 @@
 Nov 26, 2019 8:27:25 PM petriNet.PetriNet dispararExtendida
-INFO: {"disparo" : 0, "marcado" : [1, 2, 0, 0, 0, 0, 1, 0] }
+INFO: {"disparo" : 'T0', "marcado" : [1, 2, 0, 0, 0, 0, 1, 0] }
 Nov 26, 2019 8:27:25 PM petriNet.PetriNet dispararExtendida
-INFO: {"disparo" : 3, "marcado" : [1, 2, 0, 0, 0, 0, 1, 0] }
+INFO: {"disparo" : 'T3', "marcado" : [1, 2, 0, 0, 0, 0, 1, 0] }
