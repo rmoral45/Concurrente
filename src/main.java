@@ -1,18 +1,26 @@
+import Config.JsonFileReader;
+import Config.ThreadTriggerConfigurator;
+import Monitor.MonitorV2;
+import Politica.Politica;
+import ThreadLauncher.Launcher;
+import petriNet.PetriNet;
+
+import java.io.IOException;
+
 public class main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException, InterruptedException {
 
 
-        /*PetriNet rdp          = new PetriNet("/home/ramiro/repos/Concurrente/src/petriNet/petriNet_parameters.json");
-        MonitorV2 monitor     = new MonitorV2(2, PoliticMode.RANDOM, rdp);
-        Disparador productor  = new Disparador( new int [] {0,1}, 5, monitor);
-        Disparador consumidor = new Disparador( new int [] {2,3}, 5, monitor);
-        Thread thprod         = new Thread( productor);
-        Thread thcons         = new Thread( consumidor);
+        JsonFileReader fr = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/red_final.json");
 
-        thprod.start();
-        thcons.start();*/
-        return;
+        //PetriNetConfigurator pnConf = new PetriNetConfigurator(fr.petriNet_test);
+        PetriNet rdp = new PetriNet(fr.getPnConfigurator(), true,"/home/dabratte/repos/Concurrente/log_files/finalv11.log");
+        Politica policy = new Politica(fr.getPolicyConfigurator());
+        MonitorV2 monitor = new MonitorV2(rdp.getNtransitions(), policy,rdp);
+        ThreadTriggerConfigurator ttConf = fr.getTriggerConfigurator();
+        Launcher ln = new Launcher(ttConf, monitor);
+        Thread.sleep(10000000);
 
     }
 }
