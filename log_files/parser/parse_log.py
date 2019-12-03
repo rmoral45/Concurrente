@@ -3,8 +3,8 @@ from pdb import set_trace as bp
 import re
 import json
 import numpy
-LOG_FILE = '../finalv11.log'
-PETRI_FILE = '/home/dabratte/repos/Concurrente/src/petriNet/red_final_prio_subida.json'
+LOG_FILE = '../finalPresentacion.log'
+PETRI_FILE = '/home/dabratte/repos/Concurrente/src/petriNet/red_final.json'
 N_TRANSICIONES = 16
 def main():
 
@@ -23,12 +23,16 @@ def main():
                 for js in jslist :
                         transiciones.append(js['disparo'])
                         marcados.append(js['marcado'])
+
                 for i in range(N_TRANSICIONES):
                         if transiciones.count(i) < 1:
                                 print('La transicion : ', i, ' no se disparo nunca\n')
 
                 for i in range(N_TRANSICIONES):
                         print('La transicion : ', i, ' se disparo ', transiciones.count(i))
+                for i in range(len(transiciones)):
+                        if transiciones[i] == 1 :
+                                transiciones[i] = 0
 
                 remover_invariantes(transiciones,[7,0,2,3,4,15,5,6])
                 remover_invariantes(transiciones,[8,10,11,9])
