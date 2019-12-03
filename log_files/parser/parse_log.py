@@ -39,11 +39,12 @@ def main():
                 t_inv_mat = []
                 t_inv_mat.append(remover_invariantes(transiciones,['T7','T0','T2','T3','T4','T15','T5','T6']))
                 t_inv_mat.append(remover_invariantes(transiciones,['T8','T10','T11','T9']))
+                t_inv_mat.append(remover_invariantes(transiciones,['T13','T12','T14']))
                 clean = []
                 for i in t_inv_mat:
                         clean += i.split('T')
                 for i in range(len(transiciones)) :
-                        if transiciones[i] in ['T7','T0','T2','T3','T4','T15','T5','T6','T8','T10','T11','T9'] :
+                        if transiciones[i] in ['T7','T0','T2','T3','T4','T15','T5','T6','T8','T10','T11','T9','T13','T12','T14'] :
                                 transiciones[i] = ''
 
                 clean += ''.join(transiciones).split('T')
