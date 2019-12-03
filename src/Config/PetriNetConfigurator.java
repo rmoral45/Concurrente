@@ -40,15 +40,11 @@ public class PetriNetConfigurator {
                 this.incidenceMatrix[i][j] = tmp.get(j).getAsInt();
             }
 
-
-
         //inicializamos vector de marcado inicial
         this.initialMarking = new int[nplaces];
         JsonArray tmp_marking = petriNet.getAsJsonArray("init_marking");
         for(int k = 0; k < this.nplaces; k++)
             this.initialMarking[k] = tmp_marking.get(k).getAsInt();
-
-
 
         //inicializamos matriz de arcos inhibidores
         this.inibMatrix = new int[ntransitions][nplaces];
@@ -59,8 +55,6 @@ public class PetriNetConfigurator {
                 tmp_row = inib_arcs_tmp.get(i).getAsJsonArray();
                 this.inibMatrix[i][j] = tmp_row.get(j).getAsInt();
             }
-
-
 
         //inicializamos matriz de arcos lectores
         this.lectorMatrix = new int[ntransitions][nplaces];
@@ -92,7 +86,6 @@ public class PetriNetConfigurator {
             }
 
         //leemos vector de invariantes de plaza
-        //FIXME VERIFICAR SI ESTE VECTOR ES DE npInvariants o nplaces
         this.placesInvariantsVector = new int[npInvariants];
         JsonArray pInvariants_vector_tmp = petriNet.getAsJsonArray("p_invariants_vector");
         for(int i = 0; i < npInvariants; i++)
