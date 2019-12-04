@@ -71,7 +71,9 @@ def remover_invariantes(ts, invariantes):
                         nv[i] = ''
         union = ''.join(nv)
         inv = ''.join(invariantes)
-        union = union.replace(inv, '')
+        union = union.replace(inv, 'x')
+        print('resto del invariante ', inv)
+        print('es : ', union)
         return union
         
 def probar_Tinv(ts,marca_log):

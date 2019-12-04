@@ -12,8 +12,8 @@ public class main {
     public static void main(String[] args) throws IOException, InterruptedException {
 
 
-        JsonFileReader fr = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/red_final.json");
-        PetriNet rdp = new PetriNet(fr.getPnConfigurator(), true,"/home/dabratte/repos/Concurrente/log_files/finalPresentacion.log");
+        JsonFileReader fr = new JsonFileReader("/home/dabratte/repos/Concurrente/src/petriNet/red_final_prio_bajada.json");
+        PetriNet rdp = new PetriNet(fr.getPnConfigurator(), true,"/home/dabratte/repos/Concurrente/log_files/finalPresentacionvPrioBajadav2.log");
         Politica policy = new Politica(fr.getPolicyConfigurator());
         MonitorV2 monitor = new MonitorV2(rdp.getNtransitions(), policy,rdp);
         ThreadTriggerConfigurator ttConf = fr.getTriggerConfigurator();

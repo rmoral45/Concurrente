@@ -224,7 +224,7 @@ public class PetriNet {
         this.markVector = posibleMark;
         testInvariantesPlaza(transition);
         if (logger != null) {
-            logger.myLogger.info("{\"disparo\" : \"T" + transition + "\"" +", \"marcado\" : "
+            logger.myLogger.info("{\"disparo\" : " + transition + ", \"marcado\" : "
                     + Arrays.toString(this.markVector) + " }");
         }
         return FireResultType.SUCCESS;
