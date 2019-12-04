@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="272.0">Config.PetriNetConfigurator</node>
+    <node x="307.0" y="452.0">Config.ThreadTriggerConfigurator</node>
+    <node x="396.5" y="0.0">Config.ThreadTrigger</node>
+    <node x="719.0" y="428.0">Config.PolicyConfigurator</node>
+    <node x="297.49999999999994" y="852.0">Config.JsonFileReader</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Config.ThreadTriggerConfigurator" target="Config.ThreadTrigger">
+      <point x="-130.66666666666663" y="-75.0" />
+      <point x="372.33333333333337" y="247.0" />
+      <point x="432.0" y="247.0" />
+      <point x="-71.0" y="111.0" />
+    </edge>
+    <edge source="Config.JsonFileReader" target="Config.ThreadTriggerConfigurator">
+      <point x="0.0" y="-99.0" />
+      <point x="-2.8421709430404007E-14" y="75.0" />
+    </edge>
+    <edge source="Config.JsonFileReader" target="Config.PetriNetConfigurator">
+      <point x="-136.9999999999999" y="-99.0" />
+      <point x="366.00000000000006" y="822.0" />
+      <point x="143.5" y="822.0" />
+      <point x="0.0" y="255.0" />
+    </edge>
+    <edge source="Config.JsonFileReader" target="Config.PolicyConfigurator">
+      <point x="182.66666666666663" y="-99.0" />
+      <point x="685.6666666666665" y="832.0" />
+      <point x="943.1666666666667" y="832.0" />
+      <point x="89.66666666666674" y="99.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8" x="513.2222222222222" y="539.8888888888889" />
+  <SelectedNodes>
+    <node>Config.PetriNetConfigurator</node>
+    <node>Config.ThreadTriggerConfigurator</node>
+    <node>Config.ThreadTrigger</node>
+    <node>Config.PolicyConfigurator</node>
+    <node>Config.JsonFileReader</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
