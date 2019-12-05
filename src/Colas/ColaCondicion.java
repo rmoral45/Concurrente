@@ -3,7 +3,6 @@ package Colas;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ColaCondicion {
@@ -68,7 +67,7 @@ public class ColaCondicion {
     public void desencolar(){
         //System.out.print("Desencolando cola :" + numCondicion + "\n");
         conditionQueueLock.lock();
-        threadsTimestamp.remove(0);
+        //threadsTimestamp.remove(0);
         safeGuard = false;
         queueLen--;
         resourceCondition.signal();

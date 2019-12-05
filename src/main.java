@@ -14,7 +14,7 @@ public class main {
 
 
         JsonFileReader fr = new JsonFileReader("/home/ramiro/repos/Concurrente/src/petriNet/red_final.json");
-        PetriNet rdp = new PetriNet(fr.getPnConfigurator(), true,"/home/ramiro/repos/Concurrente/log_files/finalPresentacion.log");
+        PetriNet rdp = new PetriNet(fr.getPnConfigurator(), true,"/home/ramiro/repos/Concurrente/log_files/finalTest.log");
 
         Politica policy = new Politica(fr.getPolicyConfigurator());
         MonitorV2 monitor = new MonitorV2(rdp.getNtransitions(), policy,rdp);
