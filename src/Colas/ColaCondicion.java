@@ -35,7 +35,6 @@ public class ColaCondicion {
     public void encolar (){
         conditionQueueLock.lock();
         safeGuard = true;
-        threadsTimestamp.add(System.currentTimeMillis());
         queueLen++;
          try{
              while (safeGuard)
@@ -65,9 +64,7 @@ public class ColaCondicion {
     }
 
     public void desencolar(){
-        //System.out.print("Desencolando cola :" + numCondicion + "\n");
         conditionQueueLock.lock();
-        //threadsTimestamp.remove(0);
         safeGuard = false;
         queueLen--;
         resourceCondition.signal();

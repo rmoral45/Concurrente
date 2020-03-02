@@ -1,0 +1,426 @@
+Dec 05, 2019 2:53:42 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T7;", "marcado" : [1, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:53:42 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T0;", "marcado" : [0, 1, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:53:42 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T2;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 20, 0, 0, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:53:42 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T3;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0, 0, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:53:45 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 1, 20, 0, 0, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:53:48 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 2, 20, 0, 0, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:53:48 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T4;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 2, 20, 0, 0, 0, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:53:51 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 3, 20, 0, 0, 0, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:53:53 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T15;", "marcado" : [0, 0, 0, 0, 0, 0, 0, 1, 3, 20, 0, 0, 0, 0, 1, 1, 0, 1] }
+Dec 05, 2019 2:53:53 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T5;", "marcado" : [0, 0, 0, 0, 0, 1, 0, 1, 3, 20, 0, 0, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:53:53 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T6;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 3, 20, 0, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:53:53 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 2, 19, 1, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:53:53 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 18, 2, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:53:53 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 17, 3, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:53:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 17, 3, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:53:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:53:57 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T13;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:53:57 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T12;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:53:57 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 16, 4, 0, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:53:57 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T14;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 16, 4, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:00 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 2, 16, 4, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:00 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 15, 5, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:00 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 14, 6, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:03 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T7;", "marcado" : [1, 0, 0, 0, 0, 0, 0, 0, 0, 14, 6, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:03 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T0;", "marcado" : [0, 1, 0, 0, 0, 0, 0, 0, 0, 14, 6, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:03 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T2;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 14, 6, 0, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:03 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 14, 5, 1, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:03 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 14, 4, 2, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:03 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 14, 3, 3, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:03 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 14, 2, 4, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:03 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 14, 1, 5, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:03 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 14, 0, 6, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:03 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T3;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0, 6, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:54:03 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 1, 14, 0, 6, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:54:06 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 2, 14, 0, 6, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:54:09 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T4;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 2, 14, 0, 6, 0, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:54:09 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 3, 14, 0, 6, 0, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:54:12 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T13;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 3, 14, 0, 6, 1, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:54:12 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 4, 14, 0, 6, 1, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:54:13 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T15;", "marcado" : [0, 0, 0, 0, 0, 0, 0, 1, 4, 14, 0, 6, 1, 0, 1, 1, 0, 1] }
+Dec 05, 2019 2:54:13 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T5;", "marcado" : [0, 0, 0, 0, 0, 1, 0, 1, 4, 14, 0, 6, 1, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:13 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T6;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 4, 14, 0, 6, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:13 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 4, 15, 0, 5, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:13 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 4, 16, 0, 4, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:13 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 4, 17, 0, 3, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:13 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 4, 18, 0, 2, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:13 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 4, 19, 0, 1, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:13 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 4, 20, 0, 0, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:13 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 3, 19, 1, 0, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:13 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 2, 18, 2, 0, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:13 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 17, 3, 0, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:13 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:13 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T12;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:54:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 16, 4, 0, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:54:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 15, 5, 0, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:54:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T14;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 15, 5, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:18 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 15, 5, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:18 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 14, 6, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:21 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 14, 6, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:21 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 13, 7, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:23 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T7;", "marcado" : [1, 0, 0, 0, 0, 0, 0, 0, 0, 13, 7, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:23 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T0;", "marcado" : [0, 1, 0, 0, 0, 0, 0, 0, 0, 13, 7, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:23 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T2;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 7, 0, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:23 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 6, 1, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:23 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 5, 2, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:23 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 4, 3, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:23 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 3, 4, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:23 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 2, 5, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:23 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 1, 6, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:23 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 0, 7, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:23 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T3;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0, 7, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:54:24 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 1, 13, 0, 7, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:54:27 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T13;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 1, 13, 0, 7, 1, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:54:27 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 2, 13, 0, 7, 1, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:54:29 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T4;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 2, 13, 0, 7, 1, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:54:30 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 3, 13, 0, 7, 1, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:54:33 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 4, 13, 0, 7, 1, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T15;", "marcado" : [0, 0, 0, 0, 0, 0, 0, 1, 4, 13, 0, 7, 1, 0, 1, 1, 0, 1] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T5;", "marcado" : [0, 0, 0, 0, 0, 1, 0, 1, 4, 13, 0, 7, 1, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T6;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 4, 13, 0, 7, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 4, 14, 0, 6, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 4, 15, 0, 5, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 3, 14, 1, 5, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 3, 15, 1, 4, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 2, 14, 2, 4, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 2, 15, 2, 3, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 14, 3, 3, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 15, 3, 2, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 14, 4, 2, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 15, 4, 1, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T12;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:54:34 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T14;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:36 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 16, 4, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:36 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 15, 5, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:39 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 15, 5, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:39 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 14, 6, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:42 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T13;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 14, 6, 0, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:42 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T12;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 14, 6, 0, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:54:42 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T14;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 14, 6, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:42 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 14, 6, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:42 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 13, 7, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:44 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T7;", "marcado" : [1, 0, 0, 0, 0, 0, 0, 0, 0, 13, 7, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:44 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T0;", "marcado" : [0, 1, 0, 0, 0, 0, 0, 0, 0, 13, 7, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:44 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T2;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 7, 0, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:44 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 6, 1, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:44 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 5, 2, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:44 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 4, 3, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:44 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 3, 4, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:44 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 2, 5, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:44 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 1, 6, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:44 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 0, 7, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:44 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T3;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0, 7, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:54:45 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 1, 13, 0, 7, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:54:48 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 2, 13, 0, 7, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:54:50 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T4;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 2, 13, 0, 7, 0, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:54:51 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 3, 13, 0, 7, 0, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 4, 13, 0, 7, 0, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T15;", "marcado" : [0, 0, 0, 0, 0, 0, 0, 1, 4, 13, 0, 7, 0, 0, 1, 1, 0, 1] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T5;", "marcado" : [0, 0, 0, 0, 0, 1, 0, 1, 4, 13, 0, 7, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T6;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 4, 13, 0, 7, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 4, 14, 0, 6, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 4, 15, 0, 5, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 3, 14, 1, 5, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 3, 15, 1, 4, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 2, 14, 2, 4, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 2, 15, 2, 3, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 14, 3, 3, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 15, 3, 2, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 14, 4, 2, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 15, 4, 1, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:54 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:57 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T13;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:57 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T12;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:54:57 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T14;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:57 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 16, 4, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:54:57 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 15, 5, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:00 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 15, 5, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:00 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 14, 6, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:03 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 14, 6, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:03 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 13, 7, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:04 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T7;", "marcado" : [1, 0, 0, 0, 0, 0, 0, 0, 0, 13, 7, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:04 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T0;", "marcado" : [0, 1, 0, 0, 0, 0, 0, 0, 0, 13, 7, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:04 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T2;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 7, 0, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:04 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 6, 1, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:04 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 5, 2, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:04 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 4, 3, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:04 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 3, 4, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:04 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 2, 5, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:04 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 1, 6, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:04 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 0, 7, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:04 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T3;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0, 7, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:55:06 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 1, 13, 0, 7, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:55:09 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 2, 13, 0, 7, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:55:10 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T4;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 2, 13, 0, 7, 0, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:55:12 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T13;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 2, 13, 0, 7, 1, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:55:12 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 3, 13, 0, 7, 1, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T15;", "marcado" : [0, 0, 0, 0, 0, 0, 0, 1, 3, 13, 0, 7, 1, 0, 1, 1, 0, 1] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T5;", "marcado" : [0, 0, 0, 0, 0, 1, 0, 1, 3, 13, 0, 7, 1, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T6;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 3, 13, 0, 7, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 3, 14, 0, 6, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 3, 15, 0, 5, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 3, 16, 0, 4, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 3, 17, 0, 3, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 2, 16, 1, 3, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 2, 17, 1, 2, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T12;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 2, 17, 1, 2, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 16, 2, 2, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 17, 2, 1, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 3, 1, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 17, 3, 0, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 17, 3, 0, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:55:15 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T14;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:18 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 16, 4, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:18 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 15, 5, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:21 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 15, 5, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:21 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 14, 6, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:24 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 14, 6, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:24 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 13, 7, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:25 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T7;", "marcado" : [1, 0, 0, 0, 0, 0, 0, 0, 0, 13, 7, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:25 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T0;", "marcado" : [0, 1, 0, 0, 0, 0, 0, 0, 0, 13, 7, 0, 0, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:25 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T2;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 7, 0, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:25 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 6, 1, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:25 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 5, 2, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:25 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 4, 3, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:25 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 3, 4, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:25 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 2, 5, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:25 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 1, 6, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:25 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T11;", "marcado" : [0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 0, 7, 0, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:25 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T3;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0, 7, 0, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:55:27 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T13;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0, 7, 1, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:55:27 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 1, 13, 0, 7, 1, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:55:30 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 1, 0, 0, 0, 1, 2, 13, 0, 7, 1, 0, 1, 1, 0, 0] }
+Dec 05, 2019 2:55:31 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T4;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 2, 13, 0, 7, 1, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:55:33 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 1, 0, 0, 1, 3, 13, 0, 7, 1, 0, 0, 1, 0, 0] }
+Dec 05, 2019 2:55:35 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T15;", "marcado" : [0, 0, 0, 0, 0, 0, 0, 1, 3, 13, 0, 7, 1, 0, 1, 1, 0, 1] }
+Dec 05, 2019 2:55:35 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T5;", "marcado" : [0, 0, 0, 0, 0, 1, 0, 1, 3, 13, 0, 7, 1, 0, 1, 0, 0, 0] }
+Dec 05, 2019 2:55:35 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T6;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 3, 13, 0, 7, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:35 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 3, 14, 0, 6, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:35 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 2, 13, 1, 6, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:35 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 2, 14, 1, 5, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:35 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 13, 2, 5, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:35 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 14, 2, 4, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:35 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 13, 3, 4, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:35 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 14, 3, 3, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:35 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 15, 3, 2, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:35 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 3, 1, 1, 0, 1, 0, 1, 0] }
+Dec 05, 2019 2:55:35 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T12;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 3, 1, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:55:35 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T9;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 17, 3, 0, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:55:36 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T8;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 1, 17, 3, 0, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:55:36 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T10;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 0, 1, 0, 0, 1, 0] }
+Dec 05, 2019 2:55:36 PM petriNet.PetriNet dispararExtendida
+INFO: {"disparo" : "T14;", "marcado" : [0, 0, 0, 0, 0, 0, 1, 0, 0, 16, 4, 0, 0, 0, 1, 0, 1, 0] }

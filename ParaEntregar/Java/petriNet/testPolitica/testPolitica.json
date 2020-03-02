@@ -1,7 +1,0 @@
-{        
-        "Policy": {
-                "priorities": [0,1,2,3,4,5],
-                "next": -1,
-                "mode": "RANDOM"
-        }
-}

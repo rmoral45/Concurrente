@@ -4,12 +4,12 @@ import re
 import json
 import numpy
 import copy
-#LOG_FILE = '../finalPresentacionPrioBajada.log'
-#LOG_FILE = '../finalPresentacionPrioSubida.log'
-LOG_FILE = '../finalTest2.log'
+#LOG_FILE = '../finalTest2_prioBajada.log'
+LOG_FILE = '../finalTest2_prioSubida.log'
+#LOG_FILE = '../finalTest2.log'
 #PETRI_FILE = '/home/ramiro/repos/Concurrente/src/petriNet/red_final_prio_bajada.json'
-#PETRI_FILE = '/home/ramiro/repos/Concurrente/src/petriNet/red_final_prio_subida.json'
-PETRI_FILE = '/home/dabratte/repos/Concurrente/src/petriNet/red_final.json'
+PETRI_FILE = '/home/ramiro/repos/Concurrente/src/petriNet/red_final_prio_subida.json'
+#PETRI_FILE = '/home/ramiro/repos/Concurrente/src/petriNet/red_final.json'
 N_TRANSICIONES = 16
 T_CODING = ['T0;','T1;','T2;','T3;','T4;','T5;','T6;','T7;','T8;','T9;','T10;','T11;','T12;','T13;','T14;','T15;'] 
 def main():
